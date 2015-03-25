@@ -1,0 +1,73 @@
+* {
+    font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+}
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+form {
+
+}
+
+tr {
+    text-align: center;
+}
+
+td {
+    padding: 0.50   em;
+    text-align: center;
+}
+
+input {
+    font-size: 12pt;
+    padding-left:4px;
+}
+
+.logo {
+
+}
+
+.page_title {
+
+}
+
+.navbar {
+
+    height:60px;
+    line-height:60px;
+    text-align: center;
+    margin:0;
+    background-color: lightgreen;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+p.nav {
+    display: inline-block;
+    text-align: justify;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: normal;
+    text-decoration: none;
+    color: white;
+
+}
+
+.login_form {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.login_form > tbody > tr > td {
+    font-size: 10pt;
+}
+
+#login_button {
+    text-align:right;
+}
+
+.button {
+
+}
