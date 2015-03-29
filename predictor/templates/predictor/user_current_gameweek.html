@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html>
+{% extends "predictor/base.html" %}
 <head>
     <title></title>
 </head>
 <body>
-    <li>Hello World.</li>
+    {% block content %}
+        {% for match in matches_list.all %}
+            <div align="center" style="padding: 10px">
+                <div style="width: 15em; display:inline-block; text-align:center;">{{match.home_team}}</div>
+                <div style="width: 10em; display:inline-block; text-align:center;">
+                    <input id="home" type="text" maxlength="2" size=2 value=0 onpaste="return false;" style="text-align:right;" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    -
+                    <input id="away" type="text" maxlength="2" size=2 value=0 onpaste="return false;" style="text-align:left" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                </div>
+                <div style="width: 15em; display: inline-block; text-align:center;">{{match.away_team}}</div>
+            </div>
+            <p>{{ predictions_list.all }}</p>
+        {% endfor %}
+        <div align="center" style="padding:40px"><button id="submit_predictions" class="button" action="">Submit Predictions</button></div>
+    {% endblock %}
 </body>
 </html>

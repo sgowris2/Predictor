@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from predictor.models import Team, User
+from django.shortcuts import render, redirect
+from time import timezone
+from predictor.models import Team, User, Match, Gameweek, Prediction
 
 # Create your views here.
 
@@ -14,5 +15,12 @@ def index(request):
     return render(request, 'predictor/index.html', context)
 
 def current_gameweek(request):
-    context = {}
+    if request.user.is_authenticated():
+        current_gw = Gameweek.objects.order_by('end_time').last()
+        matches_list = Match.objects.filter(gameweek=current_gw)
+        predictions_list = Prediction.objects.filter(user=request.user).filter(match__in=matches_list)
+    else:
+        return redirect('/predictor/')
+
+    context = {'matches_list': matches_list, 'predictions_list': predictions_list}
     return render(request, 'predictor/user_current_gameweek.html', context)

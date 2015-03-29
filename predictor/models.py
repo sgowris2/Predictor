@@ -10,12 +10,12 @@ class Team(models.Model):
 
 
 class Gameweek(models.Model):
-    number = models.IntegerField()
+    name = models.CharField(max_length=15)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
     def __str__(self):
-        return self.number
+        return self.name
 
 
 class Match(models.Model):
@@ -27,7 +27,7 @@ class Match(models.Model):
     away_score = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.home_team + ' vs. ' + self.away_team
+        return self.home_team.name + ' vs. ' + self.away_team.name
 
 class Prediction(models.Model):
     user = models.ForeignKey(User)
@@ -44,7 +44,7 @@ class Prediction(models.Model):
     points = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user.name + ' - ' + self.match.__str__() + ' - ' + self.home_score + ' - ' + self.away_score
+        return self.user.__str__() + ' - ' + self.match.__str__() + ' - ' + str(self.home_score) + ' - ' + str(self.away_score)
 
 
 class GameweekResult(models.Model):
@@ -53,7 +53,7 @@ class GameweekResult(models.Model):
     total_points = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user.name + ' - Gameweek ' + self.gameweek.__str__()
+        return self.user.name + self.gameweek.__str__()
 
 
 
