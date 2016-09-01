@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm, BaseModelFormSet
 from django.contrib.auth.models import User
 
 
@@ -17,7 +18,6 @@ class Gameweek(models.Model):
     def __str__(self):
         return self.name
 
-
 class Match(models.Model):
     gameweek = models.ForeignKey(Gameweek)
     home_team = models.ForeignKey(Team, related_name='match_home_team')
@@ -28,6 +28,12 @@ class Match(models.Model):
 
     def __str__(self):
         return self.home_team.name + ' vs. ' + self.away_team.name
+
+    def get_home_team_name(self):
+        return self.home_team.name
+
+    def get_away_team_name(self):
+        return self.away_team.name
 
 class Prediction(models.Model):
     user = models.ForeignKey(User)
@@ -46,6 +52,12 @@ class Prediction(models.Model):
     def __str__(self):
         return self.user.__str__() + ' - ' + self.match.__str__() + ' - ' + str(self.home_score) + ' - ' + str(self.away_score)
 
+    def get_home_team_name(self):
+        return self.match.get_home_team_name()
+
+    def get_away_team_name(self):
+        return self.match.get_away_team_name()
+
 
 class GameweekResult(models.Model):
     user = models.ForeignKey(User)
@@ -54,6 +66,7 @@ class GameweekResult(models.Model):
 
     def __str__(self):
         return self.user.name + self.gameweek.__str__()
+
 
 
 

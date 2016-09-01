@@ -15,16 +15,16 @@
             {% csrf_token %}
             <table class="login_form">
                 <tr>
-                    <td>USERNAME</td>
-                    <td>{{ form.username }}</td>
+                    <td class="login-field-label">Username</td>
+                    <td class="login-field">{{ form.username }}</td>
                 </tr>
                 <tr>
-                    <td>PASSWORD</td>
-                    <td>{{ form.password }}</td>
+                    <td class="login-field-label">Password</td>
+                    <td class="login-field">{{ form.password }}</td>
                 </tr>
                 <tr>
                     <td><input type="hidden" name="next" value="{{ next }}" /></td>
-                    <td id="login_button"><input class="button" type="submit" value="Log In" /></td>
+                    <td><input class="button login-button" type="submit" value="Log In" /></td>
                 </tr>
            </table>
        </form>
