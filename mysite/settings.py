@@ -26,7 +26,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = '/predictor/currentgameweek'
+LOGIN_REDIRECT_URL = '/predictor/home'
 
 # Application definition
 

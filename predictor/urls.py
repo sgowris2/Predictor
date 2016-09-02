@@ -3,6 +3,7 @@ from django.conf.urls import patterns, url
 from predictor import views
 
 urlpatterns = patterns('',
+    url(r'^home/$', views.home, name='home'),
     url(r'^predict/$', views.predict, name='predict'),
     url(r'^gameweek/(?P<gameweek>\w{0,50})/$', views.gameweek, name='gameweek'),
     url(r'^404/$', views.error404, name='404'),

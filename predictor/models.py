@@ -58,6 +58,9 @@ class Prediction(models.Model):
     def get_away_team_name(self):
         return self.match.get_away_team_name()
 
+class PredictionResult(models.Model):
+    prediction = models.ForeignKey(Prediction)
+    points = models.IntegerField(default=0)
 
 class GameweekResult(models.Model):
     user = models.ForeignKey(User)

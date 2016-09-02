@@ -15,6 +15,7 @@ def get_item(dictionary, key):
 
 # View Definitions
 
+
 def index(request):
     if request.user.is_authenticated():
         users_list = User.objects.order_by('username')
@@ -27,6 +28,15 @@ def index(request):
 
 def error404(request):
     return render(request, 'predictor/404.html')
+
+
+def adminscripts(request):
+    if (not request.user.is_authenticated()) or (not request.user.is_staff()):
+        return render(request, 'predictor/404.html')
+
+
+def home(request):
+    return render(request, 'predictor/home.html')
 
 
 def predict(request):
@@ -63,7 +73,11 @@ def predict(request):
         fs = PredictionFormSet(initial=initial_list)
 
         context = {
-            'fs': fs, 'current_gameweek_number': current_gameweek_number, 'predictions_dict': predictions_dict, 'show_status_message':show_status_message, 'save_success':save_success
+            'fs': fs,
+            'current_gameweek_number': current_gameweek_number,
+            'predictions_dict': predictions_dict,
+            'show_status_message': show_status_message,
+            'save_success': save_success
         }
         return render(request, 'predictor/user_current_gameweek.html', context)
     else:
