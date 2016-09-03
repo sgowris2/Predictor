@@ -26,59 +26,18 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="0" selection-start="2065" selection-end="2065" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1215">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/predictor/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="31" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+            <state line="69" column="101" selection-start="2302" selection-end="2302" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="1230">
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/predictor/urls.py">
+      <file leaf-file-name="setup_gameweek.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/predictor/management/commands/setup_gameweek.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="11" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/predictor/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="52" selection-start="981" selection-end="981" vertical-scroll-proportion="0.0" vertical-offset="563" max-vertical-offset="1605">
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-                <marker date="1472798780000" expanded="true" signature="849:981" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-              <folding>
-                <element signature="e#22#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calculate.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/predictor/management/commands/calculate.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="59" selection-start="1900" selection-end="1900" vertical-scroll-proportion="0.3884462" vertical-offset="615" max-vertical-offset="1740">
+            <state line="22" column="0" selection-start="798" selection-end="798" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
               <folding>
                 <element signature="e#23#88#0" expanded="true" />
               </folding>
@@ -86,11 +45,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/settings.py">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/predictor/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="37" selection-start="813" selection-end="813" vertical-scroll-proportion="0.0" vertical-offset="253" max-vertical-offset="1365">
-              <folding />
+            <state line="104" column="107" selection-start="3897" selection-end="3897" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+                <marker date="1472884398000" expanded="true" signature="3256:4551" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calculate_scores.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/predictor/management/commands/calculate_scores.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="77" selection-start="1330" selection-end="1330" vertical-scroll-proportion="-0.2689243" vertical-offset="735" max-vertical-offset="2040">
+              <folding>
+                <element signature="e#23#88#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,7 +71,7 @@
       <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="84" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="390">
+            <state line="13" column="84" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
               <folding />
             </state>
           </provider>
@@ -107,7 +80,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="1" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="2280">
+            <state line="148" column="4" selection-start="2356" selection-end="2356" vertical-scroll-proportion="-7.08" vertical-offset="2043" max-vertical-offset="2520">
               <folding />
             </state>
           </provider>
@@ -130,20 +103,23 @@
         <option value="$PROJECT_DIR$/predictor/templates/predictor/test.html" />
         <option value="$PROJECT_DIR$/predictor/templates/predictor/base.html" />
         <option value="$PROJECT_DIR$/predictor/forms.py" />
-        <option value="$PROJECT_DIR$/predictor/static/predictor/style.css" />
-        <option value="$PROJECT_DIR$/predictor/models.py" />
         <option value="$PROJECT_DIR$/predictor/admin.py" />
         <option value="$PROJECT_DIR$/mysite/settings.py" />
         <option value="$PROJECT_DIR$/predictor/urls.py" />
         <option value="$PROJECT_DIR$/predictor/scripts/calculate.py" />
-        <option value="$PROJECT_DIR$/predictor/views.py" />
         <option value="$PROJECT_DIR$/predictor/management/commands/calculate.py" />
+        <option value="$PROJECT_DIR$/predictor/management/commands/setup_gameweek.py" />
+        <option value="$PROJECT_DIR$/predictor/management/commands/end_gameweek.py" />
+        <option value="$PROJECT_DIR$/predictor/static/predictor/style.css" />
+        <option value="$PROJECT_DIR$/predictor/views.py" />
+        <option value="$PROJECT_DIR$/predictor/models.py" />
+        <option value="$PROJECT_DIR$/predictor/management/commands/calculate_scores.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="63" />
-    <option name="y" value="31" />
+    <option name="x" value="58" />
+    <option name="y" value="23" />
     <option name="width" value="1377" />
     <option name="height" value="860" />
   </component>
@@ -220,6 +196,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="predictor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Predictor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Predictor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="predictor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="management" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -272,6 +270,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="FullScreen" value="false" />
+    <property name="SearchEverywhereHistory" value="" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -279,6 +278,9 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/predictor/management/commands" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/predictor/management/commands" />
     </key>
@@ -417,7 +419,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="63" y="31" width="1377" height="860" extended-state="0" />
+    <frame x="58" y="23" width="1377" height="860" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -455,14 +457,23 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/predictor/management/commands/setup_gameweek.py</url>
+          <line>11</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/predictor/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="47" selection-start="805" selection-end="805" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1200">
-          <folding />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -477,8 +488,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="78" column="49" selection-start="2833" selection-end="2833" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="1395">
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
-            <marker date="1472798780000" expanded="true" signature="849:981" placeholder="..." />
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1472884398000" expanded="true" signature="3256:4551" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -532,20 +543,6 @@
         <state line="21" column="69" selection-start="1395" selection-end="1395" vertical-scroll-proportion="-13.125" vertical-offset="0" max-vertical-offset="600" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/predictor/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="84" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="1" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="2280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mysite/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="763">
@@ -588,18 +585,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/predictor/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="2065" selection-end="2065" vertical-scroll-proportion="0.0" vertical-offset="197" max-vertical-offset="1215">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="763">
           <folding>
-            <element signature="e#22#31#0" expanded="true" />
+            <element signature="e#22#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -608,24 +598,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="31" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/management/commands/end_gameweek.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="77" selection-start="926" selection-end="926" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/management/commands/add_gameweek.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.10557769" vertical-offset="53" max-vertical-offset="555">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="84" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/management/commands/setup_gameweek.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="798" selection-end="798" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <folding>
+            <element signature="e#23#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="148" column="4" selection-start="2356" selection-end="2356" vertical-scroll-proportion="-7.08" vertical-offset="2043" max-vertical-offset="2520">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/predictor/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="52" selection-start="981" selection-end="981" vertical-scroll-proportion="0.0" vertical-offset="563" max-vertical-offset="1605">
+        <state line="104" column="107" selection-start="3897" selection-end="3897" vertical-scroll-proportion="0.0" vertical-offset="1373" max-vertical-offset="1875">
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
-            <marker date="1472798780000" expanded="true" signature="849:981" placeholder="..." />
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1472884398000" expanded="true" signature="3256:4551" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/predictor/management/commands/calculate.py">
+    <entry file="file://$PROJECT_DIR$/predictor/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="59" selection-start="1900" selection-end="1900" vertical-scroll-proportion="0.3884462" vertical-offset="615" max-vertical-offset="1740">
+        <state line="69" column="101" selection-start="2302" selection-end="2302" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="1230">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/management/commands/calculate_scores.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="77" selection-start="1330" selection-end="1330" vertical-scroll-proportion="-0.2689243" vertical-offset="735" max-vertical-offset="2040">
           <folding>
             <element signature="e#23#88#0" expanded="true" />
           </folding>

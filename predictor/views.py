@@ -1,8 +1,9 @@
+import re
 from django.shortcuts import render, redirect
 from django.template.defaulttags import register
 from django.forms import formset_factory
 from django.utils import timezone
-from predictor.models import Team, User, Match, Gameweek, Prediction
+from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, GameweekResult
 from predictor.forms import PredictionForm
 
 #  Variables
@@ -46,7 +47,13 @@ def predict(request):
         save_success = True
         now = timezone.now()
 
-        current_gameweek_number = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)[0]
+        current_gameweek_number = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)
+
+        # if there is no gameweek available for the current time, then just display the latest gameweek
+        if not current_gameweek_number:
+            return redirect('/predictor/gameweek/' + re.findall(r'\d+', Gameweek.objects.order_by('-end_time')[0].name)[0])
+
+        current_gameweek_number = current_gameweek_number[0]
         matches_list = Match.objects.filter(gameweek=current_gameweek_number)
         predictions_list = Prediction.objects.filter(user=request.user).filter(match__in=matches_list)
         predictions_dict = {x.pk: x for x in predictions_list}
@@ -87,11 +94,22 @@ def predict(request):
 def gameweek(request, gameweek):
 
     if request.user.is_authenticated():
-        gameweek_instance = Gameweek.objects.filter(name='Gameweek '+gameweek)[0]
+        gameweek_instance = Gameweek.objects.filter(name='Gameweek ' + gameweek)[0]
         now = timezone.now()
         if gameweek_instance:
             if gameweek_instance.end_time <= now:
-                return render(request, 'predictor/user_gameweek.html')
+
+                matches_list = Match.objects.filter(gameweek=gameweek_instance)
+                predictions_list = Prediction.objects.filter(user=request.user).filter(match__in=matches_list)
+                prediction_results_list = PredictionResult.objects.filter(prediction__in=predictions_list)
+                gameweek_result = GameweekResult.objects.get(user=request.user, gameweek=gameweek_instance)
+
+                context = {'gameweek': gameweek,
+                           'matches_list': matches_list,
+                           'prediction_results_list': prediction_results_list,
+                            'gameweek_result': gameweek_result}
+                return render(request, 'predictor/user_gameweek.html', context)
+
             elif gameweek_instance.start_time <= now and gameweek_instance.end_time >= now:
                 return redirect('/predictor/predict')
             else:

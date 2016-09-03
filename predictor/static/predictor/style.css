@@ -114,6 +114,7 @@ p.nav {
     width: 15em;
     margin:0.5em;
     padding:1em;
+    padding-bottom: 0em;
     display:inline-block;
 }
 
@@ -122,7 +123,7 @@ p.nav {
 }
 
 .team-name-away {
-        text-align:left;
+    text-align:left;
 }
 
 .score-input {
@@ -134,7 +135,22 @@ p.nav {
     transition: box-shadow 0.3s, border 0.3s;
 }
 
+.prediction-score-display {
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.match-score-display {
+    text-align: center;
+    font-size: 16px;
+    color: #808080;
+}
+
 .separator {
+    text-align: center;
     font-size: 28px;
     margin: 10px;
 }

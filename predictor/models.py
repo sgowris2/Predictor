@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm, BaseModelFormSet
 from django.contrib.auth.models import User
 
 
@@ -68,7 +67,7 @@ class GameweekResult(models.Model):
     total_points = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user.name + self.gameweek.__str__()
+        return self.user.__str__() + ' ' + self.gameweek.__str__() + ' ' + self.total_points.__str__()
 
 
 

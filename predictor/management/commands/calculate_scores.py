@@ -1,7 +1,7 @@
 __author__ = 'sudeep'
 
 from django.core.management.base import BaseCommand, CommandError
-from predictor.models import Prediction, PredictionResult, Match, Gameweek, GameweekResult
+from predictor.models import User, Prediction, PredictionResult, Match, Gameweek, GameweekResult
 
 RESULT_HOME_WIN = 1
 RESULT_AWAY_WIN = 2
@@ -36,13 +36,25 @@ def calculate_scores(gameweek_number):
     predictions = Prediction.objects.filter(match__in=matches)
 
     for prediction in predictions:
-        prediction_result = PredictionResult.objects.get(prediction=prediction)
-        if not prediction_result:
-            PredictionResult.objects.create(prediction=prediction, points=calculate_prediction_score(prediction))
-            PredictionResult.objects.get(prediction=prediction).save()
-        else:
+        try:
+            prediction_result = PredictionResult.objects.get(prediction=prediction)
             prediction_result.points = calculate_prediction_score(prediction)
             prediction_result.save()
+        except:
+            PredictionResult.objects.create(prediction=prediction, points=calculate_prediction_score(prediction))
+            PredictionResult.objects.get(prediction=prediction).save()
+
+    for user in User.objects.all():
+        try:
+            gameweek_result = GameweekResult.objects.get(user=user, gameweek=current_gameweek)
+            gameweek_result.total_points = get_gameweek_points(predictions.filter(user=user))
+            gameweek_result.save()
+        except:
+            GameweekResult.objects.create(user=user,
+                                          gameweek=current_gameweek,
+                                          total_points=get_gameweek_points(predictions.filter(user=user)))
+            GameweekResult.objects.get(user=user, gameweek=current_gameweek).save()
+
 
 
 def calculate_prediction_score(prediction):
@@ -56,6 +68,14 @@ def calculate_prediction_score(prediction):
         return points
     else:
         return 0
+
+
+def get_gameweek_points(predictions_list):
+
+    points = 0
+    for prediction_result in PredictionResult.objects.filter(prediction__in=predictions_list):
+        points += prediction_result.points
+    return points
 
 
 def get_result(home_score, away_score):
