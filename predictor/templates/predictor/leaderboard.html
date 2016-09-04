@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  {% extends "predictor/base.html" %}
+  <head>
+    <title>
+      {% block title %}Leaderboard{% endblock %}
+    </title>
+  </head>
+  <body>
+    {% block content %}
+    {{ leaderboard }}
+    {% endblock %}
+  </body>
+</html>

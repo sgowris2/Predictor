@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.template.defaulttags import register
 from django.forms import formset_factory
 from django.utils import timezone
-from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, GameweekResult
+from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, GameweekResult, Leaderboard
 from predictor.forms import PredictionForm
 
 #  Variables
@@ -94,15 +94,22 @@ def predict(request):
 def gameweek(request, gameweek):
 
     if request.user.is_authenticated():
+
         gameweek_instance = Gameweek.objects.filter(name='Gameweek ' + gameweek)[0]
         now = timezone.now()
+
         if gameweek_instance:
+
             if gameweek_instance.end_time <= now:
+
+                try:
+                    gameweek_result = GameweekResult.objects.get(user=request.user, gameweek=gameweek_instance)
+                except:
+                    return render(request, 'predictor/calculating_results.html')
 
                 matches_list = Match.objects.filter(gameweek=gameweek_instance)
                 predictions_list = Prediction.objects.filter(user=request.user).filter(match__in=matches_list)
                 prediction_results_list = PredictionResult.objects.filter(prediction__in=predictions_list)
-                gameweek_result = GameweekResult.objects.get(user=request.user, gameweek=gameweek_instance)
 
                 context = {'gameweek': gameweek,
                            'matches_list': matches_list,
@@ -112,9 +119,30 @@ def gameweek(request, gameweek):
 
             elif gameweek_instance.start_time <= now and gameweek_instance.end_time >= now:
                 return redirect('/predictor/predict')
+
             else:
                 return redirect('/predictor/404')
         else:
             return redirect('/predictor/404')
+    else:
+        return redirect('/predictor/')
+
+
+def leaderboard(request):
+
+    if request.user.is_authenticated():
+
+        leaderboard = Leaderboard.objects.all()[:10]
+
+        context = {'leaderboard': leaderboard}
+        return render(request, 'predictor/leaderboard.html', context)
+    else:
+        return redirect('/predictor/')
+
+
+def about(request):
+
+    if request.user.is_authenticated():
+        return render(request, 'predictor/about.html')
     else:
         return redirect('/predictor/')

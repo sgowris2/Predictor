@@ -57,9 +57,11 @@ class Prediction(models.Model):
     def get_away_team_name(self):
         return self.match.get_away_team_name()
 
+
 class PredictionResult(models.Model):
     prediction = models.ForeignKey(Prediction)
     points = models.IntegerField(default=0)
+
 
 class GameweekResult(models.Model):
     user = models.ForeignKey(User)
@@ -68,6 +70,14 @@ class GameweekResult(models.Model):
 
     def __str__(self):
         return self.user.__str__() + ' ' + self.gameweek.__str__() + ' ' + self.total_points.__str__()
+
+
+class Leaderboard(models.Model):
+    user = models.ForeignKey(User)
+    total_points = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.user.__str__() + ' - ' + self.total_points.__str__()
 
 
 

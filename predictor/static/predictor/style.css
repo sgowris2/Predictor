@@ -144,9 +144,25 @@ p.nav {
 }
 
 .match-score-display {
-    text-align: center;
     font-size: 16px;
     color: #808080;
+}
+
+.prediction-score {
+    text-align: left;
+    font-size: 18px;
+    width: 2em;
+    margin:0.5em;
+    padding:1em;
+    padding-bottom: 0em;
+    width: 250px;
+    float: right;
+}
+
+.gameweek-points {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 1.5em;
 }
 
 .separator {

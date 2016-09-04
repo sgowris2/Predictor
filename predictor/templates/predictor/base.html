@@ -1,36 +1,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
-        {% load staticfiles %}
-        <link rel="stylesheet" type="text/css" href="{% static 'predictor/style.css' %}"/>
-
+      {% load staticfiles %}
         <head>
-             <title>Predictr.com | {% block title %}{% endblock %}</title>
-             <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+          <link rel="stylesheet" type="text/css" href="{% static 'predictor/style.css' %}"/>
+          <title>Predictr.com | {% block title %}{% endblock %}</title>
+          <meta http-equiv="content-type" content="text/html;charset=utf-8" />
               <!--<link rel="stylesheet" type="text/css" href="/media/css/base.css" />-->
               <!--<link rel="stylesheet" type="text/css" href="/media/css/login.css" />-->
               <!--<link rel="stylesheet" href="/site_media/css/style.css" type="text/css" />-->
               <!--&lt;!&ndash;[if lte IE 7]><link rel="stylesheet" type="text/css" href="/media/css/ie.css" /><![endif]&ndash;&gt;-->
-             </head>
-        <body class="{% block bodyclass %}{% endblock %}">
+         </head>
+          <body class="{% block bodyclass %}{% endblock %}">
 
-            <div id="logo" align="center"><h1>{% block logo %}{% endblock %}</h1></div>
-            <div id="website_name" class="website-name" align="center"><h3>{% block page_title %}predictr{% endblock %}</h3></div>
+              <div id="logo" align="center"><h1>{% block logo %}{% endblock %}</h1></div>
+              <div id="website_name" class="website-name" align="center"><h3>{% block page_title %}predictr{% endblock %}</h3></div>
 
-            {% block navbar %}
-            <div id="navigation" align="center" class="navbar">
-                    <p id="nav_home" class="nav"><a href="/predictor/">Home</a></p>
-                    <p id="nav_home" class="nav"><a href="/predictor/predict">Predictions</a></p>
-                    <p id="nav_home" class="nav"><a href="/predictor/">Leaderboard</a></p>
-                    <p id="nav_about" class="nav"><a href="/predictor/">About</a></p>
-            </div>
-            {% endblock %}
+              {% block navbar %}
+              <div id="navigation" align="center" class="navbar">
+                      <p id="nav_home" class="nav"><a href="/predictor/home">Home</a></p>
+                      <p id="nav_home" class="nav"><a href="/predictor/predict">Predictions</a></p>
+                      <p id="nav_home" class="nav"><a href="/predictor/leaderboard">Leaderboard</a></p>
+                      <p id="nav_about" class="nav"><a href="/predictor/about">About</a></p>
+              </div>
+              {% endblock %}
 
-            {% block content %}
-             <div id="content">
-             </div> <!-- end content -->
-            {% endblock %}
+              {% block content %}
+               <div id="content">
+               </div> <!-- end content -->
+              {% endblock %}
 
-            {% block footer %}{% endblock %}
+              {% block footer %}{% endblock %}
 
-        </body>
+          </body>
     </html>

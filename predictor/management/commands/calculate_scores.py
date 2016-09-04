@@ -1,7 +1,9 @@
 __author__ = 'sudeep'
 
+import operator
 from django.core.management.base import BaseCommand, CommandError
-from predictor.models import User, Prediction, PredictionResult, Match, Gameweek, GameweekResult
+from django.db.models import Sum
+from predictor.models import User, Prediction, PredictionResult, Match, Gameweek, GameweekResult, Leaderboard
 
 RESULT_HOME_WIN = 1
 RESULT_AWAY_WIN = 2
@@ -54,6 +56,24 @@ def calculate_scores(gameweek_number):
                                           gameweek=current_gameweek,
                                           total_points=get_gameweek_points(predictions.filter(user=user)))
             GameweekResult.objects.get(user=user, gameweek=current_gameweek).save()
+
+    calculate_leaderboard()
+
+
+def calculate_leaderboard():
+
+    leaderboard = {}
+    for user in User.objects.all():
+        total_points = GameweekResult.objects.filter(user=user).aggregate(Sum('total_points'))
+        leaderboard[user] = total_points
+
+    sorted_leaderboard = sorted(leaderboard.items(), key=operator.itemgetter(1), reverse=True)
+    Leaderboard.objects.all().delete()
+    for item in sorted_leaderboard:
+        print
+        Leaderboard.objects.create(user=item[0], total_points=item[1]['total_points__sum'])
+
+
 
 
 
