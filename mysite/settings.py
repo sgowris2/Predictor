@@ -20,13 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '&nk7=cm8=sxm&t=+jwm%b!9-9uy$5ujqt4%il#m!k2v=ud+7+e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-LOGIN_REDIRECT_URL = '/predictor/home'
+LOGIN_REDIRECT_URL = '/predictor/home/'
+LOGOUT_REDIRECT_URL = '/predictor/'
 
 # Application definition
 
