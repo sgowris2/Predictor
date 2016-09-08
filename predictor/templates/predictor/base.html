@@ -22,21 +22,35 @@
          </head>
           <body class="{% block bodyclass %}{% endblock %}">
 
-              <div id="username" align="right">
+              <div id="username" align="right" style="margin-right:1em;">
                 {% if user.is_authenticated %}
-                  <a href="/predictor/home/">Hi {{ user.first_name }}! &nbsp;&nbsp; |</a>
-                  <a href="/predictor/logout/">&nbsp;&nbsp; Logout </a>
+                  <a class="username" href="/predictor/home/">Hi {{ user.first_name }}! &nbsp;&nbsp; |</a>
+                  <a class="username" href="/predictor/logout/">&nbsp;&nbsp; Logout </a>
                 {% endif %}
+                  <a class="username">&nbsp;</a>
               </div>
-              <div id="logo" align="center"><h1>{% block logo %}{% endblock %}</h1></div>
-              <div id="website_name" class="website-name" align="center"><h3>{% block page_title %}predictr{% endblock %}</h3></div>
+              <div id="logo" class="logo">
+                {% block logo %}
+                <h1>
+                  <a href="/predictor/home/">
+                    <img src="/static/predictor/logo.png" alt="predictr" style="max-width:1em; max-height:1em; object-fit:cover"/>
+                  </a>
+                </h1>
+                {% endblock %}
+              </div>
+              <div id="website_name" class="website-name">
+                <h1>{% block page_title %}predictr{% endblock %}</h1>
+              </div>
 
               {% block navbar %}
               <div id="navigation" align="center" class="navbar">
-                      <p id="nav_home" class="nav"><a href="/predictor">Home</a></p>
-                      <p id="nav_home" class="nav"><a href="/predictor/predict">Predictions</a></p>
-                      <p id="nav_home" class="nav"><a href="/predictor/leaderboard">Leaderboard</a></p>
-                      <p id="nav_about" class="nav"><a href="/predictor/about">About</a></p>
+                      <p id="nav_home" class="nav"><a class="navlink" href="/predictor">Home</a></p>
+                      {% if user.is_authenticated %}
+                        <p id="nav_predict" class="nav"><a class="navlink" href="/predictor/predict">Predict</a></p>
+                        <p id="nav_gameweeks" class="nav"><a class="navlink" href="/predictor/gameweeks">My Gameweeks</a></p>
+                      {% endif %}
+                      <p id="nav_leaderboard" class="nav"><a class="navlink" href="/predictor/leaderboard">Leaderboard</a></p>
+                      <p id="nav_about" class="nav"><a class="navlink" href="/predictor/about">About</a></p>
               </div>
               {% endblock %}
 

@@ -3,7 +3,7 @@ __author__ = 'sudeep'
 import operator
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Sum
-from predictor.models import User, Prediction, PredictionResult, Match, Gameweek, GameweekResult, Leaderboard
+from predictor.models import User, Prediction, PredictionResult, Match, Team, Gameweek, GameweekResult, Leaderboard
 
 RESULT_HOME_WIN = 1
 RESULT_AWAY_WIN = 2
@@ -19,21 +19,55 @@ class Command(BaseCommand):
 
     help = 'Calculates and updates the scores in for all predictions in a gameweek'
 
-    def add_arguments(self, parser):
-        parser.add_argument('gameweek_number', nargs='+', type=int)
 
     def handle(self, *args, **options):
-        for gameweek_number in args[0]:
-            try:
-                calculate_scores(gameweek_number)
-            except:
-                raise CommandError('Predictions were not updated :(')
+        try:
+            gameweek_number = enter_results()
+            calculate_scores(gameweek_number)
+        except:
+            raise CommandError('Predictions were not updated :(')
         self.stdout.write('Successfully updated prediction scores "%s"' % gameweek_number)
+
+
+def enter_results():
+
+    lines = []
+    with open('predictor/results.csv', 'r') as f:
+            for line in f.readlines():
+                lines.append(line.strip('\n').strip('\r'))
+    try:
+        print lines[0]
+        gameweek = Gameweek.objects.get(name=lines[0])
+        gameweek_id = gameweek.id
+        for match_line in lines[1:]:
+            home,away,home_score,away_score = match_line.split(',')
+            try:
+                home_team = Team.objects.get(name=home)
+                away_team = Team.objects.get(name=away)
+                home_team_id = home_team.id
+                away_team_id = away_team.id
+                try:
+                    match = Match.objects.get(home_team_id=home_team_id,
+                                              away_team_id=away_team_id,
+                                              gameweek_id=gameweek_id,
+                                              has_ended=False)
+                    match.home_score = home_score
+                    match.away_score = away_score
+                    match.has_ended = True
+                    match.save()
+                    print match
+                except:
+                    print "There are errors in the csv file. Either match was not found or the scores were not integers."
+            except:
+                print "There are errors in the csv file."
+        return gameweek.name
+    except:
+        print "Gameweek was probably not found."
 
 
 def calculate_scores(gameweek_number):
 
-    current_gameweek = Gameweek.objects.filter(name='Gameweek '+gameweek_number)[0]
+    current_gameweek = Gameweek.objects.filter(name=gameweek_number)[0]
     matches = Match.objects.filter(gameweek=current_gameweek)
     predictions = Prediction.objects.filter(match__in=matches)
 
@@ -72,9 +106,6 @@ def calculate_leaderboard():
     for item in sorted_leaderboard:
         print
         Leaderboard.objects.create(user=item[0], total_points=item[1]['total_points__sum'])
-
-
-
 
 
 def calculate_prediction_score(prediction):

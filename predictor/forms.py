@@ -1,9 +1,11 @@
 __author__ = 'sudeep'
 
+from django.utils import timezone
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import MinValueValidator, MaxValueValidator
+from models import Match, Prediction, Gameweek
 
 
 class RegistrationForm(UserCreationForm):
@@ -33,6 +35,18 @@ class RegistrationForm(UserCreationForm):
         user.last_name = split_name[1]
         if commit:
             user.save()
+            now = timezone.now()
+            try:
+                gameweek = Gameweek.objects.get(start_time__lte=now, end_time__gte=now)
+                for match in Match.objects.filter(gameweek=gameweek):
+                    existing_predictions = Prediction.objects.filter(match=match, user=user)
+                    if not existing_predictions:
+                        Prediction.objects.create(user=user, match=match)
+                        prediction = Prediction.objects.filter(user=user, match=match)[0]
+                        prediction.save()
+            except:
+                # do nothing
+                a = 1
         return user
 
 

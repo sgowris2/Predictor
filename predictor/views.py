@@ -155,12 +155,21 @@ def gameweek(request, gameweek):
         return redirect('/predictor/login/')
 
 
+def gameweeks(request):
+
+    if request.user.is_authenticated:
+        return render(request, 'predictor/gameweeks.html')
+    else:
+        return redirect('predictor/login/')
+
+
 def leaderboard(request):
 
     if request.user.is_authenticated():
 
         leaderboard = Leaderboard.objects.all()[:10]
-
+        if not any(x.user == request.user for x in leaderboard):
+            leaderboard.append(Leaderboard.objects.get(user=request.user))
         context = {'leaderboard': leaderboard}
         return render(request, 'predictor/leaderboard.html', context)
     else:

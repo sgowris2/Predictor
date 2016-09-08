@@ -8,7 +8,28 @@
   </head>
   <body>
     {% block content %}
-    {{ leaderboard }}
+      <div class="page-title">Leaders</div>
+      <table class="table-fill">
+        <thead>
+          <tr class="leaderboard-column-names-wrapper">
+            <th class="text-left">Player</th>
+            <th class="text-left">Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for leader in leaderboard %}
+            <tr>
+              {% if leader.user == user %}
+              <td class="text-left leaderboard-user-row">{{ leader.user.first_name }} {{ leader.user.last_name }}</td>
+              <td class="text-left leaderboard-user-row">{{ leader.total_points }}</td>
+              {% else %}
+              <td class="text-left">{{ leader.user.first_name }} {{ leader.user.last_name }}</td>
+              <td class="text-left">{{ leader.total_points }}</td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     {% endblock %}
   </body>
 </html>
