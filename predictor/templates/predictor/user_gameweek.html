@@ -12,6 +12,9 @@
         Gameweek {{ gameweek }}
       </div>
       <div class="gameweek-points">
+        {% if username == gameweek_user.username %}
+          {{ gameweek_user.first_name }} {{ gameweek_user.last_name }}&nbsp;&nbsp;-&nbsp;&nbsp;
+        {% endif %}
         Score: {{ gameweek_result.total_points }}
       </div>
       <br/><br/>

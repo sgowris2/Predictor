@@ -1,4 +1,5 @@
 import re
+from operator import attrgetter
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import Context, loader
@@ -73,6 +74,7 @@ def predict(request):
         save_success = True
         now = timezone.now()
 
+        print now
         current_gameweek_number = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)
 
         # if there is no gameweek available for the current time, then just display the latest gameweek
@@ -118,9 +120,16 @@ def predict(request):
         return redirect('/predictor/login/')
 
 
-def gameweek(request, gameweek):
+def gameweek(request, gameweek, username=None):
 
     if request.user.is_authenticated():
+        try:
+            if username is None:
+                gameweek_user = request.user
+            else:
+                gameweek_user = User.objects.get(username=username)
+        except:
+            redirect('predictor/404')
 
         gameweek_instance = Gameweek.objects.filter(name='Gameweek ' + gameweek)[0]
         now = timezone.now()
@@ -130,15 +139,17 @@ def gameweek(request, gameweek):
             if gameweek_instance.end_time <= now:
 
                 try:
-                    gameweek_result = GameweekResult.objects.get(user=request.user, gameweek=gameweek_instance)
+                    gameweek_result = GameweekResult.objects.get(user=gameweek_user, gameweek=gameweek_instance)
                 except:
                     return render(request, 'predictor/calculating_results.html')
 
                 matches_list = Match.objects.filter(gameweek=gameweek_instance)
-                predictions_list = Prediction.objects.filter(user=request.user).filter(match__in=matches_list)
+                predictions_list = Prediction.objects.filter(user=gameweek_user).filter(match__in=matches_list)
                 prediction_results_list = PredictionResult.objects.filter(prediction__in=predictions_list)
 
                 context = {'gameweek': gameweek,
+                           'gameweek_user': gameweek_user,
+                           'username': username,
                            'matches_list': matches_list,
                            'prediction_results_list': prediction_results_list,
                             'gameweek_result': gameweek_result}
@@ -155,10 +166,27 @@ def gameweek(request, gameweek):
         return redirect('/predictor/login/')
 
 
-def gameweeks(request):
+def gameweeks(request, username=None):
 
     if request.user.is_authenticated:
-        return render(request, 'predictor/gameweeks.html')
+        try:
+            if username is None:
+                gameweek_user = request.user
+            else:
+                gameweek_user = User.objects.get(username=username)
+        except:
+            redirect('predictor/404')
+
+        gameweek_results = list(GameweekResult.objects.filter(user=gameweek_user))
+        gameweek_results.sort(key=attrgetter('gameweek.name'), reverse=False)
+        total_points = 0
+        for result in gameweek_results:
+            total_points += result.total_points
+
+        context = {'gameweek_user': gameweek_user,
+                   'gameweek_results': gameweek_results,
+                   'total_points': total_points}
+        return render(request, 'predictor/gameweeks.html', context)
     else:
         return redirect('predictor/login/')
 
@@ -168,17 +196,17 @@ def leaderboard(request):
     if request.user.is_authenticated():
 
         leaderboard = Leaderboard.objects.all()[:10]
-        if not any(x.user == request.user for x in leaderboard):
-            leaderboard.append(Leaderboard.objects.get(user=request.user))
-        context = {'leaderboard': leaderboard}
-        return render(request, 'predictor/leaderboard.html', context)
+        if not leaderboard:
+            return render(request, 'predictor/leaderboard.html')
+        else:
+            if not any(x.user == request.user for x in leaderboard):
+                leaderboard.append(Leaderboard.objects.get(user=request.user))
+            context = {'leaderboard': leaderboard}
+            return render(request, 'predictor/leaderboard.html', context)
     else:
         return redirect('/predictor/login/')
 
 
 def about(request):
 
-    if request.user.is_authenticated():
-        return render(request, 'predictor/about.html')
-    else:
-        return redirect('/predictor/login/')
+    return render(request, 'predictor/about.html')

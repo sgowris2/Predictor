@@ -2,6 +2,18 @@
     font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
 }
 
+/* Color Glossary
+
+Text Color:     #333333
+Purple:         #643173
+Sea Green:      #4CD3AB
+Light Sea Green:#9be6d0
+Ghost White:    #F9F9F9
+Gray1:          #999999
+Gray2:          #919191
+Gray3:          #555555
+*/
+
 /*------------------------------------------------------------------
 [Master Stylesheet]
 
@@ -439,7 +451,7 @@ p.nav {
   border-radius:3px;
   border-collapse: collapse;
   margin: auto;
-  margin-top: 10em;
+  margin-top: 6em;
   max-width: 600px;
   padding:5px;
   width: 100%;
@@ -448,11 +460,10 @@ p.nav {
 }
 
 th {
-  color:#D5DDE5;;
-  background:#6BDB6B;
-  border-bottom:4px solid #9ea7af;
-  border-right: 1px solid #343a45;
-  font-size:23px;
+  color:#333333;
+  background:#E1E1E1;
+  border-bottom:1px;
+  font-size:18px;
   font-weight: 100;
   padding:16px;
   text-align:left;
@@ -479,10 +490,8 @@ tr {
 }
 
 tr:hover td {
-  background:#4E5066;
-  color:#FFFFFF;
-  border-top: 1px solid #22262e;
-  border-bottom: 1px solid #22262e;
+  background:#4cd3ab;
+  color:#f9f9f9;
 }
 
 tr:first-child {
@@ -494,11 +503,11 @@ tr:last-child {
 }
 
 tr:nth-child(odd) td {
-  background:#EBEBEB;
+  background:#F5F5F5;
 }
 
 tr:nth-child(odd):hover td {
-  background:#4E5066;
+  background:#4cd3ab;
 }
 
 tr:last-child td:first-child {
@@ -511,13 +520,11 @@ tr:last-child td:last-child {
 
 td {
   background:#FFFFFF;
-  padding:20px;
   text-align:left;
   vertical-align:middle;
   font-weight:300;
   font-size:18px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
-  border-right: 1px solid #C1C3D1;
 }
 
 td:last-child {
@@ -548,8 +555,81 @@ td.text-right {
   text-align: right;
 }
 
-.leaderboard-user-row {
-    background: #4CD3AB;
+td a {
+    display: block;
+    padding: 20px;
 }
 
+td a:hover {
+    color:#f9f9f9;
+}
 
+.leaderboard-user-row {
+    background: #BAEEDF;
+}
+
+.nothing-message {
+    text-align: center;
+    margin: 2em;
+    font-size: 16px;
+}
+
+.home-block {
+    padding: 2em;
+    width: 100%;
+}
+
+.home-next-deadline-block {
+
+    width: 50%;
+    display: table-cell;
+    background: #E84855;
+    color:#f9f9f9;
+    text-align: center;
+    margin: 2em;
+    margin-left: 0;
+    vertical-align: top;
+}
+
+.home-position-block {
+
+    width: 50%;
+    display: table-cell;
+    background: #F9DC5C;
+    color: #333333;
+    text-align: center;
+    margin: 2em;
+    margin-right: 0;
+    vertical-align: top;
+}
+
+.home-stats-block {
+
+    display: table;
+    width: 100%;
+    background: #3185FC;
+    color: #f9f9f9;
+}
+
+.home-summary-block {
+    width: 100%;
+    display:inline-block;
+    background: #f0f0f0;
+    color: #333333;
+}
+
+.home-stat-cell {
+    padding: 0.5em;
+    display: table-cell;
+    max-width: 25%;
+    text-align: center;
+}
+
+.home-stat-cell-heading {
+    font-size: 16px;
+}
+
+.home-stat-cell-body {
+    padding: 1em;
+    font-size: 20px;
+}

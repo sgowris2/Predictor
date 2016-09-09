@@ -3,11 +3,36 @@
   {% extends "predictor/base.html" %}
   <head>
     <title>
-      {% block title %}{% endblock %}
+      {% block title %}| Gameweeks{% endblock %}
     </title>
   </head>
   <body>
     {% block content %}
+    <div class="page-title">{{ gameweek_user.first_name }} {{ gameweek_user.last_name }}&nbsp;&nbsp;-&nbsp;&nbsp;{{ total_points }} points</div>
+      {% if gameweek_results %}
+        <table class="table-fill">
+          <thead>
+            <tr class="leaderboard-column-names-wrapper">
+              <th class="text-left"></th>
+              <th class="text-left">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for gameweek_result in gameweek_results %}
+              <tr>
+                <td class="text-left">
+                  <a href="/predictor/gameweek/{{ gameweek_result.gameweek.number }}">{{ gameweek_result.gameweek.name }}</a>
+                </td>
+                <td class="text-left">
+                  <a href="/predictor/gameweek/{{ gameweek_result.gameweek.number }}">{{ gameweek_result.total_points }}</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="nothing-message">There have been no completed gameweeks yet. But soon, there will be!</div>
+      {% endif %}
     {% endblock %}
   </body>
 </html>

@@ -137,3 +137,12 @@
   	$form.find('[type=submit]').addClass('error').html(options['btn-error']);
   	$form.find('.login-form-main-message').addClass('show error').html(options['msg-error']);
   }
+
+
+  // Table
+
+  jQuery(document).ready(function($)) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+  };
