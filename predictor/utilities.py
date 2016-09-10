@@ -1,4 +1,4 @@
-from models import Leaderboard
+from predictor.models import Leaderboard
 
 
 def get_rank(user):

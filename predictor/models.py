@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models import Max, Avg
 from django.contrib.auth.models import User
 
 

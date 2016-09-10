@@ -5,7 +5,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import MinValueValidator, MaxValueValidator
-from models import Match, Prediction, Gameweek
+from predictor.models import Match, Prediction, Gameweek
 
 
 class RegistrationForm(UserCreationForm):
