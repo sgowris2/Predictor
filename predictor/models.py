@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Max, Avg
 from django.contrib.auth.models import User
 
 
@@ -38,19 +39,13 @@ class Match(models.Model):
     def get_away_team_name(self):
         return self.away_team.name
 
+
 class Prediction(models.Model):
     user = models.ForeignKey(User)
     match = models.ForeignKey(Match)
     home_score = models.IntegerField(default=0)
     away_score = models.IntegerField(default=0)
     is_doubled = models.BooleanField(default=0)
-    result = models.BooleanField(default=0)
-    goal_difference = models.BooleanField(default=0)
-    home_goals = models.BooleanField(default=0)
-    away_goals = models.BooleanField(default=0)
-    total_goals = models.BooleanField(default=0)
-    scoreline = models.BooleanField(default=0)
-    points = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.__str__() + ' - ' + self.match.__str__() + ' - ' + str(self.home_score) + ' - ' + str(self.away_score)
@@ -64,6 +59,12 @@ class Prediction(models.Model):
 
 class PredictionResult(models.Model):
     prediction = models.ForeignKey(Prediction)
+    result = models.BooleanField(default=False)
+    home_scored = models.BooleanField(default=False)
+    away_score = models.BooleanField(default=False)
+    home_goals = models.BooleanField(default=False)
+    away_goals = models.BooleanField(default=False)
+    scoreline = models.BooleanField(default=False)
     points = models.IntegerField(default=0)
 
 
@@ -76,14 +77,24 @@ class GameweekResult(models.Model):
         return self.user.__str__() + ' ' + self.gameweek.__str__() + ' ' + self.total_points.__str__()
 
 
+class GameweekAggregateResult(models.Model):
+    gameweek = models.ForeignKey(Gameweek)
+    highest_score = models.IntegerField(default=0)
+    average_score = models.IntegerField(default=0)
+    most_guessed_result = models.ForeignKey(Match, related_name='most_guessed_result', default=None)
+    least_guessed_result = models.ForeignKey(Match, related_name='least_guessed_result', default=None)
+
+    def __str__(self):
+        return self.gameweek.__str__() + ' aggregate result'
+
+
 class Leaderboard(models.Model):
+    rank = models.IntegerField(default=0)
     user = models.ForeignKey(User)
     total_points = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.__str__() + ' - ' + self.total_points.__str__()
-
-
 
 
 

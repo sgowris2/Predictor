@@ -17,4 +17,6 @@ urlpatterns = patterns('',
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/predictor/'}),
     url(r'^register/$', views.register, name='register'),
+    url(r'^register_success', views.register_success, name='register_success'),
+    url(r'^already_logged_in', views.already_logged_in, name='already_logged_in'),
 )

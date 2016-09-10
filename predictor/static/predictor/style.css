@@ -51,6 +51,7 @@ a:hover {
 }
 /*=== 3. Text Outside the Box ===*/
 .etc-login-form {
+  font-size: 16px;
   color: #919191;
   padding: 10px 20px;
 }
@@ -59,7 +60,7 @@ a:hover {
 }
 /*=== 4. Main Form ===*/
 .login-form-1 {
-  max-width: 300px;
+  width: 500px;
   border-radius: 5px;
   display: inline-block;
 }
@@ -565,11 +566,12 @@ td a:hover {
 }
 
 .leaderboard-user-row {
-    background: #BAEEDF;
+    background: #BAEEDF !important;
 }
 
 .nothing-message {
     text-align: center;
+    padding: 2em;
     margin: 2em;
     font-size: 16px;
 }
@@ -632,4 +634,14 @@ td a:hover {
 .home-stat-cell-body {
     padding: 1em;
     font-size: 20px;
+}
+
+.about-block {
+    margin: 4em;
+    padding: 1em;
+}
+
+.errorlist-item{
+    display: inline-block;
+    font-size: 18px;
 }

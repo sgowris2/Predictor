@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  {% extends "predictor/base.html" %}
+  <head>
+    <title>
+      {% block title %}| Success{% endblock %}
+    </title>
+  </head>
+  <body>
+    {% block content %}
+    <div class="nothing-message">
+      <h3>Thanks for registering with predictr!</h3><br/>
+      <h4><a href="/predictor/login/">Login here</a></h4>
+    </div>
+    {% endblock %}
+  </body>
+</html>

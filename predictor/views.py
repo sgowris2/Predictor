@@ -1,14 +1,15 @@
 import re
+import pytz
 from operator import attrgetter
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.template import Context, loader
+from django.db.models import Max
 from django.template.defaulttags import register
 from django.forms import formset_factory
 from django.utils import timezone
 from django.contrib.auth import views
-from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, GameweekResult, Leaderboard
+from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, GameweekResult, GameweekAggregateResult, Leaderboard
 from predictor.forms import PredictionForm, RegistrationForm
+from predictor import utilities
 
 #  Variables
 PredictionFormSet = formset_factory(PredictionForm, extra=0)
@@ -47,24 +48,79 @@ def register(request):
     if not request.user.is_authenticated():
         if request.method == 'POST':
             form = RegistrationForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('/predictor/register_success.html')
-            else:
+            try:
+                if form.is_valid():
+                    form.save()
+                    return redirect('/predictor/register_success/')
+                else:
+                    context = {'form': form}
+                    return render(request, 'predictor/register.html', context)
+            except:
                 context = {'form': form}
                 return render(request, 'predictor/register.html', context)
         else:
             context = {'form': RegistrationForm()}
             return render(request, 'predictor/register.html', context)
     else:
-        return redirect('/predictor/already_logged_in.html')
+        return redirect('/predictor/already_logged_in/')
+
+
+def register_success(request):
+    return render(request, 'predictor/register_success.html')
+
+
+def already_logged_in(request):
+    return render(request, 'predictor/already_logged_in.html')
 
 
 def home(request):
+
     if request.user.is_authenticated():
-        return render(request, 'predictor/home.html')
+
+        now = timezone.now()
+        try:
+            current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)[0]
+            deadline1 = 'Next upcoming deadline'
+            deadline2 = current_gameweek.end_time.strftime('%B %d, %Y')
+            deadline3 = current_gameweek.end_time.astimezone(pytz.timezone('Europe/London')).strftime('%I:%M%p %Z')
+        except:
+            deadline2 = 'No upcoming deadline'
+            deadline1 = ''
+            deadline3 = ''
+
+        try:
+            position = Leaderboard.objects.get(user=request.user).rank
+        except:
+            position = 0
+
+        total_players = User.objects.count()
+
+        try:
+
+            last_gameweek_end_time = GameweekResult.objects.all().aggregate(Max('gameweek__end_time'))['gameweek__end_time__max']
+            last_gameweek_result = GameweekAggregateResult.objects.get(gameweek__end_time=last_gameweek_end_time)
+        except:
+            last_gameweek_result = None
+            summary_title = None
+            summary_body = None
+
+        summary_title = "A gameweek of upsets"
+        summary_body = "A gameweek of upsets saw Liverpool lose to bottom of the table Middlesbrough and the " \
+                       "reds of Manchester beating their derby rivals in blue. This meant a low scoring gameweek " \
+                       "for most of our predictr players that allowed a lot shuffling in the standings."
+
+        context = {'current_gameweek': current_gameweek,
+                   'last_gameweek_result': last_gameweek_result,
+                   'deadline1': deadline1,
+                   'deadline2': deadline2,
+                   'deadline3': deadline3,
+                   'position': position,
+                   'total_players': total_players,
+                   'summary_title': summary_title,
+                   'summary_body': summary_body}
+        return render(request, 'predictor/home.html', context)
     else:
-        redirect('/predictor/login/')
+        return redirect('/predictor/login/')
 
 
 def predict(request):
@@ -74,7 +130,6 @@ def predict(request):
         save_success = True
         now = timezone.now()
 
-        print now
         current_gameweek_number = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)
 
         # if there is no gameweek available for the current time, then just display the latest gameweek

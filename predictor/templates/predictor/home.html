@@ -15,41 +15,59 @@
         <div style="display: table; width:100%;">
           <div class="home-block home-next-deadline-block">
             <div>
-              <h3>Gameweek 5 deadline</h3>
-              <h1>14 September 2016</h1>
-              <h1>5:00 PM</h1>
+              <h3>{{ deadline1 }}</h3>
+              <h1>{{ deadline2 }}</h1>
+              <h1>{{ deadline3 }}</h1>
             </div>
           </div>
           <div class="home-block home-position-block">
+          {% if position == 0 %}
             <div>
-              <h3>You are currently</h3>
-              <h1>3rd</h1>
-              <h3>out of 5,672 players</h3>
+              <h3>You are currently unranked</h3>
+              <h1>Unranked</h1>
+              <h2>and playing against {{ total_players }} players</h3>
+            </div>
+          {% else %}
+            <div>
+              <h3>You are currently ranked</h3>
+              <h1>{{ position }}</h1>
+              <h3>out of {{ total_players }} players</h3>
+            </div>
+          {% endif %}
+          </div>
+        </div>
+        {% if last_gameweek_result %}
+          <div class="home-block home-stats-block">
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Highest Score</div>
+              <div class="home-stat-cell-body">{{ last_gameweek_result.highest_score }}</div>
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Average Score</div>
+              <div class="home-stat-cell-body">{{ last_gameweek_result.average_score }}</div>
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Most Guessed Result</div>
+              <div class="home-stat-cell-body">{{ last_gameweek_result.most_guessed_result }}</div>
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Least Guessed Result</div>
+              <div class="home-stat-cell-body">{{ last_gameweek_result.least_guessed_result }}</div>
             </div>
           </div>
-        </div>
-        <div class="home-block home-stats-block">
-          <div class="home-stat-cell">
-            <div class="home-stat-cell-heading">Highest Score</div>
-            <div class="home-stat-cell-body">56</div>
+          <div class="home-block home-summary-block">
+            <h3>{{ last_gameweek_result.gameweek }} - {{ summary_title }}</h3><br/>
+            <h4>{{ summary_body }}</h4>
           </div>
-          <div class="home-stat-cell">
-            <div class="home-stat-cell-heading">Average Score</div>
-            <div class="home-stat-cell-body">31</div>
+        {% else %}
+          <div class="home-block home-stats-block">
+            <h3 align="center">There aren't any stats to show right now, but watch this space for some insights into the game.</h3>
           </div>
-          <div class="home-stat-cell">
-            <div class="home-stat-cell-heading">Most Guessed Result</div>
-            <div class="home-stat-cell-body">Manchester United&nbsp;&nbsp;2&nbsp;&nbsp;-&nbsp;&nbsp;1&nbsp;&nbsp;Manchester City</div>
+          <div class="home-block home-summary-block">
+            <h3>Welcome to the summary section of predictr!</h3><br/>
+            <h4>Each week, we'll try to distill the happenings on the pitch as they relate to your predictions and even get some of your opinions posted in this column.</h4>
           </div>
-          <div class="home-stat-cell">
-            <div class="home-stat-cell-heading">Least Guessed Result</div>
-            <div class="home-stat-cell-body">Manchester United&nbsp;&nbsp;2&nbsp;&nbsp;-&nbsp;&nbsp;1&nbsp;&nbsp;Manchester City</div>
-          </div>
-        </div>
-        <div class="home-block home-summary-block">
-          <h4>Gameweek 4 - A gameweek of upsets</h4>
-          <p>A gameweek of upsets saw Liverpool lose to bottom of the table Middlesbrough and the reds of Manchester beating their derby rivals in blue. This meant a low scoring gameweek for most of our predictr players that allowed a lot shuffling in the standings.</p>
-        </div>
+        {% endif %}
       </div>
     {% endblock %}
   </body>

@@ -13,28 +13,34 @@
         <table class="table-fill">
           <thead>
             <tr class="leaderboard-column-names-wrapper">
+              <th class="text-left">Rank</th>
               <th class="text-left">Player</th>
               <th class="text-left">Points</th>
             </tr>
           </thead>
           <tbody>
-
               {% for leader in leaderboard %}
                 <tr>
                   {% if leader.user == user %}
-                  <td class="text-left leaderboard-user-row">
-                    <a href="/predictor/gameweeks/">{{ leader.user.first_name }} {{ leader.user.last_name }}</a>
-                  </td>
-                  <td class="text-left leaderboard-user-row">
-                    <a href="/predictor/gameweeks/">{{ leader.total_points }}</a>
-                  </td>
+                    <td class="text-left leaderboard-user-row">
+                      <a href="/predictor/gameweeks/">{{ leader.rank }}</a>
+                    </td>
+                    <td class="text-left leaderboard-user-row">
+                      <a href="/predictor/gameweeks/">{{ leader.user.first_name }} {{ leader.user.last_name }}</a>
+                    </td>
+                    <td class="text-left leaderboard-user-row">
+                      <a href="/predictor/gameweeks/">{{ leader.total_points }}</a>
+                    </td>
                   {% else %}
-                  <td class="text-left">
-                    <a href="/predictor/gameweeks/{{ leader.user.username }}">{{ leader.user.first_name }} {{ leader.user.last_name }}</a>
-                  </td>
-                  <td class="text-left">
-                    <a href="/predictor/gameweeks/{{ leader.user.username }}">{{ leader.total_points }}</a>
-                  </td>
+                    <td class="text-left">
+                      <a href="/predictor/gameweeks/{{ leader.user.username }}">{{ leader.rank }}</a>
+                    </td>
+                    <td class="text-left">
+                      <a href="/predictor/gameweeks/{{ leader.user.username }}">{{ leader.user.first_name }} {{ leader.user.last_name }}</a>
+                    </td>
+                    <td class="text-left">
+                      <a href="/predictor/gameweeks/{{ leader.user.username }}">{{ leader.total_points }}</a>
+                    </td>
                   {% endif %}
                 </tr>
               {% endfor %}

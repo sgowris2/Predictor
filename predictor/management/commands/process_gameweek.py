@@ -2,8 +2,11 @@ __author__ = 'sudeep'
 
 import operator
 from django.core.management.base import BaseCommand, CommandError
-from django.db.models import Sum
-from predictor.models import User, Prediction, PredictionResult, Match, Team, Gameweek, GameweekResult, Leaderboard
+from django.db.models import Sum, Max, Avg
+from predictor.models import User, Prediction, PredictionResult, Match, Team, Gameweek, GameweekResult, GameweekAggregateResult, Leaderboard
+
+HOME = 1
+AWAY = 2
 
 RESULT_HOME_WIN = 1
 RESULT_AWAY_WIN = 2
@@ -78,6 +81,7 @@ def calculate_scores(gameweek_number):
             prediction_result.save()
         except:
             PredictionResult.objects.create(prediction=prediction, points=calculate_prediction_score(prediction))
+            update_prediction_result_stats(PredictionResult.objects.get(prediction=prediction))
             PredictionResult.objects.get(prediction=prediction).save()
 
     for user in User.objects.all():
@@ -92,7 +96,23 @@ def calculate_scores(gameweek_number):
             GameweekResult.objects.get(user=user, gameweek=current_gameweek).save()
 
     calculate_leaderboard()
+    calculate_gameweekaggregateresult(current_gameweek)
 
+
+def calculate_gameweekaggregateresult(current_gameweek):
+    try:
+        gameweek_aggregate_result = GameweekAggregateResult.objects.get(gameweek=current_gameweek)
+    except:
+        GameweekAggregateResult.objects.create(gameweek=current_gameweek,
+                                               most_guessed_result=Match.objects.filter(gameweek=current_gameweek)[0],
+                                               least_guessed_result=Match.objects.filter(gameweek=current_gameweek)[0])
+        gameweek_aggregate_result = GameweekAggregateResult.get(gameweek=current_gameweek)
+
+    gameweek_aggregate_result.highest_score = get_highest_score(current_gameweek)
+    gameweek_aggregate_result.average_score = get_average_score(current_gameweek)
+    gameweek_aggregate_result.most_guessed_result = get_most_guessed_result(current_gameweek)
+    gameweek_aggregate_result.least_guessed_result = get_least_guessed_result(current_gameweek)
+    gameweek_aggregate_result.save()
 
 def calculate_leaderboard():
 
@@ -103,22 +123,36 @@ def calculate_leaderboard():
 
     sorted_leaderboard = sorted(leaderboard.items(), key=operator.itemgetter(1), reverse=True)
     Leaderboard.objects.all().delete()
+    rank = 1
     for item in sorted_leaderboard:
-        print
-        Leaderboard.objects.create(user=item[0], total_points=item[1]['total_points__sum'])
+        Leaderboard.objects.create(rank=rank, user=item[0], total_points=item[1]['total_points__sum'])
+        rank += 1
 
 
 def calculate_prediction_score(prediction):
 
     match = prediction.match
     if match.has_ended:
-        points = get_result_points(match, prediction)
+        points =  get_result_points(match, prediction)
         points += get_scored_points(match, prediction)
         points += get_goals_points(match, prediction)
         points += get_exact_bonus_points(match, prediction)
         return points
     else:
         return 0
+
+
+def update_prediction_result_stats(prediction_result):
+
+    prediction = prediction_result.prediction
+    match = prediction.match
+    prediction_result.result = get_result_points(match, prediction) > 0
+    prediction_result.home_scored = get_scored_points(match, prediction, HOME) > 0
+    prediction_result.home_scored = get_scored_points(match, prediction, AWAY) > 0
+    prediction_result.home_goals = get_goals_points(match, prediction, HOME) > 0
+    prediction_result.away_goals = get_goals_points(match, prediction, AWAY) > 0
+    prediction_result.scoreline = get_exact_bonus_points(match, prediction) > 0
+    prediction_result.save()
 
 
 def get_gameweek_points(predictions_list):
@@ -154,23 +188,27 @@ def get_result_points(match, prediction):
     return 0
 
 
-def get_scored_points(match, prediction):
+def get_scored_points(match, prediction, home_or_away = 0):
 
     points = 0
-    if get_scored(match.home_score, prediction.home_score):
-        points += SCORED_POINTS
-    if get_scored(match.away_score, prediction.away_score):
-        points += SCORED_POINTS
+    if home_or_away == HOME or home_or_away == 0:
+        if get_scored(match.home_score, prediction.home_score):
+            points += SCORED_POINTS
+    if home_or_away == AWAY or home_or_away == 0:
+        if get_scored(match.away_score, prediction.away_score):
+            points += SCORED_POINTS
     return points
 
 
-def get_goals_points(match, prediction):
+def get_goals_points(match, prediction, home_or_away = 0):
 
     points = 0
-    if match.home_score == prediction.home_score:
-        points += GOALS_POINTS
-    if match.away_score == prediction.away_score:
-        points += GOALS_POINTS
+    if home_or_away == HOME or home_or_away == 0:
+        if match.home_score == prediction.home_score:
+            points += GOALS_POINTS
+    if home_or_away == AWAY or home_or_away == 0:
+        if match.away_score == prediction.away_score:
+            points += GOALS_POINTS
     return points
 
 
@@ -179,3 +217,37 @@ def get_exact_bonus_points(match, prediction):
     if match.home_score == prediction.home_score and match.away_score == prediction.away_score:
         return EXACT_BONUS_POINTS
     return 0
+
+
+def get_highest_score(gameweek):
+    return GameweekResult.objects.filter(gameweek=gameweek).aggregate(Max('total_points'))['total_points__max']
+
+
+def get_average_score(gameweek):
+    return round(GameweekResult.objects.filter(gameweek=gameweek).aggregate(Avg('total_points'))['total_points__avg'], 0)
+
+
+def get_most_guessed_result(gameweek):
+
+    sum = 0
+    result_match = None
+    for match in Match.objects.filter(gameweek=gameweek):
+        temp_sum = PredictionResult.objects.filter(prediction__match=match).aggregate(Sum('result'))['result__sum']
+        if temp_sum > sum:
+            sum = temp_sum
+            result_match = match
+
+    return result_match
+
+
+def get_least_guessed_result(gameweek):
+
+    sum = 99999999
+    result_match = None
+    for match in Match.objects.filter(gameweek=gameweek):
+        temp_sum = PredictionResult.objects.filter(prediction__match=match).aggregate(Sum('result'))['result__sum']
+        if temp_sum < sum:
+            sum = temp_sum
+            result_match = match
+
+    return result_match

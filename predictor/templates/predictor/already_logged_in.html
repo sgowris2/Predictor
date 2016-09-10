@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  {% extends "predictor/base.html" %}
+  <head>
+    <title>
+      {% block title %}| Success{% endblock %}
+    </title>
+  </head>
+  <body>
+    {% block content %}
+    <div class="nothing-message">
+      <h3>You are already logged in.</h3><br/>
+      <h4>Please <a href="/predictor/logout/">logout</a> before making a new account.</h4>
+    </div>
+    {% endblock %}
+  </body>
+</html>

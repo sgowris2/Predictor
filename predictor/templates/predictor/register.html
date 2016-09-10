@@ -11,8 +11,10 @@
     <div class="page-title">Sign Up</div>
     <div class="text-center" style="padding:50px 0">
       {% if form.errors %}
-          <p>There were errors in your form :( Try again :)</p>
-          {{ form.errors }}
+          <h4>There were errors in your form. Please try again.</h4><br/>
+          {% if form.non_field_errors %}
+            <li class="errorlist-item">{{ form.non_field_errors }}</li>
+          {% endif %}
       {% endif %}
       <!-- Main Form -->
       <div class="login-form-1">
@@ -24,22 +26,37 @@
               <div class="form-group">
                 <label for="reg_email" class="sr-only">Email</label>
                 <input type="text" class="form-control" id="reg_email" name="{{ form.email.html_name }}" value="{{ form.email.value|default_if_none:"" }}" placeholder="email">
+                {% for error in form.email.errors %}
+                  <li class="errorlist-item">{{ error }}</li>
+                {% endfor %}
               </div>
               <div class="form-group">
                 <label for="reg_fullname" class="sr-only">Full Name</label>
                 <input type="text" class="form-control" id="reg_fullname" name="{{ form.full_name.html_name }}" value="{{ form.full_name.value|default_if_none:"" }}" placeholder="full name">
+                {% for error in form.full_name.errors %}
+                  <li class="errorlist-item">{{ error }}</li>
+                {% endfor %}
               </div>
               <div class="form-group">
                 <label for="reg_username" class="sr-only">Username</label>
                 <input type="text" class="form-control" id="reg_username" name="{{ form.username.html_name }}" value="{{ form.username.value|default_if_none:"" }}" placeholder="username">
+                {% for error in form.username.errors %}
+                  <li class="errorlist-item">{{ error }}</li>
+                {% endfor %}
               </div>
               <div class="form-group">
                 <label for="reg_password" class="sr-only">Password</label>
                 <input type="password" class="form-control" id="reg_password" name="{{ form.password1.html_name }}" value="{{ form.password1.value|default_if_none:"" }}" placeholder="password">
+                {% for error in form.password1.errors %}
+                  <li class="errorlist-item">{{ error }}</li>
+                {% endfor %}
               </div>
               <div class="form-group">
                 <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
                 <input type="password" class="form-control" id="reg_password_confirm" name="{{ form.password2.html_name }}" value="{{ form.password2.value|default_if_none:"" }}" placeholder="confirm password">
+                {% for error in form.password2.errors %}
+                  <li class="errorlist-item">{{ error }}</li>
+                {% endfor %}
               </div>
 
               <!-- Radio buttons if needed -->
