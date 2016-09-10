@@ -1,7 +1,7 @@
 import csv, sys
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
-from predictor.models import Match, Gameweek, Team, Prediction
+from models import Match, Gameweek, Team, Prediction
 
 
 class Command(BaseCommand):

@@ -7,9 +7,8 @@ from django.template.defaulttags import register
 from django.forms import formset_factory
 from django.utils import timezone
 from django.contrib.auth import views
-from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, GameweekResult, GameweekAggregateResult, Leaderboard
+from models import Team, User, Match, Gameweek, Prediction, PredictionResult, GameweekResult, GameweekAggregateResult, Leaderboard
 from predictor.forms import PredictionForm, RegistrationForm
-from predictor import utilities
 
 #  Variables
 PredictionFormSet = formset_factory(PredictionForm, extra=0)

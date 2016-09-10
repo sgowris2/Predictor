@@ -3,7 +3,7 @@ __author__ = 'sudeep'
 import operator
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Sum, Max, Avg
-from predictor.models import User, Prediction, PredictionResult, Match, Team, Gameweek, GameweekResult, GameweekAggregateResult, Leaderboard
+from models import User, Prediction, PredictionResult, Match, Team, Gameweek, GameweekResult, GameweekAggregateResult, Leaderboard
 
 HOME = 1
 AWAY = 2
