@@ -22,13 +22,12 @@ def add_matches():
         for line in f.readlines():
             lines.append(line.strip('\n').strip('\r'))
     try:
-        print lines[0]
+        print(lines[0])
         gameweek = Gameweek.objects.get(name=lines[0])
-
     except:
         Gameweek.objects.create(name=lines[0])
         gameweek = Gameweek.objects.get(name=lines[0])
-        print "Gameweek added - " + gameweek
+        print("Gameweek added - " + gameweek)
 
     gameweek_id = gameweek.id
     try:
@@ -43,9 +42,9 @@ def add_matches():
                     Match.objects.get(gameweek_id=gameweek_id, home_team_id=home_team_id, away_team_id=away_team_id)
                 except:
                     Match.objects.create(gameweek_id=gameweek_id,home_team_id=home_team_id,away_team_id=away_team_id)
-                    print "Match added - " + home_team.name + " vs. " + away_team.name
+                    print("Match added - " + home_team.name + " vs. " + away_team.name)
             except:
-                print "There are errors in the csv file."
+                print("There are errors in the csv file.")
 
         for user in User.objects.all():
             for match in Match.objects.filter(gameweek=gameweek):
@@ -55,6 +54,6 @@ def add_matches():
                     prediction = Prediction.objects.filter(user=user, match=match)[0]
                     prediction.save()
     except:
-        print "There are probably errors in the csv file"
+        print("There are probably errors in the csv file")
 
 

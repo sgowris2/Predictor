@@ -39,7 +39,7 @@ def enter_results():
             for line in f.readlines():
                 lines.append(line.strip('\n').strip('\r'))
     try:
-        print lines[0]
+        print(lines[0])
         gameweek = Gameweek.objects.get(name=lines[0])
         gameweek_id = gameweek.id
         for match_line in lines[1:]:
@@ -58,14 +58,14 @@ def enter_results():
                     match.away_score = away_score
                     match.has_ended = True
                     match.save()
-                    print match
+                    print(match)
                 except:
-                    print "There are errors in the csv file. Either match was not found or the scores were not integers."
+                    print("There are errors in the csv file. Either match was not found or the scores were not integers.")
             except:
-                print "There are errors in the csv file."
+                print("There are errors in the csv file.")
         return gameweek.name
     except:
-        print "Gameweek was probably not found."
+        print("Gameweek was probably not found.")
 
 
 def calculate_scores(gameweek_number):
