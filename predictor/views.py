@@ -7,6 +7,7 @@ from django.template.defaulttags import register
 from django.forms import formset_factory
 from django.utils import timezone
 from django.contrib.auth import views
+from django.contrib import messages
 from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, GameweekResult, GameweekAggregateResult, Leaderboard
 from predictor.forms import PredictionForm, RegistrationForm
 
@@ -146,8 +147,10 @@ def predict(request):
                     prediction.away_score = data_point['away_score']
                     prediction.save()
                 save_success = True
+                messages.add_message(request, messages.INFO, 'Your predictions were saved successfully!')
             except:
                 save_success = False
+                messages.add_message(request, messages.INFO, 'Predictions were not saved. Please check your entries and try again.')
 
         current_gameweek_number = current_gameweek_number[0]
         matches_list = Match.objects.filter(gameweek=current_gameweek_number)

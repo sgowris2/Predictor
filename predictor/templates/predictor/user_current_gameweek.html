@@ -11,6 +11,15 @@
       <div class="page-title">
         {{ current_gameweek_number }}
       </div><br/><br/>
+      {% if messages %}
+        <div align="center">
+          <ul class="messages">
+              {% for message in messages %}
+                <h3{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+              {% endfor %}
+          </ul>
+        </div><br/>
+      {% endif %}
       <div align="center" style="padding: 10px;">
         <form method="POST" action=".">
           {% csrf_token %}
@@ -38,14 +47,14 @@
           {% endfor %}
           <button type="submit" class="button submit-button">Submit Predictions</button>
         </form>
-        {% if show_status_message %}
+        <!-- {% if show_status_message %}
           {% if save_success == True %}
             <a>Predictions successfully saved!</a>
           {% else %}
             <a>Something went wrong :(<a/><br/><br/>
             <a>Predictions were not saved. Please check your predictions and try again.</a>
           {% endif %}
-        {% endif %}
+        {% endif %} -->
       </div>
     {% endblock %}
   </body>
