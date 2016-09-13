@@ -3,7 +3,7 @@
   {% extends "predictor/base.html" %}
   <head>
     <title>
-      {% block title %} | Leaderboard{% endblock %}
+      {% block title %}   | Leaderboard{% endblock %}
     </title>
   </head>
   <body>
@@ -13,7 +13,7 @@
       {% if leaderboard %}
         <table class="table-fill">
           <thead>
-            <tr class="leaderboard-column-names-wrapper">
+            <tr>
               <th class="text-left">Rank</th>
               <th class="text-left">Player</th>
               <th class="text-left">Points</th>
@@ -21,7 +21,7 @@
           </thead>
           <tbody>
               {% for leader in leaderboard %}
-                <tr>
+                <tr class="table-selectable-row">
                   {% if leader.user == user %}
                     <td class="text-left leaderboard-user-row">
                       <a href="/predictor/gameweeks/">{{ leader.rank }}</a>

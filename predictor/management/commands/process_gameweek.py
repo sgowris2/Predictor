@@ -25,17 +25,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            gameweek_number = enter_results()
+            gameweek_number = enter_results(args[0])
             calculate_scores(gameweek_number)
         except:
             raise CommandError('Predictions were not updated :(')
         self.stdout.write('Successfully updated prediction scores "%s"' % gameweek_number)
 
 
-def enter_results():
+def enter_results(gameweek_name):
 
     lines = []
-    with open('predictor/results.csv', 'r') as f:
+    with open('predictor/data/' + gameweek_name + '_results.csv', 'r') as f:
             for line in f.readlines():
                 lines.append(line.strip('\n').strip('\r'))
     try:

@@ -13,19 +13,19 @@
       {% if gameweek_results %}
         <table class="table-fill">
           <thead>
-            <tr class="leaderboard-column-names-wrapper">
+            <tr>
               <th class="text-left"></th>
               <th class="text-left">Points</th>
             </tr>
           </thead>
           <tbody>
             {% for gameweek_result in gameweek_results %}
-              <tr>
+              <tr class="table-selectable-row">
                 <td class="text-left">
-                  <a href="/predictor/gameweek/{{ gameweek_result.gameweek.number }}">{{ gameweek_result.gameweek.name }}</a>
+                  <a href="/predictor/gameweek/{{ gameweek_result.gameweek.number }}/{{ gameweek_user.username }}">{{ gameweek_result.gameweek.name }}</a>
                 </td>
                 <td class="text-left">
-                  <a href="/predictor/gameweek/{{ gameweek_result.gameweek.number }}">{{ gameweek_result.total_points }}</a>
+                  <a href="/predictor/gameweek/{{ gameweek_result.gameweek.number }}/{{ gameweek_user.username }}">{{ gameweek_result.total_points }}</a>
                 </td>
               </tr>
             {% endfor %}

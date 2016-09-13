@@ -415,25 +415,30 @@ p.nav {
 }
 
 .match-score-display {
-    font-size: 0.750em;
+    font-size: 0.875em;
     color: #808080;
 }
 
+
+.prediction-match {
+    display:table;
+    margin:0.5em;
+}
+
 .prediction-score {
-    text-align: left;
-    font-size: 1.00em;
-    width: 13em;
-    margin:0.0em;
-    padding:1em;
-    padding-left: 0em;
-    padding-bottom: 0em;
-    float: right;
+    display: table-cell;
+    text-align: center;
+    font-size: 0.875em;
+}
+
+.prediction-teams {
+    display:table-cell;
 }
 
 .gameweek-points {
     text-align: center;
     font-size: 1.250em;
-    margin-top: 1.5em;
+    margin: 1.5em;
 }
 
 .separator {
@@ -464,10 +469,11 @@ p.nav {
 th {
   color:#333333;
   background:#E1E1E1;
-  border-bottom:0.06250em;
+  border-bottom:0.0625em;
   font-size:1.1250em;
   font-weight: 100;
   padding:1em;
+  padding-left:0.75em;
   text-align:left;
   text-shadow: 0 0.06250em 0.06250em rgba(0, 0, 0, 0.1);
   vertical-align:middle;
@@ -491,9 +497,10 @@ tr {
   text-shadow: 0 0.06250em 0.06250em rgba(256, 256, 256, 0.1);
 }
 
+tr:hover {
+}
+
 tr:hover td {
-  background:#4cd3ab;
-  color:#f9f9f9;
 }
 
 tr:first-child {
@@ -509,7 +516,6 @@ tr:nth-child(odd) td {
 }
 
 tr:nth-child(odd):hover td {
-  background:#4cd3ab;
 }
 
 tr:last-child td:first-child {
@@ -521,7 +527,7 @@ tr:last-child td:last-child {
 }
 
 td {
-  background:#FFFFFF;
+  background:#F9f9f9;
   text-align:left;
   vertical-align:middle;
   font-weight:300;
@@ -559,11 +565,10 @@ td.text-right {
 
 td a {
     display: block;
-    padding: 1.250em;
+    padding: 0.75em;
 }
 
 td a:hover {
-    color:#f9f9f9;
 }
 
 .leaderboard-user-row {
@@ -661,4 +666,9 @@ footer
     vertical-align:center;
     font-size: 0.75em;
     color: #999999;
+}
+
+.table-selectable-row:hover
+{
+    border: 2px solid #4cd3ab;
 }

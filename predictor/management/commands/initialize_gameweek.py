@@ -10,15 +10,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            add_matches()
+            add_matches(args[0])
         except:
             raise CommandError('Matches were not added :(')
         self.stdout.write('Successfully added matches')
 
 
-def add_matches():
+def add_matches(gameweek_name):
     lines = []
-    with open('predictor/matches.csv', 'r') as f:
+    with open('predictor/data/' + gameweek_name + '.csv', 'r') as f:
         for line in f.readlines():
             lines.append(line.strip('\n').strip('\r'))
     try:
