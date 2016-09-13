@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="11.968421">
-              <caret line="475" column="22" selection-start-line="475" selection-start-column="22" selection-end-line="475" selection-end-column="22" />
+            <state vertical-scroll-proportion="-15.925926">
+              <caret line="681" column="19" selection-start-line="681" selection-start-column="19" selection-end-line="681" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -51,12 +51,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="process_gameweek.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="process_gameweek.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/predictor/management/commands/process_gameweek.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.51195216">
+              <caret line="150" column="57" selection-start-line="150" selection-start-column="57" selection-end-line="150" selection-end-column="57" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/predictor/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,15 +101,15 @@
         <option value="$PROJECT_DIR$/predictor/static/predictor/style.js" />
         <option value="$PROJECT_DIR$/predictor/admin.py" />
         <option value="$PROJECT_DIR$/predictor/forms.py" />
-        <option value="$PROJECT_DIR$/predictor/models.py" />
         <option value="$PROJECT_DIR$/predictor/utilities.py" />
         <option value="$PROJECT_DIR$/predictor/urls.py" />
         <option value="$PROJECT_DIR$/mysite/settings.py" />
         <option value="$PROJECT_DIR$/mysite/urls.py" />
         <option value="$PROJECT_DIR$/predictor/views.py" />
-        <option value="$PROJECT_DIR$/predictor/management/commands/process_gameweek.py" />
         <option value="$PROJECT_DIR$/predictor/management/commands/initialize_gameweek.py" />
         <option value="$PROJECT_DIR$/predictor/static/predictor/style.css" />
+        <option value="$PROJECT_DIR$/predictor/models.py" />
+        <option value="$PROJECT_DIR$/predictor/management/commands/process_gameweek.py" />
       </list>
     </option>
   </component>
@@ -595,14 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/predictor/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/predictor/results.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -753,14 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/predictor/management/commands/process_gameweek.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/predictor/management/commands/initialize_gameweek.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.8113208">
@@ -771,8 +767,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="11.968421">
-          <caret line="475" column="22" selection-start-line="475" selection-start-column="22" selection-end-line="475" selection-end-column="22" />
+        <state vertical-scroll-proportion="-15.925926">
+          <caret line="681" column="19" selection-start-line="681" selection-start-column="19" selection-end-line="681" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/management/commands/process_gameweek.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51195216">
+          <caret line="150" column="57" selection-start-line="150" selection-start-column="57" selection-end-line="150" selection-end-column="57" />
           <folding />
         </state>
       </provider>

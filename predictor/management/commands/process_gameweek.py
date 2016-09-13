@@ -43,8 +43,8 @@ def enter_results(gameweek_name):
         gameweek = Gameweek.objects.get(name=lines[0])
         gameweek_id = gameweek.id
         for match_line in lines[1:]:
-            home,away,home_score,away_score = match_line.split(',')
             try:
+                home,away,home_score,away_score = match_line.split(',')
                 home_team = Team.objects.get(name=home)
                 away_team = Team.objects.get(name=away)
                 home_team_id = home_team.id
@@ -53,7 +53,7 @@ def enter_results(gameweek_name):
                     match = Match.objects.get(home_team_id=home_team_id,
                                               away_team_id=away_team_id,
                                               gameweek_id=gameweek_id,
-                                              has_ended=False)
+                                              )
                     match.home_score = home_score
                     match.away_score = away_score
                     match.has_ended = True
@@ -63,14 +63,14 @@ def enter_results(gameweek_name):
                     print("There are errors in the csv file. Either match was not found or the scores were not integers.")
             except:
                 print("There are errors in the csv file.")
-        return gameweek.name
+        return gameweek
     except:
         print("Gameweek was probably not found.")
 
 
-def calculate_scores(gameweek_number):
+def calculate_scores(gameweek):
 
-    current_gameweek = Gameweek.objects.filter(name=gameweek_number)[0]
+    current_gameweek = Gameweek.objects.filter(name=gameweek.name)[0]
     matches = Match.objects.filter(gameweek=current_gameweek)
     predictions = Prediction.objects.filter(match__in=matches)
 
@@ -78,6 +78,7 @@ def calculate_scores(gameweek_number):
         try:
             prediction_result = PredictionResult.objects.get(prediction=prediction)
             prediction_result.points = calculate_prediction_score(prediction)
+            update_prediction_result_stats(prediction_result)
             prediction_result.save()
         except:
             PredictionResult.objects.create(prediction=prediction, points=calculate_prediction_score(prediction))
@@ -148,7 +149,7 @@ def update_prediction_result_stats(prediction_result):
     match = prediction.match
     prediction_result.result = get_result_points(match, prediction) > 0
     prediction_result.home_scored = get_scored_points(match, prediction, HOME) > 0
-    prediction_result.home_scored = get_scored_points(match, prediction, AWAY) > 0
+    prediction_result.away_scored = get_scored_points(match, prediction, AWAY) > 0
     prediction_result.home_goals = get_goals_points(match, prediction, HOME) > 0
     prediction_result.away_goals = get_goals_points(match, prediction, AWAY) > 0
     prediction_result.scoreline = get_exact_bonus_points(match, prediction) > 0

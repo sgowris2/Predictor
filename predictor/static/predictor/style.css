@@ -415,8 +415,8 @@ p.nav {
 }
 
 .match-score-display {
+    display: inline-block;
     font-size: 0.875em;
-    color: #808080;
 }
 
 
@@ -426,8 +426,6 @@ p.nav {
 }
 
 .prediction-score {
-    display: table-cell;
-    text-align: center;
     font-size: 0.875em;
 }
 
@@ -458,7 +456,8 @@ p.nav {
   border-radius:0.125em;
   border-collapse: collapse;
   margin: auto;
-  margin-top: 6em;
+  margin-top: 3em;
+  margin-bottom: 3em;
   max-width: 600px;
   padding:0.31250em;
   width: 100%;
@@ -489,8 +488,9 @@ th:last-child {
 }
 
 tr {
-  border-top: 0.06250em solid #C1C3D1;
-  border-bottom-: 0.06250em solid #C1C3D1;
+  border: 0.06250em solid #C1C3D1;
+  border-left: 0.0625em solid #F9F9F9;
+  border-right: 0.0625em solid #F9F9F9;
   color:#666B85;
   font-size:1em;
   font-weight:normal;
@@ -569,6 +569,10 @@ td a {
 }
 
 td a:hover {
+}
+
+.padded-cell {
+    padding: 0.75em;
 }
 
 .leaderboard-user-row {
@@ -671,4 +675,10 @@ footer
 .table-selectable-row:hover
 {
     border: 2px solid #4cd3ab;
+}
+
+.point-detail
+{
+    font-size: 0.75em;
+    padding: 0em 1em;
 }

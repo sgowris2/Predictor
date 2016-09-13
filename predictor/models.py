@@ -60,7 +60,7 @@ class PredictionResult(models.Model):
     prediction = models.ForeignKey(Prediction)
     result = models.BooleanField(default=False)
     home_scored = models.BooleanField(default=False)
-    away_score = models.BooleanField(default=False)
+    away_scored = models.BooleanField(default=False)
     home_goals = models.BooleanField(default=False)
     away_goals = models.BooleanField(default=False)
     scoreline = models.BooleanField(default=False)
