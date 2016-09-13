@@ -3,7 +3,7 @@
   {% extends "predictor/base.html" %}
   <head>
     <title>
-      {% block title %}| Gameweek {{ gameweek }}{% endblock %}
+      {% block title %} | Gameweek {{ gameweek }}{% endblock %}
     </title>
   </head>
   <body>
@@ -11,6 +11,7 @@
       <div class="page-title" align="center">
         Gameweek {{ gameweek }}
       </div>
+      <hr/>
       <div class="gameweek-points">
         {% if username == gameweek_user.username %}
           {{ gameweek_user.first_name }} {{ gameweek_user.last_name }}&nbsp;&nbsp;-&nbsp;&nbsp;

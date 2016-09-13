@@ -3,12 +3,13 @@
   {% extends "predictor/base.html" %}
   <head>
     <title>
-      {% block title %}| Gameweeks{% endblock %}
+      {% block title %} | Gameweeks{% endblock %}
     </title>
   </head>
   <body>
     {% block content %}
     <div class="page-title">{{ gameweek_user.first_name }} {{ gameweek_user.last_name }}&nbsp;&nbsp;-&nbsp;&nbsp;{{ total_points }} points</div>
+    <hr/>
       {% if gameweek_results %}
         <table class="table-fill">
           <thead>

@@ -1,5 +1,6 @@
 * {
-    font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 /* Color Glossary
@@ -14,33 +15,40 @@ Gray2:          #919191
 Gray3:          #555555
 */
 
-/*------------------------------------------------------------------
-[Master Stylesheet]
-
-Project    	: Aether
-Version		: 1.0
-Last change	: 2015/03/27
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[Table of contents]
-
-1. General Structure
-2. Anchor Link
-3. Text Outside the Box
-4. Main Form
-5. Login Button
-6. Form Invalid
-7. Form - Main Message
-8. Custom Checkbox & Radio
-9. Misc
--------------------------------------------------------------------*/
 /*=== 1. General Structure ===*/
-html,
-body {
-  background: #f9f9f9;
-  padding: 10px;
-  font-family: 'Roboto';
+html {
+    height:100%;
 }
+
+html, body {
+  background: #f9f9f9;
+  font-family: 'Raleway';
+}
+
+/* The following lines are used to center content on the page */
+
+body {
+    height:80%;
+    display: table;
+    margin: auto;
+    margin-top: 8em;
+    margin-bottom: 3em;
+}
+
+.page-div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* *********************************************************** */
+
+hr {
+    border-color: #cccccc;
+    margin: 2.5em 0;
+    margin-left: -15%;
+    width: 130%;
+}
+
 /*=== 2. Anchor Link ===*/
 a {
   transition: all ease-in-out 200ms;
@@ -51,7 +59,7 @@ a:hover {
 }
 /*=== 3. Text Outside the Box ===*/
 .etc-login-form {
-  font-size: 16px;
+  font-size: 14px;
   color: #919191;
   padding: 10px 20px;
 }
@@ -60,8 +68,8 @@ a:hover {
 }
 /*=== 4. Main Form ===*/
 .login-form-1 {
-  width: 500px;
-  border-radius: 5px;
+  width: 300px;
+  border-radius: 0px;
   display: inline-block;
 }
 .main-login-form {
@@ -73,9 +81,9 @@ a:hover {
   border-radius: 0;
   background: transparent;
   color: #555555;
-  padding: 7px 0;
-  font-weight: bold;
-  font-size: 18px;
+  padding: 12px 0;
+  font-weight: regular;
+  font-size: 16px;
   height:auto;
 }
 .login-form-1 .form-control::-webkit-input-placeholder {
@@ -102,7 +110,7 @@ a:hover {
   padding: 10px 20px;
 }
 .login-group-checkbox {
-  padding: 5px 0;
+  padding-top: 25px;
 }
 /*=== 5. Login Button ===*/
 .login-form-1 .login-button {
@@ -121,7 +129,6 @@ a:hover {
 }
 .login-form-1 .login-button:hover {
   color: #555555;
-  transform: rotate(450deg);
 }
 .login-form-1 .login-button.clicked {
   color: #555555;
@@ -333,9 +340,8 @@ label:hover:before {
 }
 
 .page-title {
-    font-size: 22px;
+    font-size: 26px;
     text-align: center;
-
 }
 
 .username {
@@ -343,19 +349,17 @@ label:hover:before {
     color: #333333;
 }
 
-.navbar {
-
-    height:60px;
-    line-height:60px;
-    text-align: center;
+.navbar-custom {
+    background: #f9f9f9;
+    border-color:#f9f9f9;
+    min-height:60px;
+    text-align: right;
     margin:0;
-    background-color: #643173;
-    margin-top: 30px;
-    margin-bottom: 50px;
+    box-shadow:none;
 }
 
 .navlink {
-    color: #f9f9f9;
+    font-size: 14px;
 }
 
 p.nav {
@@ -365,11 +369,9 @@ p.nav {
     padding-right: 20px;
     line-height: normal;
     text-decoration: none;
-    color: white;
-
 }
 
-.login_form {
+.login-form {
     margin-left:auto;
     margin-right:auto;
 }
@@ -380,11 +382,9 @@ p.nav {
 }
 
 .team-name {
-    font-size: 18px;
-    width: 15em;
-    margin:0.5em;
-    padding:1em;
-    padding-bottom: 0em;
+    font-size: 14px;
+    width: 10em;
+    padding: 0 0.5em;
     display:inline-block;
 }
 
@@ -398,29 +398,29 @@ p.nav {
 
 .score-input {
     text-align: center;
-    font-size: 20px;
-    padding: 5px;
-    padding-left: 18px;
-    border: solid 1px #dcdcdc;
+    font-size: 14px;
+    padding: 3px;
+    padding-left: 16px;
+    border: solid 0.1px #dcdcdc;
     transition: box-shadow 0.3s, border 0.3s;
 }
 
 .prediction-score-display {
     display: inline-block;
     text-align: center;
-    font-size: 20px;
-    padding: 10px;
+    font-size: 14px;
+    padding: 3px;
     padding-bottom: 0px;
 }
 
 .match-score-display {
-    font-size: 16px;
+    font-size: 12px;
     color: #808080;
 }
 
 .prediction-score {
     text-align: left;
-    font-size: 18px;
+    font-size: 15px;
     width: 13em;
     margin:0.0em;
     padding:1em;
@@ -437,12 +437,12 @@ p.nav {
 
 .separator {
     text-align: center;
-    font-size: 28px;
-    margin: 10px;
+    font-size: 14px;
+    margin: 0px 10px;
 }
 
 .submit-button {
-    margin: 2.5em;
+    margin: 1.5em;
 }
 
 /*** Table Styles **/
@@ -571,8 +571,6 @@ td a:hover {
 
 .nothing-message {
     text-align: center;
-    padding: 2em;
-    margin: 2em;
     font-size: 16px;
 }
 
@@ -637,11 +635,29 @@ td a:hover {
 }
 
 .about-block {
-    margin: 4em;
-    padding: 1em;
+    margin: 2em;
+    max-width: 600px;
+}
+
+.about-subtitle {
+    font-size: 18px;
+    font-weight:600;
 }
 
 .errorlist-item{
     display: inline-block;
     font-size: 18px;
+}
+
+footer
+{
+    background: #e6e6e6;
+}
+
+.footer-text {
+    padding: 1em;
+    text-align: center;
+    vertical-align:center;
+    font-size: 11px;
+    color: #999999;
 }

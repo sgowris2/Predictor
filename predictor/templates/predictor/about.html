@@ -3,23 +3,56 @@
   {% extends "predictor/base.html" %}
   <head>
     <title>
-      {% block title %}| About{% endblock %}
+      {% block title %}&nbsp;|&nbsp;About{% endblock %}
     </title>
   </head>
   <body>
     {% block content %}
-      <div class="page-title">About</div>
+      <div class="page-title">About Predictr</div>
+      <hr/>
       <div class="about-block">
-        <h2>What is predictr?</h2>
-        <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h4>
+        <p>
+            One of the most typical competitions that people who watch sports
+            get into is a game of predicting outcomes. Many people even bet on
+            various outcomes incessantly in the hope that their self-touted skill
+            of being able to predict the future pays off. However, for me, it has
+            always been a test of understanding the various factors in play during
+            a game, and making good guesses.
+        </p>
+        <p>
+            Based on this, I thought it would be interesting to have a platform
+            where people can get together and play this common game with friends and
+            strangers all over the world. As a first step, I created this website
+            and chose association football as the first sport. Being the most popular sport
+            and one that I'm infatuated with, it was an easy choice. I also chose
+            the English Premier League to predict because it is probably the
+            most followed league in the world, and definitely is within my social circle.
+        </p>
+        <p>
+            Right now, there are no concrete plans of expanding this website, but
+            the vision certainly includes expansion into other leagues and sports. I hope you
+            enjoy Predictr!
+        </p>
       </div>
       <div class="about-block">
-        <h2>How to play?</h2>
-        <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h4>
+        <p class="about-subtitle">How to Play</p>
+        <p> Predictr has been desgined to be as simple as possible. Simply enter your predictions, click on submit,
+            we'll take care of the rest. Make sure to get your predictions in before the matches for a gameweek start.
+            Behind the scenes, a simple points system is in place that lets you compete against other people. Here's how it works..</p>
+        <p>For each match in a gameweek, you can get up to 12 points. Points are awarded for each of the following correct predictions:</p>
+        <p><b>Result</b> - If your guessed scoreline predicted the same result (home-win/tie/away-win) as in the match, you are awarded 3 points.</p>
+        <p><b>Scored or Clean-sheet</b> - For each team in a match, if your guessed scoreline predicted whether a team will score or not correctly, you are awarded 1 point.</p>
+        <p><b>Goals Scored</b> - For each team in a match, if your guessed scoreline correctly predicted the number of goals that a team scored, you are awarded 2 points.</p>
+        <p><b>Exact Scoreline Bonus</b> - And finally, if you guess the exact scoreline of a game correctly, you are awarded 3 bonus points.</p>
       </div>
       <div class="about-block">
-        <h2>Points System</h2>
-        <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h4>
+        <p id="disclaimer" class="about-subtitle">Disclaimer</p>
+        <p>
+            Predictr is a website as a service to the public. It is a personal project of Sudeep Gowrishankar
+            and is not affiliated in any way to the English Premier League, the English FA, or any of the clubs
+            mentioned on this website. Predictr is not responsible for, and expressly disclaims all liability for,
+            damages of any kind arising out of use, reference to, or reliance on any information contained within the site.
+        </p>
       </div>
     {% endblock %}
   </body>

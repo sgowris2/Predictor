@@ -3,15 +3,12 @@
   {% extends "predictor/base.html" %}
   <head>
     <title>
-      {% block title %}| Home{% endblock %}
+      {% block title %} | Home{% endblock %}
     </title>
   </head>
   <body>
     {% block content %}
-      <div style="margin:8em">
-        <div style="margin-bottom:2em;">
-          <h4>Welcome {{ user.first_name }}!</h4>
-        </div>
+      <div>
         <div style="display: table; width:100%;">
           <div class="home-block home-next-deadline-block">
             <div>
@@ -64,7 +61,7 @@
             <h3 align="center">There aren't any stats to show right now, but watch this space for some insights into the game.</h3>
           </div>
           <div class="home-block home-summary-block">
-            <h3>Welcome to the summary section of predictr!</h3><br/>
+            <h3>Welcome to the summary section of Predictr!</h3><br/>
             <h4>Each week, we'll try to distill the happenings on the pitch as they relate to your predictions and even get some of your opinions posted in this column.</h4>
           </div>
         {% endif %}
