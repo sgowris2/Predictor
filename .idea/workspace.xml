@@ -24,8 +24,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56842107">
-              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.39578947">
+              <caret line="649" column="18" selection-start-line="649" selection-start-column="18" selection-end-line="649" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -715,8 +715,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56842107">
-          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.39578947">
+          <caret line="649" column="18" selection-start-line="649" selection-start-column="18" selection-end-line="649" selection-end-column="18" />
           <folding />
         </state>
       </provider>

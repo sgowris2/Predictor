@@ -46,8 +46,12 @@ body {
 hr {
     border-color: #cccccc;
     margin: 2.5em 0;
-    margin-left: -15%;
-    width: 130%;
+    width: 100%;
+}
+
+.hr-expanded {
+    width: 120%;
+    margin-left: -10%;
 }
 
 /*=== 2. Anchor Link ===*/
@@ -643,7 +647,7 @@ td a:hover {
 
 .errorlist-item{
     display: inline-block;
-    font-size: 0.75em;
+    font-size: 0.9em;
 }
 
 footer
