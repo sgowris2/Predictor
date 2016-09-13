@@ -18,6 +18,7 @@ Gray3:          #555555
 /*=== 1. General Structure ===*/
 html {
     height:100%;
+    font-size: 1em;
 }
 
 html, body {
@@ -59,17 +60,17 @@ a:hover {
 }
 /*=== 3. Text Outside the Box ===*/
 .etc-login-form {
-  font-size: 14px;
+  font-size: 0.9em;
   color: #919191;
-  padding: 10px 20px;
+  padding: 0.625em 1.25em;
 }
 .etc-login-form p {
-  margin-bottom: 5px;
+  margin-bottom: 0.35em;
 }
 /*=== 4. Main Form ===*/
 .login-form-1 {
-  width: 300px;
-  border-radius: 0px;
+  width: 18.5em;
+  border-radius: 0em;
   display: inline-block;
 }
 .main-login-form {
@@ -81,9 +82,9 @@ a:hover {
   border-radius: 0;
   background: transparent;
   color: #555555;
-  padding: 12px 0;
+  padding: 0.75em 0;
   font-weight: regular;
-  font-size: 16px;
+  font-size: 1.125em;
   height:auto;
 }
 .login-form-1 .form-control::-webkit-input-placeholder {
@@ -96,8 +97,8 @@ a:hover {
 }
 .login-form-1 .form-group {
   margin-bottom: 0;
-  border-bottom: 2px solid #efefef;
-  padding-right: 20px;
+  border-bottom: 0.125em solid #efefef;
+  padding-right: 1.250em;
   position: relative;
 }
 .login-form-1 .form-group:last-child {
@@ -106,24 +107,24 @@ a:hover {
 .login-group {
   background: #ffffff;
   color: #999999;
-  border-radius: 8px;
-  padding: 10px 20px;
+  border-radius: 0.5em;
+  padding: 0.61250em 1.250em;
 }
 .login-group-checkbox {
-  padding-top: 25px;
+  padding-top: 1.5em;
 }
 /*=== 5. Login Button ===*/
 .login-form-1 .login-button {
   position: absolute;
-  right: -25px;
+  right: -1.4em;
   top: 50%;
   background: #ffffff;
   color: #999999;
-  padding: 11px 0;
-  width: 50px;
-  height: 50px;
-  margin-top: -25px;
-  border: 5px solid #efefef;
+  padding: 0.65em 0;
+  width: 3.125em;
+  height: 3.125em;
+  margin-top: -1.4em;
+  border: 0.3125em solid #efefef;
   border-radius: 50%;
   transition: all ease-in-out 500ms;
 }
@@ -149,17 +150,17 @@ label.form-invalid {
   right: 0;
   z-index: 5;
   display: block;
-  margin-top: -25px;
-  padding: 7px 9px;
+  margin-top: -1.50em;
+  padding: 0.43750em 0.5625em;
   background: #777777;
   color: #ffffff;
-  border-radius: 5px;
+  border-radius: 0.31250em;
   font-weight: bold;
-  font-size: 11px;
+  font-size: 0.6250em;
 }
 label.form-invalid:after {
   top: 100%;
-  right: 10px;
+  right: 0.61250em;
   border: solid transparent;
   content: " ";
   height: 0;
@@ -168,25 +169,25 @@ label.form-invalid:after {
   pointer-events: none;
   border-color: transparent;
   border-top-color: #777777;
-  border-width: 6px;
+  border-width: 0.3250em;
 }
 /*=== 7. Form - Main Message ===*/
 .login-form-main-message {
   background: #ffffff;
   color: #999999;
-  border-left: 3px solid transparent;
-  border-radius: 3px;
+  border-left: 0.1250em solid transparent;
+  border-radius: 0.1250em;
   margin-bottom: 8px;
   font-weight: bold;
   height: 0;
-  padding: 0 20px 0 17px;
+  padding: 0 1.250em 0 17px;
   opacity: 0;
   transition: all ease-in-out 200ms;
 }
 .login-form-main-message.show {
   height: auto;
   opacity: 1;
-  padding: 10px 20px 10px 17px;
+  padding: 0.61250em 1.250em 0.61250em 17px;
 }
 .login-form-main-message.success {
   border-left-color: #2ecc71;
@@ -208,8 +209,8 @@ label.form-invalid:after {
 [type="radio"]:not(:checked) + label,
 [type="radio"]:checked + label {
   position: relative;
-  padding-left: 25px;
-  padding-top: 1px;
+  padding-left: 1.50em;
+  padding-top: 0.06250em;
   cursor: pointer;
 }
 /* checkbox aspect */
@@ -220,13 +221,13 @@ label.form-invalid:after {
   content: '';
   position: absolute;
   left: 0;
-  top: 2px;
+  top: 0.1250em;
   width: 17px;
   height: 17px;
   border: 0px solid #aaa;
   background: #f0f0f0;
-  border-radius: 3px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 0.1250em;
+  box-shadow: inset 0 0.06250em 0.1250em rgba(0, 0, 0, 0.3);
 }
 /* checked mark aspect */
 [type="checkbox"]:not(:checked) + label:after,
@@ -270,37 +271,37 @@ label.form-invalid:after {
 [type="checkbox"]:not(:checked):focus + label:before,
 [type="checkbox"]:checked:focus + label:before,
 [type="checkbox"]:not(:checked):focus + label:before {
-  border: 1px dotted #f6f6f6;
+  border: 0.06250em dotted #f6f6f6;
 }
 /* hover style just for information */
 label:hover:before {
-  border: 1px solid #f6f6f6 !important;
+  border: 0.06250em solid #f6f6f6 !important;
 }
 /*=== Customization ===*/
 /* radio aspect */
 [type="checkbox"]:not(:checked) + label:before,
 [type="checkbox"]:checked + label:before {
-  border-radius: 3px;
+  border-radius: 0.1250em;
 }
 [type="radio"]:not(:checked) + label:before,
 [type="radio"]:checked + label:before {
-  border-radius: 35px;
+  border-radius: 2.0em;
 }
 /* selected mark aspect */
 [type="checkbox"]:not(:checked) + label:after,
 [type="checkbox"]:checked + label:after {
   content: '✔';
   top: 0;
-  left: 2px;
-  font-size: 14px;
+  left: 0.1250em;
+  font-size: 0.8750em;
 }
 [type="radio"]:not(:checked) + label:after,
 [type="radio"]:checked + label:after {
   content: '\2022';
   top: 0;
-  left: 3px;
+  left: 0.1250em;
   font-size: 30px;
-  line-height: 25px;
+  line-height: 1.50em;
 }
 /*=== 9. Misc ===*/
 .logo {
@@ -319,23 +320,19 @@ label:hover:before {
 .button {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
-  border-radius: 20px;
-  border: none;
-  color: #ffffff;
-  font-size: 18px;
-  background: #4CD3AB;
-  padding: 10px 20px 10px 20px;
+  border-radius: 1.250em;
+  border: 0.06250em solid #4CD3AB;
+  color: #333333;
+  font-size: 1em;
+  background: none;
+  padding: 0.61250em 1.250em 0.61250em 1.250em;
   text-align: center;
   text-decoration: none;
 }
 
 .button:hover {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #3498db);
-  background-image: -moz-linear-gradient(top, #3498db, #3498db);
-  background-image: -ms-linear-gradient(top, #3498db, #3498db);
-  background-image: -o-linear-gradient(top, #3498db, #3498db);
-  background-image: linear-gradient(to bottom, #3498db, #3498db);
+  background: none;
+  border: 0.1250em solid #4CD3AB;
   text-decoration: none;
 }
 
@@ -359,14 +356,14 @@ label:hover:before {
 }
 
 .navlink {
-    font-size: 14px;
+    font-size: 0.8750em;
 }
 
 p.nav {
     display: inline-block;
     text-align: justify;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 1.250em;
+    padding-right: 1.250em;
     line-height: normal;
     text-decoration: none;
 }
@@ -382,7 +379,7 @@ p.nav {
 }
 
 .team-name {
-    font-size: 14px;
+    font-size: 0.8750em;
     width: 10em;
     padding: 0 0.5em;
     display:inline-block;
@@ -398,29 +395,29 @@ p.nav {
 
 .score-input {
     text-align: center;
-    font-size: 14px;
-    padding: 3px;
-    padding-left: 16px;
-    border: solid 0.1px #dcdcdc;
+    font-size: 0.8750em;
+    padding: 0.1250em;
+    padding-left: 1em;
+    border: solid 0.0.06250em #dcdcdc;
     transition: box-shadow 0.3s, border 0.3s;
 }
 
 .prediction-score-display {
     display: inline-block;
     text-align: center;
-    font-size: 14px;
-    padding: 3px;
+    font-size: 0.8750em;
+    padding: 0.1250em;
     padding-bottom: 0px;
 }
 
 .match-score-display {
-    font-size: 12px;
+    font-size: 0.750em;
     color: #808080;
 }
 
 .prediction-score {
     text-align: left;
-    font-size: 15px;
+    font-size: 1.00em;
     width: 13em;
     margin:0.0em;
     padding:1em;
@@ -431,14 +428,14 @@ p.nav {
 
 .gameweek-points {
     text-align: center;
-    font-size: 20px;
+    font-size: 1.250em;
     margin-top: 1.5em;
 }
 
 .separator {
     text-align: center;
-    font-size: 14px;
-    margin: 0px 10px;
+    font-size: 0.8750em;
+    margin: 0px 0.61250em;
 }
 
 .submit-button {
@@ -449,45 +446,45 @@ p.nav {
 
 .table-fill {
   background: white;
-  border-radius:3px;
+  border-radius:0.125em;
   border-collapse: collapse;
   margin: auto;
   margin-top: 6em;
   max-width: 600px;
-  padding:5px;
+  padding:0.31250em;
   width: 100%;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.31250em 0.61250em rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
 }
 
 th {
   color:#333333;
   background:#E1E1E1;
-  border-bottom:1px;
-  font-size:18px;
+  border-bottom:0.06250em;
+  font-size:1.1250em;
   font-weight: 100;
-  padding:16px;
+  padding:1em;
   text-align:left;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 0.06250em 0.06250em rgba(0, 0, 0, 0.1);
   vertical-align:middle;
 }
 
 th:first-child {
-  border-top-left-radius:3px;
+  border-top-left-radius:0.1250em;
 }
 
 th:last-child {
-  border-top-right-radius:3px;
+  border-top-right-radius:0.1250em;
   border-right:none;
 }
 
 tr {
-  border-top: 1px solid #C1C3D1;
-  border-bottom-: 1px solid #C1C3D1;
+  border-top: 0.06250em solid #C1C3D1;
+  border-bottom-: 0.06250em solid #C1C3D1;
   color:#666B85;
-  font-size:16px;
+  font-size:1em;
   font-weight:normal;
-  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+  text-shadow: 0 0.06250em 0.06250em rgba(256, 256, 256, 0.1);
 }
 
 tr:hover td {
@@ -512,11 +509,11 @@ tr:nth-child(odd):hover td {
 }
 
 tr:last-child td:first-child {
-  border-bottom-left-radius:3px;
+  border-bottom-left-radius:0.1250em;
 }
 
 tr:last-child td:last-child {
-  border-bottom-right-radius:3px;
+  border-bottom-right-radius:0.1250em;
 }
 
 td {
@@ -524,8 +521,8 @@ td {
   text-align:left;
   vertical-align:middle;
   font-weight:300;
-  font-size:18px;
-  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  font-size:1.1250em;
+  text-shadow: -0.06250em -0.06250em 0.06250em rgba(0, 0, 0, 0.1);
 }
 
 td:last-child {
@@ -558,7 +555,7 @@ td.text-right {
 
 td a {
     display: block;
-    padding: 20px;
+    padding: 1.250em;
 }
 
 td a:hover {
@@ -571,7 +568,7 @@ td a:hover {
 
 .nothing-message {
     text-align: center;
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .home-block {
@@ -626,27 +623,27 @@ td a:hover {
 }
 
 .home-stat-cell-heading {
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .home-stat-cell-body {
     padding: 1em;
-    font-size: 20px;
+    font-size: 1.250em;
 }
 
 .about-block {
     margin: 2em;
-    max-width: 600px;
+    max-width: 37.5em;
 }
 
 .about-subtitle {
-    font-size: 18px;
+    font-size: 1.1250em;
     font-weight:600;
 }
 
 .errorlist-item{
     display: inline-block;
-    font-size: 18px;
+    font-size: 0.75em;
 }
 
 footer
@@ -658,6 +655,6 @@ footer
     padding: 1em;
     text-align: center;
     vertical-align:center;
-    font-size: 11px;
+    font-size: 0.75em;
     color: #999999;
 }

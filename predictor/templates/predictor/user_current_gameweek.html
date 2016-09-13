@@ -16,7 +16,7 @@
         <div align="center">
           <ul class="messages">
               {% for message in messages %}
-                <h3{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+                <h4{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h4>
               {% endfor %}
           </ul>
         </div><br/>
