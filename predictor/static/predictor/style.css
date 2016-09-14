@@ -367,6 +367,7 @@ td a:hover {
 .home-no-stats-message {
   font-size: 1.25em;
   text-align: center;
+  margin:1.5em;
 }
 
 .home-next-deadline-block {
