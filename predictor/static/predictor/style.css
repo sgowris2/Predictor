@@ -364,6 +364,11 @@ td a:hover {
     margin:auto;
 }
 
+.home-no-stats-message {
+  font-size: 1.25em;
+  text-align: center;
+}
+
 .home-next-deadline-block {
 
     text-align: center;
