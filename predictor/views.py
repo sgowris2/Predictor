@@ -114,10 +114,14 @@ def home(request):
                 gameweek_rank = len(GameweekResult.objects.filter(gameweek__end_time=last_gameweek_end_time,
                                                                   total_points__gt=user_gameweek_points))+1
             except:
+                user_gameweek_points = 0
                 gameweek_rank = 0
 
         except:
             last_gameweek_result = None
+            gameweek_players = 0
+            user_gameweek_points = 0
+            gameweek_rank = 0
             summary_title = None
             summary_body = None
 
