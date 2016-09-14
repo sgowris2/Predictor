@@ -2,7 +2,7 @@ import re
 import pytz
 from operator import attrgetter
 from django.shortcuts import render, redirect
-from django.db.models import Max
+from django.db.models import Max, Avg
 from django.template.defaulttags import register
 from django.forms import formset_factory
 from django.utils import timezone
@@ -80,7 +80,7 @@ def home(request):
         now = timezone.now()
         try:
             current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)[0]
-            deadline1 = 'Next upcoming deadline'
+            deadline1 = 'Upcoming deadline'
             deadline2 = current_gameweek.end_time.strftime('%B %d, %Y')
             deadline3 = current_gameweek.end_time.astimezone(pytz.timezone('Europe/London')).strftime('%I:%M%p %Z')
         except:
@@ -94,11 +94,28 @@ def home(request):
             position = 0
 
         total_players = User.objects.count()
+        try:
+            user_overall_score = Leaderboard.objects.get(user=request.user).total_points
+            overall_highest = Leaderboard.objects.all().aggregate(Max('total_points'))['total_points__max']
+            overall_average = int(round(Leaderboard.objects.all().aggregate(Avg('total_points'))['total_points__avg'], 0))
+        except:
+            user_overall_score = 0
+            overall_highest = 0
+            overall_average = 0
 
         try:
-
             last_gameweek_end_time = GameweekResult.objects.all().aggregate(Max('gameweek__end_time'))['gameweek__end_time__max']
             last_gameweek_result = GameweekAggregateResult.objects.get(gameweek__end_time=last_gameweek_end_time)
+            gameweek_players = len(GameweekResult.objects.filter(gameweek__end_time=last_gameweek_end_time))
+
+            try:
+                user_gameweek_points = GameweekResult.objects.get(user=request.user,
+                                                                  gameweek__end_time=last_gameweek_end_time).total_points
+                gameweek_rank = len(GameweekResult.objects.filter(gameweek__end_time=last_gameweek_end_time,
+                                                                  total_points__gt=user_gameweek_points))+1
+            except:
+                gameweek_rank = 0
+
         except:
             last_gameweek_result = None
             summary_title = None
@@ -114,8 +131,14 @@ def home(request):
                    'deadline1': deadline1,
                    'deadline2': deadline2,
                    'deadline3': deadline3,
-                   'position': position,
-                   'total_players': total_players,
+                   'overall_total_players': total_players,
+                   'overall_rank': position,
+                   'overall_score': user_overall_score,
+                   'overall_highest': overall_highest,
+                   'overall_average': overall_average,
+                   'gameweek_players': gameweek_players,
+                   'gameweek_rank': gameweek_rank,
+                   'gameweek_points': user_gameweek_points,
                    'summary_title': summary_title,
                    'summary_body': summary_body}
         return render(request, 'predictor/home.html', context)
