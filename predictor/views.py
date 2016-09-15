@@ -306,24 +306,24 @@ def contact(request):
     if request.user.is_authenticated():
         if request.method == 'POST':
             form = ContactForm(request.POST)
-            # try:
-            if form.is_valid():
-                if contact_timeout_check(request.user):
-                    data = form.cleaned_data
-                    timestamp = datetime.datetime.utcnow()
-                    timestamp = timestamp.replace(tzinfo=pytz.utc)
-                    FeedbackMessage.objects.create(user=request.user, message=data['content'], timestamp=timestamp)
-                    feedback_message = FeedbackMessage.objects.filter(user=request.user, message=data['content'])[0]
-                    feedback_message.save()
-                    return redirect('/predictor/contact_success/')
+            try:
+                if form.is_valid():
+                    if contact_timeout_check(request.user):
+                        data = form.cleaned_data
+                        timestamp = datetime.datetime.utcnow()
+                        timestamp = timestamp.replace(tzinfo=pytz.utc)
+                        FeedbackMessage.objects.create(user=request.user, message=data['content'], timestamp=timestamp)
+                        feedback_message = FeedbackMessage.objects.filter(user=request.user, message=data['content'])[0]
+                        feedback_message.save()
+                        return redirect('/predictor/contact_success/')
+                    else:
+                        return redirect('/predictor/contact_timeout/')
                 else:
-                    return redirect('/predictor/contact_timeout/')
-            else:
+                    context = {'form': form}
+                    return render(request, 'predictor/contact.html', context)
+            except:
                 context = {'form': form}
                 return render(request, 'predictor/contact.html', context)
-            # except:
-            #     context = {'form': form}
-            #     return render(request, 'predictor/contact.html', context)
 
         form = ContactForm()
         context = {'form': form}
