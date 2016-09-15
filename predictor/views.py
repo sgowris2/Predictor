@@ -257,7 +257,7 @@ def gameweek(request, gameweek, username=None):
 
 def gameweeks(request, username=None):
 
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         try:
             if username is None:
                 gameweek_user = request.user
