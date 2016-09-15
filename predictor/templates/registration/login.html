@@ -24,21 +24,21 @@
             				<div class="login-group">
             					<div class="form-group">
             						<label for="lg_username" class="sr-only">Username</label>
-            						<input type="text" class="form-control" id="lg_username" name="{{ form.username.html_name }}" value="{{ form.username.value|default_if_none:"" }}" placeholder="username">
+            						<input type="text" class="form-control" id="lg_username" name="{{ form.username.html_name }}" value="{{ form.username.value|default_if_none:"" }}" placeholder="Username">
                         {% for error in form.username.errors %}
                           <li class="errorlist-item">{{ error }}</li>
                         {% endfor %}
                       </div>
             					<div class="form-group">
             						<label for="lg_password" class="sr-only">Password</label>
-            						<input type="password" class="form-control" id="lg_password" name="{{ form.password.html_name }}" value="{{ form.password.value|default_if_none:"" }}" placeholder="password">
+            						<input type="password" class="form-control" id="lg_password" name="{{ form.password.html_name }}" value="{{ form.password.value|default_if_none:"" }}" placeholder="Password">
                         {% for error in form.password.errors %}
                           <li class="errorlist-item">{{ error }}</li>
                         {% endfor %}
                       </div>
             					<div class="form-group login-group-checkbox">
             						<input type="checkbox" id="remember_me" name="remember_me">
-            						<label for="remember_me">&nbsp;remember</label>
+            						<label for="remember_me">&nbsp;&nbsp;Remember Me</label>
             					</div>
             				</div>
                     <input type="hidden" name="next" value="{{ next }}" />
@@ -46,7 +46,7 @@
             			</div>
             			<div class="etc-login-form">
             				<!-- <p>forgot your password? <a href="#">click here</a></p> -->
-            				<p>new user? <a href="/predictor/register">create new account</a></p>
+            				<p>New user? <a href="/predictor/register">Create new account</a></p>
             			</div>
             		</form>
             	</div>

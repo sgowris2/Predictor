@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  {% extends "predictor/base.html" %}
+  <head>
+    <title>
+      {% block title %} | Contact{% endblock %}
+    </title>
+  </head>
+  <body>
+    {% block content %}
+    <div class="page-title">Contact</div>
+    <hr class="hr-expanded"/>
+    <div class="text-center">
+      {% if form.errors %}
+        {{form.errors}}
+          <h4>There were errors in your form. Please try again.</h4><br/>
+          {% if form.non_field_errors %}
+            <li class="errorlist-item">{{ form.non_field_errors }}</li>
+          {% endif %}
+      {% endif %}
+      <!-- Main Form -->
+      <div class="login-form-1">
+        <form id="contact-form" class="text-left" method="POST" action=".">
+          {% csrf_token %}
+          <div class="login-form-main-message"></div>
+          <div class="main-login-form">
+            <div class="login-group">
+              <div class="form-group">
+                <label for="contact-content" class="sr-only">Content</label>
+                <textarea type="text" rows="10" cols="25" class="content-control" id="contact_content" name="{{ form.content.html_name }}" value="{{ form.content.value | default_if_none:"" }}" placeholder="Comments, feedback, feature requests, bug reports, or just say hi!"></textarea>
+                {% for error in form.content.errors %}
+                  <li class="errorlist-item">{{ error }}</li>
+                {% endfor %}
+              </div>
+            </div>
+            <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+          </div>
+        </form>
+      </div>
+      <!-- end:Main Form -->
+      </div>
+    {% endblock %}
+  </body>
+</html>

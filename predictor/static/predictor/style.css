@@ -132,6 +132,10 @@ footer
     box-shadow:none;
 }
 
+.navbar-toggle-button {
+    border: 1px solid #333333;
+}
+
 .navlink {
     font-size: 0.8750em;
 }
@@ -503,6 +507,21 @@ td a:hover {
   font-size: 1.125em;
   height:auto;
 }
+
+.content-control {
+  border: 0;
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  background: transparent;
+  color: #555555;
+  padding: 0.75em 0;
+  font-weight: regular;
+  font-size: 1.125em;
+  height:20em;
+  outline:none;
+  resize:none;
+}
+
 .login-form-1 .form-control::-webkit-input-placeholder {
   color: #999999;
 }
@@ -527,6 +546,7 @@ td a:hover {
   padding: 0.61250em 1.250em;
 }
 .login-group-checkbox {
+  font-size: 0.85em;
   padding-top: 1.5em;
 }
 /*=== 5. Login Button ===*/

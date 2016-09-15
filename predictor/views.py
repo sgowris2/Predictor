@@ -1,5 +1,6 @@
 import re
 import pytz
+import datetime
 from operator import attrgetter
 from django.shortcuts import render, redirect
 from django.db.models import Max, Avg
@@ -8,8 +9,10 @@ from django.forms import formset_factory
 from django.utils import timezone
 from django.contrib.auth import views
 from django.contrib import messages
-from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, GameweekResult, GameweekAggregateResult, Leaderboard
-from predictor.forms import PredictionForm, RegistrationForm
+from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, \
+    GameweekResult, GameweekAggregateResult, Leaderboard, FeedbackMessage
+from predictor.forms import PredictionForm, RegistrationForm, ContactForm
+from utilities import contact_timeout_check
 
 #  Variables
 PredictionFormSet = formset_factory(PredictionForm, extra=0)
@@ -39,8 +42,10 @@ def login(request, *args, **kwargs):
         views.logout(request, *args, **kwargs)
 
     if request.method == 'POST':
-        if not request.POST.get('remember_me', None):
+        if request.POST.get('remember_me', None):
             request.session.set_expiry(60*60*24*30)
+        else:
+            request.session.set_expiry(360)
     return views.login(request, *args, **kwargs)
 
 
@@ -294,3 +299,43 @@ def leaderboard(request):
 def about(request):
 
     return render(request, 'predictor/about.html')
+
+
+def contact(request):
+
+    if request.user.is_authenticated():
+        if request.method == 'POST':
+            form = ContactForm(request.POST)
+            # try:
+            if form.is_valid():
+                if contact_timeout_check(request.user):
+                    data = form.cleaned_data
+                    timestamp = datetime.datetime.utcnow()
+                    timestamp = timestamp.replace(tzinfo=pytz.utc)
+                    FeedbackMessage.objects.create(user=request.user, message=data['content'], timestamp=timestamp)
+                    feedback_message = FeedbackMessage.objects.filter(user=request.user, message=data['content'])[0]
+                    feedback_message.save()
+                    return redirect('/predictor/contact_success/')
+                else:
+                    return redirect('/predictor/contact_timeout/')
+            else:
+                context = {'form': form}
+                return render(request, 'predictor/contact.html', context)
+            # except:
+            #     context = {'form': form}
+            #     return render(request, 'predictor/contact.html', context)
+
+        form = ContactForm()
+        context = {'form': form}
+        return render(request, 'predictor/contact.html', context)
+
+    else:
+        return redirect('/predictor/login/')
+
+
+def contact_success(request):
+    return render(request, 'predictor/contact_success.html')
+
+
+def contact_timeout(request):
+    return render(request, 'predictor/contact_timeout.html')

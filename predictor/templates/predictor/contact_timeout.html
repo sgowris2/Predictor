@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  {% extends "predictor/base.html" %}
+  <head>
+    <title>
+      {% block title %} | Timeout{% endblock %}
+    </title>
+  </head>
+  <body>
+    {% block content %}
+    <div class="nothing-message">
+      <h3>Oops! That was too fast.</h3><br/>
+      <h4>In order to prevent spam, we restrict you to one message every 15 minutes.</h4>
+      <h4>Hope you understand.</h4><br/><br/>
+      <h4><a href="/predictor/">Back to Homepage</a></h4>
+    </div>
+    {% endblock %}
+  </body>
+</html>

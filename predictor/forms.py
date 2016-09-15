@@ -14,17 +14,23 @@ class RegistrationForm(UserCreationForm):
     full_name = forms.CharField(required=True, max_length=70)
     first_name = forms.CharField(required=False, max_length=35)
     last_name = forms.CharField(required=False, max_length=35)
+    reg_agree = forms.BooleanField(required=True)
 
     class Meta:
         model = User
-        fields = ('email', 'full_name', 'username', 'password1', 'password2')
+        fields = ('email', 'full_name', 'username', 'password1', 'password2', 'reg_agree')
 
     def clean(self):
         form_data = self.cleaned_data
         email = self.cleaned_data['email']
+        reg_agree = self.cleaned_data['reg_agree']
+
         if User.objects.filter(email=email).exists():
-            self._errors["email"] = ["This email is already taken."] # Will raise a error message
+            self._errors['email'] = ["This email is already taken."]  # Will raise a error message
             del form_data['email']
+        if not reg_agree:
+            self._errors["reg_agree"] = ["You must agree to the terms."]
+            del form_data['reg_agree']
         return form_data
 
     def save(self, commit=True):
@@ -51,6 +57,7 @@ class RegistrationForm(UserCreationForm):
 
 
 class PredictionForm(forms.Form):
+
     id = forms.IntegerField(label='id', widget=forms.HiddenInput)
     home_score = forms.IntegerField(label='home_score',
                                     required=True,
@@ -64,3 +71,8 @@ class PredictionForm(forms.Form):
                                     max_value=99,
                                     validators=[MinValueValidator(0), MaxValueValidator(99)],
                                     widget=forms.NumberInput(attrs={'class': 'score-input'}))
+
+
+class ContactForm(forms.Form):
+
+    content = forms.CharField(required=True, widget=forms.Textarea(attrs={'rows': 10, 'cols': 25}), max_length=5000)

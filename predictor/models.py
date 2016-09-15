@@ -21,6 +21,7 @@ class Gameweek(models.Model):
     def __str__(self):
         return self.name
 
+
 class Match(models.Model):
     gameweek = models.ForeignKey(Gameweek)
     home_team = models.ForeignKey(Team, related_name='match_home_team')
@@ -94,6 +95,16 @@ class Leaderboard(models.Model):
 
     def __str__(self):
         return self.user.__str__() + ' - ' + self.total_points.__str__()
+
+
+class FeedbackMessage(models.Model):
+
+    user = models.ForeignKey(User)
+    message = models.CharField(max_length=5000)
+    timestamp = models.DateTimeField()
+
+    def __str__(self):
+        return self.user.__str__() + ' - ' + self.message.__str__()
 
 
 
