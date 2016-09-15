@@ -23,11 +23,15 @@ class RegistrationForm(UserCreationForm):
     def clean(self):
         form_data = self.cleaned_data
         email = self.cleaned_data['email']
+        username = self.cleaned_data['username']
         reg_agree = self.cleaned_data['reg_agree']
 
         if User.objects.filter(email=email).exists():
             self._errors['email'] = ["This email is already taken."]  # Will raise a error message
             del form_data['email']
+        if User.objects.filter(username=username).exists():
+            self._errors['username'] = ["This username already exists."]  # Will raise a error message
+            del form_data['username']
         if not reg_agree:
             self._errors["reg_agree"] = ["You must agree to the terms."]
             del form_data['reg_agree']
