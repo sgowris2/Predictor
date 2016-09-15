@@ -12,7 +12,7 @@ from django.contrib import messages
 from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, \
     GameweekResult, GameweekAggregateResult, Leaderboard, FeedbackMessage
 from predictor.forms import PredictionForm, RegistrationForm, ContactForm
-from utilities import contact_timeout_check
+from predictor.utilities import contact_timeout_check
 
 #  Variables
 PredictionFormSet = formset_factory(PredictionForm, extra=0)
