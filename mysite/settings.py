@@ -22,8 +22,6 @@ SECRET_KEY = '&nk7=cm8=sxm&t=+jwm%b!9-9uy$5ujqt4%il#m!k2v=ud+7+e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = DEBUG
-
 ALLOWED_HOSTS = ['*']
 
 LOGIN_REDIRECT_URL = '/predictor/home/'
@@ -65,6 +63,30 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'predictor/templates')
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug':DEBUG,
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
