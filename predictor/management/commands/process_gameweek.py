@@ -22,10 +22,13 @@ class Command(BaseCommand):
 
     help = 'Calculates and updates the scores in for all predictions in a gameweek'
 
+    def add_arguments(self, parser):
+        parser.add_argument('gameweek_name_argument', type=chr())
 
     def handle(self, *args, **options):
         try:
-            gameweek_number = enter_results(args[0])
+            gameweek_name = options['gameweek_name_argument']
+            gameweek_number = enter_results(gameweek_name)
             calculate_scores(gameweek_number)
         except:
             raise CommandError('Predictions were not updated :(')

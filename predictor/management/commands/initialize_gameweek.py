@@ -8,9 +8,13 @@ class Command(BaseCommand):
 
     help = 'Calculates and updates the scores in for all predictions in a gameweek'
 
+    def add_arguments(self, parser):
+        parser.add_argument('gameweek_name_argument', type=chr())
+
     def handle(self, *args, **options):
         try:
-            add_matches(args[0])
+            gameweek_name = options['gameweek_name_argument']
+            add_matches(gameweek_name)
         except:
             raise CommandError('Matches were not added :(')
         self.stdout.write('Successfully added matches')
@@ -18,7 +22,7 @@ class Command(BaseCommand):
 
 def add_matches(gameweek_name):
     lines = []
-    with open('predictor/data/' + gameweek_name + '.csv', 'r') as f:
+    with open('predictor/data/' + gameweek_name + '.csv'    , 'r') as f:
         for line in f.readlines():
             lines.append(line.strip('\n').strip('\r'))
     try:
