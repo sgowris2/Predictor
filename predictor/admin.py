@@ -1,5 +1,5 @@
 from django.contrib import admin
-from predictor.models import Team, Gameweek, Match, Prediction, PredictionResult, GameweekResult, Leaderboard
+from predictor.models import Team, Gameweek, Match, Prediction, PredictionResult, GameweekResult, Leaderboard, FeedbackMessage
 
 # Register your models here.
 
@@ -10,4 +10,5 @@ admin.site.register(Prediction)
 admin.site.register(PredictionResult)
 admin.site.register(GameweekResult)
 admin.site.register(Leaderboard)
+admin.site.register(FeedbackMessage)
 
