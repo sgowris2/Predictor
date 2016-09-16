@@ -166,13 +166,20 @@ def predict(request):
 
         # if there is no gameweek available for the current time, then just display the latest gameweek
         if not current_gameweek_number:
-            return redirect('/predictor/gameweek/' + re.findall(r'\d+', Gameweek.objects.order_by('-end_time')[0].name)[0])
+            return redirect('/predictor/gameweek/' + re.findall(r'\d+', GameweekResult.objects.order_by('-gameweek__end_time')[0].gameweek.name)[0])
 
         if request.method == 'POST':
             show_status_message = True
             try:
                 fs = PredictionFormSet(request.POST)
                 data = fs.cleaned_data
+
+                #check if data being submitted is for the current gameweek
+                first_data_point = data[0]
+                first_prediction = Prediction.objects.filter(pk=first_data_point['id'])[0]
+                if not first_prediction.match.gameweek == current_gameweek_number[0]:
+                    return redirect('/predictor/predict/')
+
                 for data_point in data:
                     prediction = Prediction.objects.filter(pk=data_point['id'])[0]
                     prediction.home_score = data_point['home_score']
