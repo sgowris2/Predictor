@@ -9,11 +9,11 @@ class Command(BaseCommand):
     help = 'Calculates and updates the scores in for all predictions in a gameweek'
 
     def add_arguments(self, parser):
-        parser.add_argument('gameweek_name_argument', type=chr())
+        parser.add_argument('gameweek_name')
 
     def handle(self, *args, **options):
         try:
-            gameweek_name = options['gameweek_name_argument']
+            gameweek_name = options['gameweek_name']
             add_matches(gameweek_name)
         except:
             raise CommandError('Matches were not added :(')

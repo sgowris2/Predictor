@@ -40,9 +40,13 @@ class RegistrationForm(UserCreationForm):
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
         user.email = self.cleaned_data['email']
-        split_name = self.cleaned_data['full_name'].split(" ", 1)
-        user.first_name = split_name[0]
-        user.last_name = split_name[1]
+        try:
+            split_name = self.cleaned_data['full_name'].split(" ", 1)
+            user.first_name = split_name[0]
+            user.last_name = split_name[1]
+        except:
+            user.first_name = self.cleaned_data['full_name']
+            user.last_name = ''
         if commit:
             user.save()
             now = timezone.now()
