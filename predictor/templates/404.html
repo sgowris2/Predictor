@@ -3,11 +3,13 @@
   {% extends "predictor/base.html" %}
   <head>
     <title>
-      {% block title %}| 404{% endblock %}
+      {% block title %}{% endblock %}
     </title>
   </head>
   <body>
     {% block content %}
+      <h2>404</h2><br/>
+      <h4>Nope! That didn't work. Try going back to the <a href="/predictor/">homepage?</a></h4>
     {% endblock %}
   </body>
 </html>
