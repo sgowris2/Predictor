@@ -45,7 +45,7 @@ def login(request, *args, **kwargs):
         if request.POST.get('remember_me', None):
             request.session.set_expiry(60*60*24*30)
         else:
-            request.session.set_expiry(360)
+            request.session.set_expiry(60*15)
     return views.login(request, *args, **kwargs)
 
 
