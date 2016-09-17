@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  {% extends "predictor/base.html" %}
+  <head>
+    <title>
+      {% block title %} | Gameweek In Progress{% endblock %}
+    </title>
+  </head>
+  <body>
+    {% block content %}
+      <div class="page-title">
+        Gameweek {{ gameweek }}
+      </div>
+      <hr/>
+      <div align="center">
+        <p>
+          Gameweek {{ gameweek }} is currently in progress, so there aren't any scores to show yet.
+        </p>
+        <p>
+          However, these are the predictions made for this gameweek.
+        </p><br/>
+        {% for prediction in predictions_list %}
+        <div align="center" style="padding:0.5em">
+            <div class="team-name team-name-home">
+              {{ prediction.match.home_team }}
+            </div>
+            <div style="display:inline-block">
+              {{ prediction.home_score }}
+            </div>
+            <div style="display:inline-block;">
+              <a class="separator">-</a>
+            </div>
+            <div style="display:inline-block;">
+              {{ prediction.away_score }}
+            </div>
+            <div class="team-name team-name-away">
+              {{ prediction.match.away_team }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endblock %}
+  </body>
+</html>

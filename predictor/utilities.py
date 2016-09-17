@@ -1,6 +1,6 @@
 import datetime
 import pytz
-from predictor.models import Leaderboard, FeedbackMessage
+from predictor.models import Gameweek, GameweekResult, Leaderboard, FeedbackMessage
 
 
 def get_rank(user):
@@ -22,3 +22,17 @@ def contact_timeout_check(user):
             return True
     except:
         return True
+
+
+def get_unresulted_gameweeks(user):
+
+    unresulted_gameweeks = []
+    now = datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
+    print(now)
+
+    for gameweek in Gameweek.objects.filter(end_time__lte=now):
+        try:
+            GameweekResult.objects.get(gameweek=gameweek, user=user)
+        except:
+            unresulted_gameweeks.append(gameweek)
+    return unresulted_gameweeks

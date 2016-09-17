@@ -12,7 +12,7 @@ from django.contrib import messages
 from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, \
     GameweekResult, GameweekAggregateResult, Leaderboard, FeedbackMessage
 from predictor.forms import PredictionForm, RegistrationForm, ContactForm
-from predictor.utilities import contact_timeout_check
+from predictor.utilities import contact_timeout_check, get_unresulted_gameweeks
 
 #  Variables
 PredictionFormSet = formset_factory(PredictionForm, extra=0)
@@ -99,14 +99,12 @@ def home(request):
             position = 0
 
         total_players = User.objects.count()
+        overall_highest = Leaderboard.objects.all().aggregate(Max('total_points'))['total_points__max']
+        overall_average = int(round(Leaderboard.objects.all().aggregate(Avg('total_points'))['total_points__avg'], 0))
         try:
             user_overall_score = Leaderboard.objects.get(user=request.user).total_points
-            overall_highest = Leaderboard.objects.all().aggregate(Max('total_points'))['total_points__max']
-            overall_average = int(round(Leaderboard.objects.all().aggregate(Avg('total_points'))['total_points__avg'], 0))
         except:
             user_overall_score = 0
-            overall_highest = 0
-            overall_average = 0
 
         try:
             last_gameweek_end_time = GameweekResult.objects.all().aggregate(Max('gameweek__end_time'))['gameweek__end_time__max']
@@ -234,21 +232,28 @@ def gameweek(request, gameweek, username=None):
 
             if gameweek_instance.end_time <= now:
 
-                try:
-                    gameweek_result = GameweekResult.objects.get(user=gameweek_user, gameweek=gameweek_instance)
-                except:
-                    return render(request, 'predictor/calculating_results.html')
-
                 matches_list = Match.objects.filter(gameweek=gameweek_instance)
                 predictions_list = Prediction.objects.filter(user=gameweek_user).filter(match__in=matches_list)
                 prediction_results_list = PredictionResult.objects.filter(prediction__in=predictions_list)
 
-                context = {'gameweek': gameweek,
-                           'gameweek_user': gameweek_user,
-                           'username': username,
-                           'matches_list': matches_list,
-                           'prediction_results_list': prediction_results_list,
-                            'gameweek_result': gameweek_result}
+                try:
+                    gameweek_result = GameweekResult.objects.get(user=gameweek_user, gameweek=gameweek_instance)
+                except:
+                    context = { 'gameweek':gameweek,
+                                'gameweek_user': gameweek_user,
+                                'username': username,
+                                'matches_list': matches_list,
+                                'predictions_list': predictions_list,
+                                }
+                    return render(request, 'predictor/gameweek_in_progress.html', context)
+
+                context = { 'gameweek': gameweek,
+                            'gameweek_user': gameweek_user,
+                            'username': username,
+                            'matches_list': matches_list,
+                            'prediction_results_list': prediction_results_list,
+                            'gameweek_result': gameweek_result
+                            }
                 return render(request, 'predictor/user_gameweek.html', context)
 
             elif gameweek_instance.start_time <= now and gameweek_instance.end_time >= now:
@@ -274,6 +279,9 @@ def gameweeks(request, username=None):
             redirect('predictor/404')
 
         gameweek_results = list(GameweekResult.objects.filter(user=gameweek_user))
+        unresulted_gameweeks = get_unresulted_gameweeks(gameweek_user)
+        for unresulted_gameweek in unresulted_gameweeks:
+            gameweek_results.append(GameweekResult(user=gameweek_user, gameweek=unresulted_gameweek))
         gameweek_results.sort(key=attrgetter('gameweek.name'), reverse=False)
         total_points = 0
         for result in gameweek_results:
@@ -284,7 +292,7 @@ def gameweeks(request, username=None):
                    'total_points': total_points}
         return render(request, 'predictor/gameweeks.html', context)
     else:
-        return redirect('predictor/login/')
+        return redirect('/predictor/login/')
 
 
 def leaderboard(request):
