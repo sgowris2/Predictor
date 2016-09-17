@@ -31,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for prediction, prediction_result in predictions_dict.items %}
+          {% for prediction, prediction_result in predictions_tuples %}
             <tr class="table-selectable-row" data-toggle="collapse" data-target="#point-detail-{{prediction_result.id}}">
               <td class="text-left padded-cell">
                 <div class="team-name team-name-home">
