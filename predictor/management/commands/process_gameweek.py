@@ -38,6 +38,7 @@ class Command(BaseCommand):
 def enter_results(gameweek_name):
 
     lines = []
+
     with open('predictor/data/' + gameweek_name + '_results.csv', 'r') as f:
             for line in f.readlines():
                 lines.append(line.strip('\n').strip('\r'))
@@ -66,13 +67,16 @@ def enter_results(gameweek_name):
                     print("There are errors in the csv file. Either match was not found or the scores were not integers.")
             except:
                 print("There are errors in the csv file.")
+
         return gameweek
+
     except:
         print("Gameweek was probably not found.")
 
 
 def calculate_scores(gameweek):
 
+    all_matches_ended = True
     current_gameweek = Gameweek.objects.filter(name=gameweek.name)[0]
     matches = Match.objects.filter(gameweek=current_gameweek)
     predictions = Prediction.objects.filter(match__in=matches)
@@ -84,23 +88,27 @@ def calculate_scores(gameweek):
             update_prediction_result_stats(prediction_result)
             prediction_result.save()
         except:
-            PredictionResult.objects.create(prediction=prediction, points=calculate_prediction_score(prediction))
-            update_prediction_result_stats(PredictionResult.objects.get(prediction=prediction))
-            PredictionResult.objects.get(prediction=prediction).save()
+            if prediction.match.has_ended:
+                PredictionResult.objects.create(prediction=prediction, points=calculate_prediction_score(prediction))
+                update_prediction_result_stats(PredictionResult.objects.get(prediction=prediction))
+                PredictionResult.objects.get(prediction=prediction).save()
+            else:
+                all_matches_ended = False
 
-    for user in User.objects.all():
-        try:
-            gameweek_result = GameweekResult.objects.get(user=user, gameweek=current_gameweek)
-            gameweek_result.total_points = get_gameweek_points(predictions.filter(user=user))
-            gameweek_result.save()
-        except:
-            GameweekResult.objects.create(user=user,
-                                          gameweek=current_gameweek,
-                                          total_points=get_gameweek_points(predictions.filter(user=user)))
-            GameweekResult.objects.get(user=user, gameweek=current_gameweek).save()
+    if all_matches_ended:
+        for user in User.objects.all():
+            try:
+                gameweek_result = GameweekResult.objects.get(user=user, gameweek=current_gameweek)
+                gameweek_result.total_points = get_gameweek_points(predictions.filter(user=user))
+                gameweek_result.save()
+            except:
+                GameweekResult.objects.create(user=user,
+                                              gameweek=current_gameweek,
+                                              total_points=get_gameweek_points(predictions.filter(user=user)))
+                GameweekResult.objects.get(user=user, gameweek=current_gameweek).save()
 
-    calculate_leaderboard()
-    calculate_gameweekaggregateresult(current_gameweek)
+        calculate_leaderboard()
+        calculate_gameweekaggregateresult(current_gameweek)
 
 
 def calculate_gameweekaggregateresult(current_gameweek):

@@ -239,6 +239,13 @@ def gameweek(request, gameweek, username=None):
                 matches_list = Match.objects.filter(gameweek=gameweek_instance)
                 predictions_list = Prediction.objects.filter(user=gameweek_user).filter(match__in=matches_list)
                 prediction_results_list = PredictionResult.objects.filter(prediction__in=predictions_list)
+                predictions_dict = {}
+                for prediction in predictions_list:
+                    try:
+                        result = PredictionResult.objects.get(prediction=prediction)
+                        predictions_dict[prediction] = result
+                    except:
+                        predictions_dict[prediction] = None
 
                 try:
                     gameweek_result = GameweekResult.objects.get(user=gameweek_user, gameweek=gameweek_instance)
@@ -248,14 +255,17 @@ def gameweek(request, gameweek, username=None):
                                 'username': username,
                                 'matches_list': matches_list,
                                 'predictions_list': predictions_list,
+                                'predictions_dict': predictions_dict,
+                                'gameweek_result': None,
                                 }
-                    return render(request, 'predictor/gameweek_in_progress.html', context)
+                    return render(request, 'predictor/user_gameweek.html', context)
 
                 context = { 'gameweek': gameweek,
                             'gameweek_user': gameweek_user,
                             'username': username,
                             'matches_list': matches_list,
                             'prediction_results_list': prediction_results_list,
+                            'predictions_dict': predictions_dict,
                             'gameweek_result': gameweek_result
                             }
                 return render(request, 'predictor/user_gameweek.html', context)
