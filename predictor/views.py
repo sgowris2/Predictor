@@ -99,8 +99,12 @@ def home(request):
             position = 0
 
         total_players = User.objects.count()
-        overall_highest = Leaderboard.objects.all().aggregate(Max('total_points'))['total_points__max']
-        overall_average = int(round(Leaderboard.objects.all().aggregate(Avg('total_points'))['total_points__avg'], 0))
+        try:
+            overall_highest = Leaderboard.objects.all().aggregate(Max('total_points'))['total_points__max']
+            overall_average = int(round(Leaderboard.objects.all().aggregate(Avg('total_points'))['total_points__avg'], 0))
+        except:
+            overall_highest = 0
+            overall_average = 0
         try:
             user_overall_score = Leaderboard.objects.get(user=request.user).total_points
         except:
