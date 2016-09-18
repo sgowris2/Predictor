@@ -329,7 +329,10 @@ def leaderboard(request):
             return render(request, 'predictor/leaderboard.html')
         else:
             if not any(x.user == request.user for x in leaderboard):
-                leaderboard.append(Leaderboard.objects.get(user=request.user))
+                try:
+                    leaderboard.append(Leaderboard.objects.get(user=request.user))
+                except:
+                    a = 1
             context = {'leaderboard': leaderboard}
             return render(request, 'predictor/leaderboard.html', context)
     else:
