@@ -330,7 +330,7 @@ def leaderboard(request):
         else:
             if not any(x.user == request.user for x in leaderboard):
                 try:
-                    leaderboard.append(Leaderboard.objects.get(user=request.user))
+                    leaderboard.extend(Leaderboard.objects.get(user=request.user))
                 except:
                     a = 1
             context = {'leaderboard': leaderboard}
