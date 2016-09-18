@@ -137,7 +137,7 @@ def home(request):
             last_gameweek = Gameweek.objects.filter(end_time=
                                                     GameweekResult.objects.all().aggregate(
                                                         Max('gameweek__end_time'))['gameweek__end_time__max'])
-            with open('predictor/data/gameweek' + re.findall(r'\d+', last_gameweek.__str__())[0] + '_summary.txt',
+            with open('/home/predictr/Predictor/predictor/data/gameweek' + re.findall(r'\d+', last_gameweek.__str__())[0] + '_summary.txt',
                       'r') as f:
                 for line in f.readlines():
                     lines.append(line.strip('\n').strip('\r'))
