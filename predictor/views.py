@@ -324,13 +324,13 @@ def leaderboard(request):
 
     if request.user.is_authenticated():
 
-        leaderboard = Leaderboard.objects.all()[:10]
+        leaderboard = list(Leaderboard.objects.all()[:10])
         if not leaderboard:
             return render(request, 'predictor/leaderboard.html')
         else:
             if not any(x.user == request.user for x in leaderboard):
                 try:
-                    leaderboard.extend(Leaderboard.objects.get(user=request.user))
+                    leaderboard.append(Leaderboard.objects.get(user=request.user))
                 except:
                     a = 1
             context = {'leaderboard': leaderboard}
