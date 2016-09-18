@@ -405,11 +405,15 @@ td a:hover {
 }
 
 .home-summary-body {
-  text-align:center;
   width:75%;
   font-size: 1em;
-  margin: 1em auto;
+  margin: 2em auto;
   margin-bottom: 3em;
+}
+
+.home-summary-body-line {
+  text-align:left;
+  font-size: 1em;
 }
 
 .home-stat-cell {

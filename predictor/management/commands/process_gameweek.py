@@ -122,8 +122,15 @@ def calculate_gameweekaggregateresult(current_gameweek):
 
     gameweek_aggregate_result.highest_score = get_highest_score(current_gameweek)
     gameweek_aggregate_result.average_score = get_average_score(current_gameweek)
-    gameweek_aggregate_result.most_guessed_result = get_most_guessed_result(current_gameweek)
-    gameweek_aggregate_result.least_guessed_result = get_least_guessed_result(current_gameweek)
+    most_guessed_result = get_most_guessed_result(current_gameweek)
+    if most_guessed_result != 0:
+        gameweek_aggregate_result.most_guessed_result = most_guessed_result
+
+    least_guessed_result = get_least_guessed_result(current_gameweek)
+    if least_guessed_result != 0:
+        gameweek_aggregate_result.least_guessed_result = least_guessed_result
+
+    print(gameweek_aggregate_result.most_guessed_result)
     gameweek_aggregate_result.save()
 
 def calculate_leaderboard():
@@ -245,10 +252,12 @@ def get_most_guessed_result(gameweek):
     result_match = None
     for match in Match.objects.filter(gameweek=gameweek):
         temp_sum = PredictionResult.objects.filter(prediction__match=match).aggregate(Sum('result'))['result__sum']
+        print(temp_sum)
         if temp_sum > sum:
             sum = temp_sum
             result_match = match
-
+    if result_match is None:
+        return 0
     return result_match
 
 
@@ -261,5 +270,6 @@ def get_least_guessed_result(gameweek):
         if temp_sum < sum:
             sum = temp_sum
             result_match = match
-
+    if result_match is None:
+        return 0
     return result_match

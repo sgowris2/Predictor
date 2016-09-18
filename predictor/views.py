@@ -132,10 +132,21 @@ def home(request):
             summary_title = None
             summary_body = None
 
-        summary_title = "A gameweek of upsets"
-        summary_body = "A gameweek of upsets saw Liverpool lose to bottom of the table Middlesbrough and the " \
-                       "reds of Manchester beating their derby rivals in blue. This meant a low scoring gameweek " \
-                       "for most of our predictr players that allowed a lot shuffling in the standings."
+        try:
+            lines = []
+            last_gameweek = Gameweek.objects.filter(end_time=
+                                                    GameweekResult.objects.all().aggregate(
+                                                        Max('gameweek__end_time'))['gameweek__end_time__max'])
+            with open('predictor/data/gameweek' + re.findall(r'\d+', last_gameweek.__str__())[0] + '_summary.txt',
+                      'r') as f:
+                for line in f.readlines():
+                    lines.append(line.strip('\n').strip('\r'))
+
+            summary_title = lines[0]
+            summary_body = lines[1:]
+        except:
+            summary_title = None
+            summary_body = None
 
         context = {'current_gameweek': current_gameweek,
                    'last_gameweek_result': last_gameweek_result,

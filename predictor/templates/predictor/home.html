@@ -92,7 +92,11 @@
 
             <div class="home-block home-summary-block">
               <div class="home-summary-title"><b>{{ last_gameweek_result.gameweek }} - {{ summary_title }}</b></div>
-              <p class="home-summary-body">{{ summary_body }}</p>
+              <div class="home-summary-body">
+                {% for line in summary_body %}
+                  <p class="home-summary-body-line">{{ line }}</p>
+                {% endfor %}
+              </div>
             </div>
 
         {% else %}
