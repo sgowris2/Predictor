@@ -160,7 +160,7 @@ p.nav {
 }
 
 .team-name {
-    font-size: 0.8750em;
+    font-size: 0.75em;
     width: 10em;
     padding: 0 0.5em;
     display:inline-block;
@@ -193,7 +193,7 @@ p.nav {
 
 .match-score-display {
     display: inline-block;
-    font-size: 0.875em;
+    font-size: 0.75em;
 }
 
 
@@ -203,7 +203,7 @@ p.nav {
 }
 
 .prediction-score {
-    font-size: 0.875em;
+    font-size: 0.75em;
 }
 
 .prediction-teams {
@@ -329,6 +329,11 @@ th.text-right {
   text-align: right;
 }
 
+th.condensed {
+    font-size: 1em;
+    padding: 0.75em 0.5em;
+}
+
 td.text-left {
   text-align: left;
 }
@@ -352,6 +357,10 @@ td a:hover {
 
 .padded-cell {
     padding: 0.75em;
+}
+
+.padded-cell-narrow {
+    padding: 0.25em;
 }
 
 .leaderboard-user-row {
@@ -475,7 +484,7 @@ td a:hover {
 
 .point-detail
 {
-    font-size: 0.75em;
+    font-size: 0.675em;
     padding: 0em 1em;
 }
 
