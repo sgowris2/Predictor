@@ -20,10 +20,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="1455">
               <caret line="329" column="13" selection-start-line="329" selection-start-column="13" selection-end-line="329" selection-end-column="13" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -32,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="409" column="11" selection-start-line="409" selection-start-column="11" selection-end-line="409" selection-end-column="11" />
+            <state relative-caret-position="281">
+              <caret line="333" column="22" selection-start-line="333" selection-start-column="22" selection-end-line="333" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -45,7 +45,7 @@
       <file leaf-file-name="process_gameweek.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/management/commands/process_gameweek.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
+            <state relative-caret-position="1935">
               <caret line="132" column="55" selection-start-line="132" selection-start-column="55" selection-end-line="132" selection-end-column="55" />
               <folding />
             </state>
@@ -65,7 +65,7 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-615">
+            <state relative-caret-position="330">
               <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
@@ -131,9 +131,9 @@
         <option value="$PROJECT_DIR$/mysite/settings.py" />
         <option value="$PROJECT_DIR$/predictor/utilities.py" />
         <option value="$PROJECT_DIR$/predictor/urls.py" />
-        <option value="$PROJECT_DIR$/predictor/static/predictor/style.css" />
         <option value="$PROJECT_DIR$/predictor/management/commands/process_gameweek.py" />
         <option value="$PROJECT_DIR$/predictor/views.py" />
+        <option value="$PROJECT_DIR$/predictor/static/predictor/style.css" />
       </list>
     </option>
   </component>
@@ -171,6 +171,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -281,7 +282,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -451,7 +451,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="58" y="23" width="1377" height="877" extended-state="0" />
+    <frame x="58" y="23" width="1377" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981844" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -849,17 +849,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="409" column="11" selection-start-line="409" selection-start-column="11" selection-end-line="409" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/predictor/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-615">
+        <state relative-caret-position="330">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
@@ -867,7 +859,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/predictor/management/commands/process_gameweek.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="1935">
           <caret line="132" column="55" selection-start-line="132" selection-start-column="55" selection-end-line="132" selection-end-column="55" />
           <folding />
         </state>
@@ -875,11 +867,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/predictor/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="1455">
           <caret line="329" column="13" selection-start-line="329" selection-start-column="13" selection-end-line="329" selection-end-column="13" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="333" column="22" selection-start-line="333" selection-start-column="22" selection-end-line="333" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
