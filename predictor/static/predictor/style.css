@@ -271,8 +271,15 @@ p.nav {
 
 .team-name {
     font-size: 0.825em;
-    width: 10em;
+    width: 11em;
     padding: 0 0.5em;
+    display:inline-block;
+}
+
+.team-name-small {
+    font-size: 0.75em;
+    width: 9em;
+    padding: 0em;
     display:inline-block;
 }
 

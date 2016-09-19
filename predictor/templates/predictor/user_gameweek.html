@@ -34,13 +34,13 @@
           {% for prediction, prediction_result in predictions_tuples %}
             <tr class="table-selectable-row" data-toggle="collapse" data-target="#point-detail-{{prediction_result.id}}">
               <td class="text-left padded-cell-narrow">
-                <div class="team-name team-name-home">
+                <div class="team-name-small team-name-home">
                   {{ prediction.match.home_team }}
                 </div>
                 <div class="match-score-display">
                   {{ prediction.home_score }} - {{ prediction.away_score }}
                 </div>
-                <div class="team-name team-name-away">
+                <div class="team-name-small team-name-away">
                   {{ prediction.match.away_team }}
                 </div>
                 {% if prediction_result %}
