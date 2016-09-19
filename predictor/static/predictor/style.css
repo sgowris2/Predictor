@@ -22,18 +22,27 @@ Gray3:          #555555
 and (min-device-width : 320px)
 and (max-device-width : 480px) {
   /* Styles */
+  body {
+    font-size: 12px;
+  }
 }
 
 /* Smartphones (landscape) ----------- */
 @media only screen
 and (min-width : 321px) {
   /* Styles */
+  body {
+    font-size: 14px;
+  }
 }
 
 /* Smartphones (portrait) ----------- */
 @media only screen
 and (max-width : 320px) {
   /* Styles */
+  body {
+    font-size: 12px;
+  }
 }
 
 /* iPads (portrait and landscape) ----------- */
@@ -41,6 +50,9 @@ and (max-width : 320px) {
 and (min-device-width : 768px)
 and (max-device-width : 1024px) {
   /* Styles */
+  body {
+    font-size: 14px;
+  }
 }
 
 /* iPads (landscape) ----------- */
@@ -49,6 +61,9 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : landscape) {
   /* Styles */
+  body {
+    font-size: 14px;
+  }
 }
 
 /* iPads (portrait) ----------- */
@@ -57,18 +72,27 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
   /* Styles */
+  body {
+    font-size: 14px;
+  }
 }
 
 /* Desktops and laptops ----------- */
 @media only screen
 and (min-width : 1224px) {
   /* Styles */
+  body {
+    font-size: 16px;
+  }
 }
 
 /* Large screens ----------- */
 @media only screen
 and (min-width : 1824px) {
   /* Styles */
+  body {
+    font-size: 16px;
+  }
 }
 
 /* iPhone 4 - 5s ----------- */
@@ -76,6 +100,9 @@ and (min-width : 1824px) {
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
   /* Styles */
+  body {
+    font-size: 13px;
+  }
 }
 
 /* iPhone 6 ----------- */
@@ -83,6 +110,9 @@ only screen and (min-device-pixel-ratio : 1.5) {
 only screen and (max-device-width: 667px)
 only screen and (-webkit-device-pixel-ratio: 2) {
   /* Styles */
+  body {
+    font-size: 14px;
+  }
 }
 
 /* iPhone 6+ ----------- */
@@ -90,11 +120,14 @@ only screen and (-webkit-device-pixel-ratio: 2) {
 only screen and (min-device-width : 414px)
 only screen and (-webkit-device-pixel-ratio: 3) {
   /*** You've spent way too much on a phone ***/
+  body {
+    font-size: 14px;
+  }
 }
+
 
 html {
     height:100%;
-    font-size: 1em;
 }
 
 html, body {
@@ -186,12 +219,12 @@ footer
 .page-title {
     font-size: 1.75em;
     text-align: center;
-    max-width: 360px;
+    max-width: 25em;
 }
 
 .page-subtitle {
     margin:1.5em;
-    font-size: 20px;
+    font-size: 1.25em;
     text-align: center;
 }
 
@@ -203,7 +236,7 @@ footer
 .navbar-custom {
     background: #f9f9f9;
     border-color:#f9f9f9;
-    min-height:60px;
+    min-height:3.75em;
     text-align: right;
     margin:0;
     box-shadow:none;
@@ -237,7 +270,7 @@ p.nav {
 }
 
 .team-name {
-    font-size: 0.75em;
+    font-size: 0.825em;
     width: 10em;
     padding: 0 0.5em;
     display:inline-block;
@@ -827,7 +860,7 @@ label:hover:before {
   content: '\2022';
   top: 0;
   left: 0.1250em;
-  font-size: 30px;
+  font-size: 1.875em;
   line-height: 1.50em;
 }
 
