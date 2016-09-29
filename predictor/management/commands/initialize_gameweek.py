@@ -1,8 +1,9 @@
 import csv, sys
+import datetime
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
 from predictor.models import Match, Gameweek, Team, Prediction
-
+from pytz import timezone
 
 class Command(BaseCommand):
 
@@ -26,12 +27,16 @@ def add_matches(gameweek_name):
         for line in f.readlines():
             lines.append(line.strip('\n').strip('\r'))
     try:
-        print(lines[0])
-        gameweek = Gameweek.objects.get(name=lines[0])
+        first_line = lines[0].split(',')
+        gameweek_number = (first_line[0].split(' '))[1]
+        gameweek = Gameweek.objects.get(name=first_line[0])
     except:
-        Gameweek.objects.create(name=lines[0])
-        gameweek = Gameweek.objects.get(name=lines[0])
-        print("Gameweek added - " + gameweek)
+        last_gameweek = Gameweek.objects.get(name='Gameweek ' + (int(gameweek_number) - 1).__str__())
+        start_time = last_gameweek.end_time
+        end_time = datetime.datetime.strptime(first_line[1], '%d/%b/%Y %H:%M')
+        london = timezone('Europe/London')
+        end_time = london.localize(end_time)
+        gameweek = Gameweek.objects.create(name=first_line[0], start_time=start_time, end_time=end_time)
 
     gameweek_id = gameweek.id
     try:
