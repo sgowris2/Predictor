@@ -12,3 +12,5 @@ db.sqlite3
 mysite/settings.py
 
 mysite/settings.py
+
+*.pyc
