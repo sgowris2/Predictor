@@ -261,6 +261,7 @@ def gameweek(request, gameweek, username=None):
                 try:
                     gameweek_result = GameweekResult.objects.get(user=gameweek_user, gameweek=gameweek_instance)
                 except:
+                    gameweek_provisional_points = sum([result.points for result in prediction_results_list])
                     context = { 'gameweek':gameweek,
                                 'gameweek_user': gameweek_user,
                                 'username': username,
@@ -268,6 +269,7 @@ def gameweek(request, gameweek, username=None):
                                 'predictions_list': predictions_list,
                                 'predictions_tuples': predictions_tuples,
                                 'gameweek_result': None,
+                                'gameweek_provisional_points': gameweek_provisional_points,
                                 }
                     return render(request, 'predictor/user_gameweek.html', context)
 
@@ -306,7 +308,12 @@ def gameweeks(request, username=None):
         gameweek_results = list(GameweekResult.objects.filter(user=gameweek_user))
         unresulted_gameweeks = get_unresulted_gameweeks(gameweek_user)
         for unresulted_gameweek in unresulted_gameweeks:
-            gameweek_results.append(GameweekResult(user=gameweek_user, gameweek=unresulted_gameweek))
+            matches_list = Match.objects.filter(gameweek=unresulted_gameweek)
+            predictions_list = Prediction.objects.filter(user=gameweek_user).filter(match__in=matches_list)
+            prediction_results_list = PredictionResult.objects.filter(prediction__in=predictions_list)
+            gameweek_results.append(GameweekResult(user=gameweek_user,
+                                                   gameweek=unresulted_gameweek,
+                                                   total_points=sum(result.points for result in prediction_results_list)))
         gameweek_results.sort(key=attrgetter('gameweek.name'), reverse=False)
         total_points = 0
         for result in gameweek_results:

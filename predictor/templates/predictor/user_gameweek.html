@@ -17,9 +17,9 @@
           {{ gameweek_user.first_name }} {{ gameweek_user.last_name }}&nbsp;&nbsp;-&nbsp;&nbsp;
         {% endif %}
         {% if gameweek_result %}
-          Total Points: {{ gameweek_result.total_points }}
+          Total Score: {{ gameweek_result.total_points }}
         {% else %}
-          Gameweek In Progress
+          Total Score: {{ gameweek_provisional_points }}
         {% endif %}
       </div>
       <table class="table-fill">

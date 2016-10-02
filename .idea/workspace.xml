@@ -20,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/predictor/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+            <state relative-caret-position="420">
+              <caret line="315" column="119" selection-start-line="315" selection-start-column="119" selection-end-line="315" selection-end-column="119" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -45,7 +45,7 @@
       <file leaf-file-name="style.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="1860">
               <caret line="124" column="3" selection-start-line="124" selection-start-column="3" selection-end-line="124" selection-end-column="3" />
               <folding />
             </state>
@@ -55,7 +55,7 @@
       <file leaf-file-name="initialize_gameweek.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/management/commands/initialize_gameweek.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="495">
               <caret line="38" column="104" selection-start-line="38" selection-start-column="104" selection-end-line="38" selection-end-column="104" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -87,7 +87,7 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predictor/templates/predictor/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
+            <state relative-caret-position="1005">
               <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
               <folding />
             </state>
@@ -104,7 +104,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="750">
@@ -117,7 +117,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file:///Library/Python/2.7/site-packages/django/conf/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1110">
+            <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -159,12 +159,12 @@
         <option value="$PROJECT_DIR$/predictor/static/predictor/style.css" />
         <option value="$PROJECT_DIR$/predictor/static/predictor/style.js" />
         <option value="$PROJECT_DIR$/predictor/management/commands/initialize_gameweek.py" />
-        <option value="$PROJECT_DIR$/predictor/views.py" />
         <option value="$PROJECT_DIR$/predictor/models.py" />
         <option value="$PROJECT_DIR$/predictor/urls.py" />
         <option value="$PROJECT_DIR$/mysite/urls.py" />
         <option value="$PROJECT_DIR$/predictor/templates/predictor/base.html" />
         <option value="$PROJECT_DIR$/mysite/settings.py" />
+        <option value="$PROJECT_DIR$/predictor/views.py" />
       </list>
     </option>
   </component>
@@ -203,6 +203,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -255,7 +256,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -436,8 +436,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="58" y="23" width="1377" height="877" extended-state="0" />
-    <editor active="false" />
+    <frame x="58" y="23" width="1377" height="877" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28177196" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -755,9 +755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="29" column="61" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -765,7 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1935">
           <caret line="132" column="55" selection-start-line="132" selection-start-column="55" selection-end-line="132" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -779,7 +775,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/predictor/static/predictor/style.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="1860">
           <caret line="124" column="3" selection-start-line="124" selection-start-column="3" selection-end-line="124" selection-end-column="3" />
           <folding />
         </state>
@@ -787,7 +783,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/predictor/management/commands/initialize_gameweek.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="495">
           <caret line="38" column="104" selection-start-line="38" selection-start-column="104" selection-end-line="38" selection-end-column="104" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
@@ -795,56 +791,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Python/2.7/site-packages/django_visitor_information/middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/django_visitor_information/middleware.py" />
     <entry file="file:///Library/Python/2.7/site-packages/django/conf/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1110">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Python/2.7/site-packages/django_visitor_information/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Python/2.7/site-packages/django_visitor_information/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predictor/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predictor/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/django_visitor_information/settings.py" />
+    <entry file="file:///Library/Python/2.7/site-packages/django_visitor_information/__init__.py" />
     <entry file="file://$PROJECT_DIR$/predictor/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -855,7 +812,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/predictor/templates/predictor/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
+        <state relative-caret-position="1005">
           <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
           <folding />
         </state>
@@ -874,6 +831,24 @@
         <state relative-caret-position="750">
           <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="46" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predictor/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="315" column="119" selection-start-line="315" selection-start-column="119" selection-end-line="315" selection-end-column="119" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
