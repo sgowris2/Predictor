@@ -27,7 +27,23 @@
                 var year = date.getFullYear();
                 var hour = date.getHours();
                 var minute = date.getMinutes();
-                var zone = date.getTimezoneOffset();
+                var zone = ''
+                var s = date.toString().split('(');
+                if(s.length == 2)
+                {
+                  var n = s[1].replace(')','');
+                  zone = n;
+                  var parts = n.split(' ');
+                  if(parts.length > 1)
+                  {
+                    zone = '';
+                    for(i=0;i<parts.length;i++)
+                    {
+                      zone += parts[i].charAt(0);
+                    }
+                  }
+                }
+
                 document.getElementById("deadline").innerHTML = '{{ deadline1 }}' + ' : ' +
 
                                                                 day + 
@@ -38,7 +54,7 @@
                                                                 ', ' +
                                                                 (date.toString().split(' ')[4]).slice(0, -3) +
                                                                 ' ' +
-                                                                date.toString().split(' ').slice(-1);                              
+                                                                zone                              
               </script>
             </div>
           </div>          
