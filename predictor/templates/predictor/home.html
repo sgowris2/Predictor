@@ -13,7 +13,33 @@
         <div>
           <div class="home-block home-next-deadline-block">
             <div>
-              <div class="home-next-deadline">{{ deadline1 }} &nbsp;&nbsp;:&nbsp;&nbsp; {{ deadline2 }} {{ deadline3 }}</div>
+              <div id="deadline" class="home-next-deadline"></div>
+              <script>
+              var monthNames = [
+                  "January", "February", "March",
+                  "April", "May", "June", "July",
+                  "August", "September", "October",
+                  "November", "December"
+                ];
+                var date = new Date('{{ deadline2 }}');
+                var day = date.getDate();
+                var monthIndex = date.getMonth();
+                var year = date.getFullYear();
+                var hour = date.getHours();
+                var minute = date.getMinutes();
+                var zone = date.getTimezoneOffset();
+                document.getElementById("deadline").innerHTML = '{{ deadline1 }}' + ' : ' +
+
+                                                                day + 
+                                                                ' ' + 
+                                                                monthNames[monthIndex] + 
+                                                                ' ' + 
+                                                                year + 
+                                                                ', ' +
+                                                                (date.toString().split(' ')[4]).slice(0, -3) +
+                                                                ' ' +
+                                                                date.toString().split(' ').slice(-1);                              
+              </script>
             </div>
           </div>          
         </div>

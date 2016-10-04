@@ -86,12 +86,11 @@ def home(request):
         try:
             current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)[0]
             deadline1 = 'Upcoming deadline'
-            deadline2 = current_gameweek.end_time.strftime('%B %d, %Y')
-            deadline3 = current_gameweek.end_time.astimezone(pytz.timezone('Europe/London')).strftime('%I:%M%p %Z')
+            print(current_gameweek.end_time)
+            deadline2 = current_gameweek.end_time.strftime('%m/%d/%Y %I:%M:00 %p %Z')
         except:
             deadline2 = 'No upcoming deadline'
             deadline1 = ''
-            deadline3 = ''
 
         try:
             position = Leaderboard.objects.get(user=request.user).rank
@@ -152,7 +151,6 @@ def home(request):
                    'last_gameweek_result': last_gameweek_result,
                    'deadline1': deadline1,
                    'deadline2': deadline2,
-                   'deadline3': deadline3,
                    'overall_total_players': total_players,
                    'overall_rank': position,
                    'overall_score': user_overall_score,
