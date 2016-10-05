@@ -159,6 +159,10 @@ hr {
     width: 100%;
 }
 
+.hr-with-nav {
+    margin-top: 0em;
+}
+
 .hr-expanded {
     width: 120%;
     margin-left: -10%;
@@ -166,6 +170,21 @@ hr {
 
 .hr-subtitle {
   margin: 1.5em 0;
+}
+
+.gameweek-nav-div {
+    display: block-inline;
+    margin-top: 2em;
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+}
+
+.gameweek-nav-prev {
+    float:left;
+}
+
+.gameweek-nav-next {
+    float:right;
 }
 
 a {

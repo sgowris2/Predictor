@@ -12,7 +12,10 @@ from django.contrib import messages
 from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, \
     GameweekResult, GameweekAggregateResult, Leaderboard, FeedbackMessage
 from predictor.forms import PredictionForm, RegistrationForm, ContactForm
-from predictor.utilities import contact_timeout_check, get_unresulted_gameweeks
+from predictor.utilities import contact_timeout_check, \
+                                get_unresulted_gameweeks, \
+                                get_previous_gameweek, \
+                                get_next_gameweek
 
 #  Variables
 PredictionFormSet = formset_factory(PredictionForm, extra=0)
@@ -173,10 +176,10 @@ def predict(request):
         save_success = True
         now = timezone.now()
 
-        current_gameweek_number = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)
+        current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)
 
         # if there is no gameweek available for the current time, then just display the latest gameweek
-        if not current_gameweek_number:
+        if not current_gameweek:
             return redirect('/predictor/gameweek/' + re.findall(r'\d+', GameweekResult.objects.order_by('-gameweek__end_time')[0].gameweek.name)[0])
 
         if request.method == 'POST':
@@ -188,7 +191,7 @@ def predict(request):
                 #check if data being submitted is for the current gameweek
                 first_data_point = data[0]
                 first_prediction = Prediction.objects.filter(pk=first_data_point['id'])[0]
-                if not first_prediction.match.gameweek == current_gameweek_number[0]:
+                if not first_prediction.match.gameweek == current_gameweek[0]:
                     return redirect('/predictor/predict/')
 
                 for data_point in data:
@@ -202,7 +205,8 @@ def predict(request):
                 save_success = False
                 messages.add_message(request, messages.INFO, 'Predictions were not saved. Please check your entries and try again.')
 
-        current_gameweek_number = current_gameweek_number[0]
+        current_gameweek_number = current_gameweek[0]
+        previous_gameweek = get_previous_gameweek(current_gameweek_number.__str__().split(' ')[1])
         matches_list = Match.objects.filter(gameweek=current_gameweek_number)
         predictions_list = Prediction.objects.filter(user=request.user).filter(match__in=matches_list)
         predictions_dict = {x.pk: x for x in predictions_list}
@@ -218,6 +222,7 @@ def predict(request):
         context = {
             'fs': fs,
             'current_gameweek_number': current_gameweek_number,
+            'previous_gameweek': previous_gameweek,
             'predictions_dict': predictions_dict,
             'show_status_message': show_status_message,
             'save_success': save_success
@@ -239,6 +244,11 @@ def gameweek(request, gameweek, username=None):
             redirect('predictor/404')
 
         gameweek_instance = Gameweek.objects.filter(name='Gameweek ' + gameweek)[0]
+        previous_gameweek = get_previous_gameweek(gameweek)
+        next_gameweek = get_next_gameweek(gameweek)
+        now = timezone.now()
+        current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)
+        current_gameweek_number = int(current_gameweek[0].__str__().split(' ')[1])
         now = timezone.now()
 
         if gameweek_instance:
@@ -260,7 +270,10 @@ def gameweek(request, gameweek, username=None):
                     gameweek_result = GameweekResult.objects.get(user=gameweek_user, gameweek=gameweek_instance)
                 except:
                     gameweek_provisional_points = sum([result.points for result in prediction_results_list])
-                    context = { 'gameweek':gameweek,
+                    context = { 'gameweek': gameweek,
+                                'previous_gameweek': previous_gameweek,
+                                'next_gameweek':next_gameweek,
+                                'current_gameweek': current_gameweek_number,
                                 'gameweek_user': gameweek_user,
                                 'username': username,
                                 'matches_list': matches_list,
@@ -272,6 +285,9 @@ def gameweek(request, gameweek, username=None):
                     return render(request, 'predictor/user_gameweek.html', context)
 
                 context = { 'gameweek': gameweek,
+                            'previous_gameweek': previous_gameweek,
+                            'next_gameweek': next_gameweek,
+                            'current_gameweek': current_gameweek,
                             'gameweek_user': gameweek_user,
                             'username': username,
                             'matches_list': matches_list,

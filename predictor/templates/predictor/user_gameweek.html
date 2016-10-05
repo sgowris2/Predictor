@@ -11,7 +11,18 @@
       <div class="page-title" align="center">
         Gameweek {{ gameweek }}
       </div>
-      <hr/>
+      <div class="gameweek-nav-div" align="center">
+        {% if previous_gameweek > 0 %}
+          <a class="gameweek-nav-prev" href="/predictor/gameweek/{{ previous_gameweek }}/{{ gameweek_user.username }}"><&nbsp;&nbsp;Last Gameweek</a>
+        {% endif %}
+        {% if next_gameweek > 0 %}
+          {% if current_gameweek == next_gameweek and gameweek_user.username != user.username %}
+          {% else %}
+            <a class="gameweek-nav-next" href="/predictor/gameweek/{{ next_gameweek }}/{{ gameweek_user.username }}">Next Gameweek&nbsp;&nbsp;></a>
+          {% endif %}
+        {% endif %}
+      </div>
+      <hr class="hr-with-nav"/>
       <div class="gameweek-points">
         {% if username == gameweek_user.username %}
           {{ gameweek_user.first_name }} {{ gameweek_user.last_name }}&nbsp;&nbsp;-&nbsp;&nbsp;

@@ -11,7 +11,12 @@
       <div class="page-title">
         {{ current_gameweek_number }}
       </div>
-      <hr/>
+      <div class="gameweek-nav-div" align="center">
+        {% if previous_gameweek > 0 %}
+          <a class="gameweek-nav-prev" href="/predictor/gameweek/{{ previous_gameweek }}/{{ user.username }}"><&nbsp;&nbsp;Last Gameweek</a>
+        {% endif %}
+      </div>
+      <hr class="hr-with-nav"/>
       {% if messages %}
         <div align="center">
           <ul class="messages">

@@ -36,3 +36,32 @@ def get_unresulted_gameweeks(user):
         except:
             unresulted_gameweeks.append(gameweek)
     return unresulted_gameweeks
+
+
+def get_previous_gameweek(gameweek_number):
+
+    try:
+        gameweek_int = int(gameweek_number)
+        if gameweek_int > 1:
+            try:
+                Gameweek.objects.get(name='Gameweek ' + (gameweek_int - 1).__str__())
+                return gameweek_int - 1
+            except:
+                return 0
+        return 0
+    except:
+        return 0
+
+
+def get_next_gameweek(gameweek_number):
+    try:
+        gameweek_int = int(gameweek_number)
+        if gameweek_int >= 1:
+            try:
+                Gameweek.objects.get(name='Gameweek ' + (gameweek_int + 1).__str__())
+                return gameweek_int + 1
+            except:
+                return 0
+        return 0
+    except:
+        return 0
