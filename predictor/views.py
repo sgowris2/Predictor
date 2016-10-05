@@ -287,7 +287,7 @@ def gameweek(request, gameweek, username=None):
                 context = { 'gameweek': gameweek,
                             'previous_gameweek': previous_gameweek,
                             'next_gameweek': next_gameweek,
-                            'current_gameweek': current_gameweek,
+                            'current_gameweek': current_gameweek_number,
                             'gameweek_user': gameweek_user,
                             'username': username,
                             'matches_list': matches_list,
