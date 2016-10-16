@@ -44,7 +44,7 @@ def enter_results(gameweek_name):
                 lines.append(line.strip('\n').strip('\r'))
     try:
         print(lines[0])
-        gameweek = Gameweek.objects.get(name=lines[0])
+        gameweek = Gameweek.objects.get(name=lines[0].split(',')[0])
         gameweek_id = gameweek.id
         for match_line in lines[1:]:
             try:
