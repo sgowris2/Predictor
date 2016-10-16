@@ -16,3 +16,7 @@ mysite/settings.py
 *.pyc
 
 *.pyc
+
+*.pyc
+
+mysite/settings.py
