@@ -20,3 +20,11 @@ mysite/settings.py
 *.pyc
 
 mysite/settings.py
+
+.idea/workspace.xml
+
+*.pyc
+
+mysite/settings.py
+
+.idea/workspace.xml

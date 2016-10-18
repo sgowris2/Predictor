@@ -59,8 +59,8 @@ def add_matches(gameweek_name):
             for match in Match.objects.filter(gameweek=gameweek):
                 existing_predictions = Prediction.objects.filter(match=match, user=user)
                 if not existing_predictions:
-                    Prediction.objects.create(user=user, match=match)
-                    prediction = Prediction.objects.filter(user=user, match=match)[0]
+                    Prediction.objects.create(user=user, match=match, is_default=True)
+                    prediction = Prediction.objects.filter(user=user, match=match, is_default=True)[0]
                     prediction.save()
     except:
         print("There are probably errors in the csv file")

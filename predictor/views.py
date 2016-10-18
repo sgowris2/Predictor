@@ -9,9 +9,10 @@ from django.forms import formset_factory
 from django.utils import timezone
 from django.contrib.auth import views
 from django.contrib import messages
-from predictor.models import Team, User, Match, Gameweek, Prediction, PredictionResult, \
+from django.contrib.auth.decorators import login_required
+from predictor.models import Team, User, UserProfile, Match, Gameweek, Prediction, PredictionResult, \
     GameweekResult, GameweekAggregateResult, Leaderboard, FeedbackMessage
-from predictor.forms import PredictionForm, RegistrationForm, ContactForm
+from predictor.forms import PredictionForm, RegistrationForm, ContactForm, SettingsForm
 from predictor.utilities import contact_timeout_check, \
                                 get_unresulted_gameweeks, \
                                 get_previous_gameweek, \
@@ -84,6 +85,13 @@ def already_logged_in(request):
 def home(request):
 
     if request.user.is_authenticated():
+
+        try:
+            UserProfile.objects.get(user=request.user)
+        except:
+            UserProfile.objects.create(user=request.user,
+                                       reminders=True,
+                                       updates=True)
 
         now = timezone.now()
         try:
@@ -169,6 +177,7 @@ def home(request):
         return redirect('/predictor/login/')
 
 
+@login_required(login_url="/predictor/login/")
 def predict(request):
 
     if request.user.is_authenticated():
@@ -198,6 +207,7 @@ def predict(request):
                     prediction = Prediction.objects.filter(pk=data_point['id'])[0]
                     prediction.home_score = data_point['home_score']
                     prediction.away_score = data_point['away_score']
+                    prediction.is_default = False
                     prediction.save()
                 save_success = True
                 messages.add_message(request, messages.INFO, 'Your predictions were saved successfully!')
@@ -232,6 +242,7 @@ def predict(request):
         return redirect('/predictor/login/')
 
 
+@login_required(login_url="/predictor/login/")
 def gameweek(request, gameweek, username=None):
 
     if request.user.is_authenticated():
@@ -308,6 +319,7 @@ def gameweek(request, gameweek, username=None):
         return redirect('/predictor/login/')
 
 
+@login_required(login_url="/predictor/login/")
 def gameweeks(request, username=None):
 
     if request.user.is_authenticated():
@@ -341,6 +353,7 @@ def gameweeks(request, username=None):
         return redirect('/predictor/login/')
 
 
+@login_required(login_url="/predictor/login/")
 def leaderboard(request):
 
     if request.user.is_authenticated():
@@ -349,13 +362,79 @@ def leaderboard(request):
         if not leaderboard:
             return render(request, 'predictor/leaderboard.html')
         else:
-            if not any(x.user == request.user for x in leaderboard):
-                try:
-                    leaderboard.append(Leaderboard.objects.get(user=request.user))
-                except:
-                    a = 1
+            try:
+                if not any(x.user.id == request.user.id for x in leaderboard):
+                    a = Leaderboard.objects.get(user=request.user)
+                    leaderboard.append(a)
+            except:
+                a = 1
             context = {'leaderboard': leaderboard}
             return render(request, 'predictor/leaderboard.html', context)
+    else:
+        return redirect('/predictor/login/')
+
+
+@login_required(login_url="/predictor/login/")
+def settings(request):
+
+    if request.user.is_authenticated():
+        show_status_message = False
+        save_success = True
+        if request.method == 'POST':
+            form = SettingsForm(request.POST)
+            show_status_message = True
+            try:
+                data = form.data
+                print(data)
+                try:
+                    profile = UserProfile.objects.get(user=request.user)
+                    try:
+                        reminders = data['reminders']
+                    except:
+                        reminders = False
+                    try:
+                        updates = data['updates']
+                    except:
+                        updates = False
+
+                    profile.reminders = reminders
+                    profile.updates = updates
+                    profile.save()
+                except:
+                    try:
+                        reminders = data['reminders']
+                    except:
+                        reminders = False
+                    try:
+                        updates = data['updates']
+                    except:
+                        updates = False
+                    UserProfile.objects.create(user=request.user,
+                                               reminders=reminders,
+                                               updates=updates)
+                save_success = True
+                messages.add_message(request, messages.INFO, 'Saved!')
+            except:
+                save_success = False
+                messages.add_message(request, messages.INFO,
+                                     'Preferences were not saved.')
+        try:
+            if (profile is not None) and (reminders is not None) and (updates is not None):
+                initial_data = {'reminders': reminders, 'updates': updates}
+                form = SettingsForm(initial=initial_data)
+        except:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                initial_data = {'reminders': profile.reminders, 'updates': profile.updates}
+                form = SettingsForm(initial=initial_data)
+            except:
+                form = SettingsForm()
+
+        context = {'form': form,
+                   'show_status_message': show_status_message,
+                   'save_success': save_success
+                   }
+        return render(request, 'predictor/settings.html', context)
     else:
         return redirect('/predictor/login/')
 
@@ -365,6 +444,7 @@ def about(request):
     return render(request, 'predictor/about.html')
 
 
+@login_required(login_url="/predictor/login/")
 def contact(request):
 
     if request.user.is_authenticated():
@@ -397,9 +477,11 @@ def contact(request):
         return redirect('/predictor/login/')
 
 
+@login_required(login_url="/predictor/login/")
 def contact_success(request):
     return render(request, 'predictor/contact_success.html')
 
 
+@login_required(login_url="/predictor/login/")
 def contact_timeout(request):
     return render(request, 'predictor/contact_timeout.html')

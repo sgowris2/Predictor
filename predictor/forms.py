@@ -38,6 +38,7 @@ class RegistrationForm(UserCreationForm):
         return form_data
 
     def save(self, commit=True):
+
         user = super(RegistrationForm, self).save(commit=False)
         user.email = self.cleaned_data['email']
         try:
@@ -84,3 +85,9 @@ class PredictionForm(forms.Form):
 class ContactForm(forms.Form):
 
     content = forms.CharField(required=True, widget=forms.Textarea(attrs={'rows': 10, 'cols': 25}), max_length=5000)
+
+
+class SettingsForm(forms.Form):
+
+    reminders = forms.BooleanField(label='reminders')
+    updates = forms.BooleanField(label='updates')

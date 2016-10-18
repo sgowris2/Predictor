@@ -33,79 +33,83 @@
           Total Score: {{ gameweek_provisional_points }}
         {% endif %}
       </div>
-      <table class="table-fill">
-        <thead>
-          <tr>
-            <th class="text-left condensed">Prediction</th>
-            <th class="text-left condensed">Result</th>
-            <th class="text-left condensed">Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for prediction, prediction_result in predictions_tuples %}
-            <tr class="table-selectable-row" data-toggle="collapse" data-target="#point-detail-{{prediction_result.id}}">
-              <td class="text-left padded-cell-narrow">
-                <div class="team-name-small team-name-home">
-                  {{ prediction.match.home_team }}
-                </div>
-                <div class="match-score-display">
-                  {{ prediction.home_score }} - {{ prediction.away_score }}
-                </div>
-                <div class="team-name-small team-name-away">
-                  {{ prediction.match.away_team }}
-                </div>
-                {% if prediction_result %}
-                  <div id="point-detail-{{prediction_result.id}}" class="collapse">
-                    <br/>
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td><div class="point-detail">Result Points:</div></td>
-                          <td><div class="point-detail">{% if prediction_result.result %}3{% else %}0{% endif %}</div></td>
-                        </tr>
-                        <tr>
-                          <td><div class="point-detail">Scored Home Points: </div></td>
-                          <td><div class="point-detail">{% if prediction_result.home_scored %}1{% else %}0{% endif %}</div></td>
-                        </tr>
-                        <tr>
-                          <td><div class="point-detail">Scored Away Points: </div></td>
-                          <td><div class="point-detail">{% if prediction_result.away_scored %}1{% else %}0{% endif %}</div></td>
-                        </tr>
-                        <tr>
-                          <td><div class="point-detail">Goals Home Points: </div></td>
-                          <td><div class="point-detail">{% if prediction_result.home_goals %}2{% else %}0{% endif %}</div></td>
-                        </tr>
-                        <tr>
-                          <td><div class="point-detail">Goals Away Points: </div></td>
-                          <td><div class="point-detail">{% if prediction_result.away_goals %}2{% else %}0{% endif %}</div></td>
-                        </tr>
-                        <tr>
-                          <td><div class="point-detail">Exact Scoreline Bonus Points: </div></td>
-                          <td><div class="point-detail">{% if prediction_result.scoreline %}3{% else %}0{% endif %}</div></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                {% endif %}
-              </td>
-              <td class="text-center padded-cell-narrow">
-                {% if prediction_result %}
-                  <div class="match-score-display">
-                  {{ prediction_result.prediction.match.home_score }} - {{ prediction_result.prediction.match.away_score }}
-                  </div>
-                {% endif %}
-              </td>
-              <td class="text-center padded-cell-narrow">
-                {% if prediction_result %}
-                  <div class="prediction-score">
-                    {{ prediction_result.points }}
-                  </div>
-                {% endif %}
-              </td>
+      {% if predictions_list.count == 0 %}
+        <h4>There are no predictions available for this gameweek.</h4>
+      {% else %}
+        <table class="table-fill">
+          <thead>
+            <tr>
+              <th class="text-left condensed">Prediction</th>
+              <th class="text-left condensed">Result</th>
+              <th class="text-left condensed">Points</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {% for prediction, prediction_result in predictions_tuples %}
+              <tr class="table-selectable-row" data-toggle="collapse" data-target="#point-detail-{{prediction_result.id}}">
+                <td class="text-left padded-cell-narrow">
+                  <div class="team-name-small team-name-home">
+                    {{ prediction.match.home_team }}
+                  </div>
+                  <div class="match-score-display">
+                    {{ prediction.home_score }} - {{ prediction.away_score }}
+                  </div>
+                  <div class="team-name-small team-name-away">
+                    {{ prediction.match.away_team }}
+                  </div>
+                  {% if prediction_result %}
+                    <div id="point-detail-{{prediction_result.id}}" class="collapse">
+                      <br/>
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td><div class="point-detail">Result Points:</div></td>
+                            <td><div class="point-detail">{% if prediction_result.result %}3{% else %}0{% endif %}</div></td>
+                          </tr>
+                          <tr>
+                            <td><div class="point-detail">Scored Home Points: </div></td>
+                            <td><div class="point-detail">{% if prediction_result.home_scored %}1{% else %}0{% endif %}</div></td>
+                          </tr>
+                          <tr>
+                            <td><div class="point-detail">Scored Away Points: </div></td>
+                            <td><div class="point-detail">{% if prediction_result.away_scored %}1{% else %}0{% endif %}</div></td>
+                          </tr>
+                          <tr>
+                            <td><div class="point-detail">Goals Home Points: </div></td>
+                            <td><div class="point-detail">{% if prediction_result.home_goals %}2{% else %}0{% endif %}</div></td>
+                          </tr>
+                          <tr>
+                            <td><div class="point-detail">Goals Away Points: </div></td>
+                            <td><div class="point-detail">{% if prediction_result.away_goals %}2{% else %}0{% endif %}</div></td>
+                          </tr>
+                          <tr>
+                            <td><div class="point-detail">Exact Scoreline Bonus Points: </div></td>
+                            <td><div class="point-detail">{% if prediction_result.scoreline %}3{% else %}0{% endif %}</div></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  {% endif %}
+                </td>
+                <td class="text-center padded-cell-narrow">
+                  {% if prediction_result %}
+                    <div class="match-score-display">
+                    {{ prediction_result.prediction.match.home_score }} - {{ prediction_result.prediction.match.away_score }}
+                    </div>
+                  {% endif %}
+                </td>
+                <td class="text-center padded-cell-narrow">
+                  {% if prediction_result %}
+                    <div class="prediction-score">
+                      {{ prediction_result.points }}
+                    </div>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
     {% endblock %}
   </body>
 </html>

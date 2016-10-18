@@ -699,6 +699,17 @@ td a:hover {
   font-size: 0.85em;
   padding-top: 1.5em;
 }
+
+.settings-form-group {
+
+}
+
+.settings-group {
+  background: #ffffff;
+  color: #999999;
+  padding: 1.250em 1.250em;
+}
+
 /*=== 5. Login Button ===*/
 .login-form-1 .login-button {
   position: absolute;

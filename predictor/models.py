@@ -2,6 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class UserProfile(models.Model):
+    user = models.ForeignKey(User)
+    reminders = models.BooleanField()
+    updates = models.BooleanField()
+
+    def __str__(self):
+        return self.user.__str__() + ' - Reminders: ' + self.reminders.__str__() + ' - Updates: ' + self.__str__()
+
+
 class Team(models.Model):
     name = models.CharField(max_length=50)
 
@@ -45,7 +54,7 @@ class Prediction(models.Model):
     match = models.ForeignKey(Match)
     home_score = models.IntegerField(default=0)
     away_score = models.IntegerField(default=0)
-    is_doubled = models.BooleanField(default=0)
+    is_default = models.BooleanField(default=1)
 
     def __str__(self):
         return self.user.__str__() + ' - ' + self.match.__str__() + ' - ' + str(self.home_score) + ' - ' + str(self.away_score)

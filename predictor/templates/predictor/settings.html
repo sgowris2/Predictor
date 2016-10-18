@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    {% extends "predictor/base.html" %}
+    <head>
+        <title></title>
+    </head>
+    <body>
+        {% block content %}
+          <!-- LOGIN FORM -->
+            <div class="page-title">Preferences</div>
+            <hr class="hr-expanded"/>
+
+            <div class="text-center login-form">
+                <div>
+                    {% if messages %}
+                    <div align="center">
+                      {% for message in messages %}
+                        <h4{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h4>
+                      {% endfor %}
+                    </div><br/> 
+                  {% endif %}
+                </div>
+            	<div class="">
+            		<form id="settings-form" class="text-left" method="POST" action=".">
+                        {% csrf_token %}
+            			<div class="login-form-main-message"></div>
+            			<div>
+            				<div class="settings-group">                    
+            					<div class="settings-form-group">
+            						<input type="checkbox" {% if form.reminders.value %}checked="checked"{% endif %} 
+                                    id="reminders" name="{{ form.reminders.html_name }}" value="{{ form.reminders.value }}">
+            						<label for="reminders">&nbsp;&nbsp;&nbsp;&nbsp;Receive Prediction Reminders</label>
+            					</div>
+                                <div class="settings-form-group">
+                                    <input type="checkbox" {% if form.updates.value %}checked="checked"{% endif %} 
+                                    id="updates" name="{{ form.updates.html_name }}" value="{{ form.updates.value }}">
+                                    <label for="updates">&nbsp;&nbsp;&nbsp;&nbsp;Receive News and Updates</label>
+                                </div>
+            				</div>
+            			</div>
+                        <div align="center">
+                            <button type="submit" class="button submit-button">Save</button>
+                        </div>
+                        <br/><br/>
+            		</form>
+            	</div>
+                <br/><br/>
+            </div>
+        {% endblock %}
+    </body>
+</html>
