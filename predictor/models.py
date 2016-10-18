@@ -8,7 +8,7 @@ class UserProfile(models.Model):
     updates = models.BooleanField()
 
     def __str__(self):
-        return self.user.__str__() + ' - Reminders: ' + self.reminders.__str__() + ' - Updates: ' + self.__str__()
+        return self.user.__str__() + ' - Reminders: ' + self.reminders.__str__() + ' - Updates: ' + self.updates.__str__()
 
 
 class Team(models.Model):
