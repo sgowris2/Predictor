@@ -2,7 +2,9 @@
 <html>
     {% extends "predictor/base.html" %}
     <head>
-        <title></title>
+        <title>
+            {% block title %} | Preferences{% endblock %}
+        </title>
     </head>
     <body>
         {% block content %}

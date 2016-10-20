@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from predictor.models import Match, Gameweek, Team, Prediction
 from pytz import timezone
 
+
 class Command(BaseCommand):
 
     help = 'Calculates and updates the scores in for all predictions in a gameweek'
