@@ -216,6 +216,11 @@ footer
     color: #333333;
 }
 
+input[type=checkbox]:checked + label:after {
+    padding: 0.1em;
+    font-size:1em;
+}
+
 .button {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
