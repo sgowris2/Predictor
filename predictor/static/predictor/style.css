@@ -267,7 +267,7 @@ input[type=checkbox]:checked + label:after {
 
 .navbar-custom {
     background: #f1f1f1;
-    border-color:#d5d5d5;
+    border-color:#e6e6e6;
     min-height:3em;
     text-align: right;
     margin:0;
@@ -624,6 +624,7 @@ td a:hover {
 }
 
 .footer-text {
+    margin: 0.5em;
     padding: 1em;
     text-align: center;
     vertical-align:center;
