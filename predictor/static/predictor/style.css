@@ -269,7 +269,12 @@ footer
     box-shadow:none;
 }
 
+.navbar-toggle {
+    padding: 8.5px 9px;
+}
+
 .navbar-toggle-button {
+    vertical-align: middle;
     border: 1px solid #333333;
 }
 
