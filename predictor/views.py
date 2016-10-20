@@ -289,6 +289,7 @@ def gameweek(request, gameweek, username=None):
                                 'username': username,
                                 'matches_list': matches_list,
                                 'predictions_list': predictions_list,
+                                'prediction_results_list': prediction_results_list,
                                 'predictions_tuples': predictions_tuples,
                                 'gameweek_result': None,
                                 'gameweek_provisional_points': gameweek_provisional_points,
