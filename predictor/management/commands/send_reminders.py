@@ -14,6 +14,7 @@ class Command(BaseCommand):
     help = 'Sends reminder emails for all users who have subscribed to them'
 
     def handle(self, *args, **options):
+        # send_test_reminder(User.objects.get(email='sgowris2@gmail.com'))
         send_reminders()
 
 
@@ -23,10 +24,12 @@ def send_test_reminder(user):
     from_email = Email("sgowris2@gmail.com")
     subject = "[Testing Reminder Feature] Your predictions are due!"
     to_email = Email(user.email)
-    content = Content("text/plain",
-                      "Hi " + user.first_name + "!\n\nThis is to remind you that your predictions are due very soon! "
-                      "If you would like to opt out of receiving these reminders in the future, "
-                      "please change your e-mail preferences on the Predictr website.")
+    content = Content("text/html",
+                        "Hi " + user.first_name + "!<br/><br/>"
+                        "This is to remind you that your predictions are due very soon! "
+                        "<br/>If you would like to opt out of receiving these reminders in the future, "
+                        "please change your "
+                        "<a href=\"predictr.pythonanywhere.com/predictor/settings\">e-mail preferences</a>.")
     email = Mail(from_email, subject, to_email, content)
     response = sg.client.mail.send.post(request_body=email.get())
     print(response.status_code)
@@ -41,10 +44,12 @@ def send_reminder(user):
         from_email = Email("sgowris2@gmail.com")
         subject = "Your predictions are due!"
         to_email = Email(user.email)
-        content = Content("text/plain",
-                          "Hi " + user.first_name + "! \n\nThis is to remind you that your predictions are due very soon! "
-                          "If you would like to opt out of receiving these reminders in the future, "
-                          "please change your e-mail preferences on the Predictr website.")
+        content = Content("text/html",
+                            "Hi " + user.first_name + "!<br/><br/>"
+                            "This is to remind you that your predictions are due very soon! "
+                            "<br/>If you would like to opt out of receiving these reminders in the future, "
+                            "please change your "
+                            "<a href=\"predictr.pythonanywhere.com/predictor/settings\">e-mail preferences</a>.")
         email = Mail(from_email, subject, to_email, content)
         response = sg.client.mail.send.post(request_body=email.get())
         print("1 email sent")
