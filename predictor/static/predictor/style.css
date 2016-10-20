@@ -241,6 +241,14 @@ footer
     max-width: 30em;
 }
 
+.tagline
+{
+    padding-top: 0.5em;
+    font-size: 1em;
+    text-align: center;
+    max-width: 30em;
+}
+
 .page-subtitle {
     margin:1.5em;
     font-size: 1.25em;
@@ -635,6 +643,8 @@ td a:hover {
   padding: 0.625em 1.25em;
 }
 .etc-login-form p {
+  text-align: center;
+  margin-top: 0.15em;
   margin-bottom: 0.35em;
 }
 /*=== 4. Main Form ===*/

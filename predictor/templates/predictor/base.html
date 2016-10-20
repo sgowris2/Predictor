@@ -41,11 +41,10 @@
                       <li id="nav_predict"><a href="/predictor/predict">Predict</a></li>
                       <li id="nav_gameweeks"><a href="/predictor/gameweeks">Gameweeks</a></li>
                       <li id="nav_leaderboard"><a href="/predictor/leaderboard">Leaderboard</a></li>
+                      <li id="nav_settings" class="nav"><a href="/predictor/settings/">Preferences</a></li>
                     {% endif %}
                     <li id="nav_about"><a href="/predictor/about">About</a></li>
                     {% if user.is_authenticated %}
-                      <li id="nav_contact" class="nav"><a href="/predictor/contact/">Contact</a></li>
-                      <li id="nav_settings" class="nav"><a href="/predictor/settings/">Preferences</a></li>
                       <li id="nav_logout" class="nav"><a href="/predictor/logout/">Logout</a></li>
                     {% endif %}
                   </ul>
