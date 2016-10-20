@@ -261,9 +261,9 @@ footer
 }
 
 .navbar-custom {
-    background: #f9f9f9;
-    border-color:#f9f9f9;
-    min-height:3.75em;
+    background: #f1f1f1;
+    border-color:#d5d5d5;
+    min-height:3em;
     text-align: right;
     margin:0;
     box-shadow:none;
