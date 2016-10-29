@@ -303,6 +303,7 @@ def gameweek(request, gameweek, username=None):
                             'gameweek_user': gameweek_user,
                             'username': username,
                             'matches_list': matches_list,
+                            'predictions_list': predictions_list,
                             'prediction_results_list': prediction_results_list,
                             'predictions_tuples': predictions_tuples,
                             'gameweek_result': gameweek_result
@@ -341,7 +342,7 @@ def gameweeks(request, username=None):
             gameweek_results.append(GameweekResult(user=gameweek_user,
                                                    gameweek=unresulted_gameweek,
                                                    total_points=sum(result.points for result in prediction_results_list)))
-        gameweek_results.sort(key=attrgetter('gameweek.name'), reverse=False)
+        gameweek_results.sort(key=lambda x: x.gameweek.number(), reverse=False)
         total_points = 0
         for result in gameweek_results:
             total_points += result.total_points
