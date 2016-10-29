@@ -24,8 +24,7 @@ class Gameweek(models.Model):
     end_time = models.DateTimeField()
 
     def number(self):
-        return self.name.split(' ')[1]
-
+        return int(self.name.split(' ')[1])
 
     def __str__(self):
         return self.name
