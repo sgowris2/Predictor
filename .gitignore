@@ -1,11 +1,19 @@
-*.pyc
-__pycache__
-myvenv
-db.sqlite3
-/static
+
+
+*.sqlite3
+
 .DS_Store
-*.pyc
-mysite/settings.py
-.idea/workspace.xml
 
 .idea/workspace.xml
+
+mysite/settings.py
+
+*.pyc
+
+predictor/.DS_Store
+
+predictor/migrations/
+
+predictor/data/
+
+predictor/static/
