@@ -591,7 +591,7 @@ td a:hover {
     padding: 0.25em 0em;
     display: table-cell;
     text-align: center;
-    vertical-align: bottom;  
+    vertical-align: bottom;
 }
 
 .home-stat-cell-heading {
@@ -641,6 +641,11 @@ td a:hover {
 {
     font-size: 0.675em;
     padding: 0em 1em;
+}
+
+.point-detail-score
+{
+    text-align: right;
 }
 
 
