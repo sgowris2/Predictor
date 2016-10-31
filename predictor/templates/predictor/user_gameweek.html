@@ -86,6 +86,12 @@
                             <td><div class="point-detail">Exact Scoreline Bonus Points: </div></td>
                             <td><div class="point-detail">{% if prediction_result.scoreline %}3{% else %}0{% endif %}</div></td>
                           </tr>
+                          {% if prediction.is_default %}
+                            <tr>
+                              <td><div class="point-detail">No Prediction Penalty: </div></td>
+                              <td><div class="point-detail">{% if prediction_result.penalty_points > 0 %}-{{ prediction_result.penalty_points }}{% else %}0{% endif %}</div></td>
+                            </tr>
+                          {% endif %}
                         </tbody>
                       </table>
                     </div>

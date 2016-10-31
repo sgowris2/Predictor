@@ -73,6 +73,7 @@ class PredictionResult(models.Model):
     home_goals = models.BooleanField(default=False)
     away_goals = models.BooleanField(default=False)
     scoreline = models.BooleanField(default=False)
+    penalty_points = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
 
 

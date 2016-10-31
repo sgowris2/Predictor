@@ -1,6 +1,7 @@
 __author__ = 'sudeep'
 
 import operator
+import math
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Sum, Max, Avg
 from predictor.models import User, Prediction, PredictionResult, Match, Team, Gameweek, GameweekResult, GameweekAggregateResult, Leaderboard
@@ -85,6 +86,9 @@ def calculate_scores(gameweek):
         try:
             prediction_result = PredictionResult.objects.get(prediction=prediction)
             prediction_result.points = calculate_prediction_score(prediction)
+            if prediction.is_default:
+                prediction_result.penalty_points = math.floor(prediction_result.points/2)
+                prediction_result.points -= prediction_result.penalty_points
             update_prediction_result_stats(prediction_result)
             prediction_result.save()
         except:
@@ -152,7 +156,7 @@ def calculate_prediction_score(prediction):
 
     match = prediction.match
     if match.has_ended:
-        points =  get_result_points(match, prediction)
+        points = get_result_points(match, prediction)
         points += get_scored_points(match, prediction)
         points += get_goals_points(match, prediction)
         points += get_exact_bonus_points(match, prediction)
