@@ -1,0 +1,925 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Color Glossary
+
+Text Color:     #333333
+Purple:         #643173
+Sea Green:      #4CD3AB
+Light Sea Green:#9be6d0
+Ghost White:    #F9F9F9
+Gray1:          #999999
+Gray2:          #919191
+Gray3:          #555555
+*/
+
+/*=== 1. General Structure ===*/
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+  /* Styles */
+  body {
+    font-size: 12px;
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+  /* Styles */
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+  /* Styles */
+  body {
+    font-size: 12px;
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+  /* Styles */
+  body {
+    font-size: 14px;
+  }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+  /* Styles */
+  body {
+    font-size: 14px;
+  }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+  /* Styles */
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+  /* Styles */
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+  /* Styles */
+  body {
+    font-size: 16px;
+  }
+}
+
+/* iPhone 4 - 5s ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+  /* Styles */
+  body {
+    font-size: 13px;
+  }
+}
+
+/* iPhone 6 ----------- */
+@media
+only screen and (max-device-width: 667px)
+only screen and (-webkit-device-pixel-ratio: 2) {
+  /* Styles */
+  body {
+    font-size: 14px;
+  }
+}
+
+/* iPhone 6+ ----------- */
+@media
+only screen and (min-device-width : 414px)
+only screen and (-webkit-device-pixel-ratio: 3) {
+  /*** You've spent way too much on a phone ***/
+  body {
+    font-size: 14px;
+  }
+}
+
+
+html {
+    height:100%;
+}
+
+html, body {
+  background: #f9f9f9;
+  font-family: 'Raleway';
+}
+
+/* The following lines are used to center content on the page */
+
+body {
+    height:80%;
+    display: table;
+    margin: auto;
+    margin-top: 8em;
+    margin-bottom: 3em;
+}
+
+.page-div {
+    display: table-cell;
+    vertical-align: middle;
+    max-width:50em;
+}
+
+/* *********************************************************** */
+
+hr {
+    border-color: #cccccc;
+    margin: 2.5em 0;
+    width: 100%;
+}
+
+.hr-with-nav {
+    margin-top: 0em;
+}
+
+.hr-expanded {
+    width: 120%;
+    margin-left: -10%;
+}
+
+.hr-subtitle {
+  margin: 1.5em 0;
+}
+
+.gameweek-nav-div {
+    display: block-inline;
+    margin-top: 2em;
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+}
+
+.gameweek-nav-prev {
+    float:left;
+}
+
+.gameweek-nav-next {
+    float:right;
+}
+
+a {
+  transition: all ease-in-out 200ms;
+}
+
+a:hover {
+  color: #4CD3AB;
+  text-decoration: none;
+}
+
+footer
+{
+    background: #e6e6e6;
+}
+
+/* *************************************************************** */
+
+.logo {
+  display: inline-block;
+  text-align: left;
+  padding-left: 1em;
+}
+
+.website-name {
+    display: inline-block;
+    padding: 1em;
+    text-align: left;
+    color: #333333;
+}
+
+input[type=checkbox]:checked + label:after {
+    padding: 0.1em;
+    font-size:1em;
+}
+
+.button {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 1.250em;
+  border: 0.06250em solid #4CD3AB;
+  color: #333333;
+  font-size: 1em;
+  background: none;
+  padding: 0.61250em 1.250em 0.61250em 1.250em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: none;
+  border: 0.1250em solid #4CD3AB;
+  text-decoration: none;
+}
+
+.page-title {
+    font-size: 1.75em;
+    text-align: center;
+    max-width: 30em;
+}
+
+.tagline
+{
+    padding-top: 0.5em;
+    font-size: 1em;
+    text-align: center;
+    max-width: 30em;
+}
+
+.page-subtitle {
+    margin:1.5em;
+    font-size: 1.25em;
+    text-align: center;
+}
+
+.username {
+    text-align: right;
+    color: #333333;
+}
+
+.navbar-custom {
+    background: #f1f1f1;
+    border-color:#e6e6e6;
+    min-height:3em;
+    text-align: right;
+    margin:0;
+    box-shadow:none;
+}
+
+.navbar-toggle {
+    padding: 8.5px 9px;
+}
+
+.navbar-toggle-button {
+    vertical-align: middle;
+    border: 1px solid #333333;
+}
+
+.navlink {
+    font-size: 0.8750em;
+}
+
+p.nav {
+    display: inline-block;
+    text-align: justify;
+    padding-left: 1.250em;
+    padding-right: 1.250em;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.login-form {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.registration-form {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-name {
+    font-size: 0.825em;
+    width: 11em;
+    padding: 0 0.5em;
+    display:inline-block;
+}
+
+.team-name-small {
+    font-size: 0.75em;
+    width: 9em;
+    padding: 0em;
+    display:inline-block;
+}
+
+.team-name-home {
+    text-align:right;
+}
+
+.team-name-away {
+    text-align:left;
+}
+
+.score-input {
+    text-align: center;
+    font-size: 0.8750em;
+    padding: 0.1250em;
+    padding-left: 1em;
+    border: solid 0.0.06250em #dcdcdc;
+    transition: box-shadow 0.3s, border 0.3s;
+}
+
+.prediction-score-display {
+    display: inline-block;
+    text-align: center;
+    font-size: 0.8750em;
+    padding: 0.1250em;
+    padding-bottom: 0px;
+}
+
+.match-score-display {
+    display: inline-block;
+    font-size: 0.75em;
+}
+
+
+.prediction-match {
+    display:table;
+    margin:0.5em;
+}
+
+.prediction-score {
+    font-size: 0.75em;
+}
+
+.prediction-teams {
+    display:table-cell;
+}
+
+.gameweek-points {
+    text-align: center;
+    font-size: 1.250em;
+    margin: 1.5em;
+}
+
+.separator {
+    text-align: center;
+    font-size: 0.8750em;
+    margin: 0px 0.61250em;
+}
+
+.submit-button {
+    margin: 1.5em;
+    margin-bottom:3em;
+}
+
+/************************* Table Styles *************************/
+
+.table-fill {
+  background: white;
+  border-radius:0.125em;
+  border-collapse: collapse;
+  margin: auto;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  max-width: 600px;
+  padding:0.31250em;
+  width: 100%;
+  box-shadow: 0 0.31250em 0.61250em rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+
+th {
+  color:#333333;
+  background:#E1E1E1;
+  border-bottom:0.0625em;
+  font-size:1.1250em;
+  font-weight: 100;
+  padding:1em;
+  padding-left:0.75em;
+  text-align:left;
+  text-shadow: 0 0.06250em 0.06250em rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+th:first-child {
+  border-top-left-radius:0.1250em;
+}
+
+th:last-child {
+  border-top-right-radius:0.1250em;
+  border-right:none;
+}
+
+tr {
+  border: 0.06250em solid #C1C3D1;
+  border-left: 0.0625em solid #F9F9F9;
+  border-right: 0.0625em solid #F9F9F9;
+  color:#666B85;
+  font-size:1em;
+  font-weight:normal;
+  text-shadow: 0 0.06250em 0.06250em rgba(256, 256, 256, 0.1);
+}
+
+tr:hover {
+}
+
+tr:hover td {
+}
+
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+
+tr:nth-child(odd) td {
+  background:#F5F5F5;
+}
+
+tr:nth-child(odd):hover td {
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:0.1250em;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius:0.1250em;
+}
+
+td {
+  background:#F9f9f9;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:1.1250em;
+  text-shadow: -0.06250em -0.06250em 0.06250em rgba(0, 0, 0, 0.1);
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+th.condensed {
+    font-size: 1em;
+    padding: 1.125em 0.625em;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+
+td a {
+    display: block;
+    padding: 0.75em;
+}
+
+td a:hover {
+
+}
+
+.padded-cell {
+    padding: 0.75em;
+}
+
+.padded-cell-narrow {
+    padding: 0.75em 0.25em;
+}
+
+.leaderboard-user-row {
+    background: #BAEEDF !important;
+}
+
+/* ************************************************ */
+
+.nothing-message {
+    text-align: center;
+    font-size: 1em;
+}
+
+.home-block {
+    margin:auto;
+}
+
+.home-no-stats-message {
+  font-size: 1.25em;
+  text-align: center;
+  margin:1.5em;
+}
+
+.home-next-deadline-block {
+
+    text-align: center;
+    margin:0 2.5em;
+}
+
+.home-next-deadline {
+
+    font-size: 1.25em;
+    margin-bottom: 4em;
+    padding: 1em;
+    border: 1px solid #4cd3ab;
+}
+
+.home-stats-block {
+
+    display:table;
+    text-align: center;
+}
+
+.home-summary-block {
+    display:table;
+}
+
+.home-summary-title {
+  font-size:1.25em;
+  text-align: center;
+}
+
+.home-summary-body {
+  width:75%;
+  font-size: 1em;
+  margin: 2em auto;
+  margin-bottom: 3em;
+}
+
+.home-summary-body-line {
+  text-align:left;
+  font-size: 1em;
+}
+
+.home-stat-cell {
+    width: 20%;
+    padding: 0.25em 0em;
+    display: table-cell;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.home-stat-cell-long {
+    padding: 0.25em 0em;
+    display: table-cell;
+    text-align: center;
+    vertical-align: bottom;  
+}
+
+.home-stat-cell-heading {
+    font-size: 1em;
+}
+
+.home-stat-cell-body {
+    padding: 1em;
+    font-size: 1.250em;
+}
+
+.home-stat-cell-body-long {
+    padding: 1em;
+    font-size: 1.250em;
+}
+
+.about-block {
+    margin: 2em;
+    max-width: 30.0em;
+}
+
+.about-subtitle {
+    font-size: 1.1250em;
+    font-weight:600;
+}
+
+.errorlist-item{
+    display: inline-block;
+    font-size: 0.9em;
+}
+
+.footer-text {
+    margin: 0.5em;
+    padding: 1em;
+    text-align: center;
+    vertical-align:center;
+    font-size: 0.75em;
+    color: #999999;
+}
+
+.table-selectable-row:hover
+{
+    border: 2px solid #4cd3ab;
+}
+
+.point-detail
+{
+    font-size: 0.675em;
+    padding: 0em 1em;
+}
+
+
+/* ****************** Login and Registration Form ******************* */
+
+/*=== 3. Text Outside the Box ===*/
+
+.etc-login-form {
+  font-size: 0.9em;
+  color: #919191;
+  padding: 0.625em 1.25em;
+}
+.etc-login-form p {
+  text-align: center;
+  margin-top: 0.15em;
+  margin-bottom: 0.35em;
+}
+/*=== 4. Main Form ===*/
+.login-form-1 {
+  width: 18.5em;
+  border-radius: 0em;
+  display: inline-block;
+}
+.main-login-form {
+  position: relative;
+}
+.login-form-1 .form-control {
+  border: 0;
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  background: transparent;
+  color: #555555;
+  padding: 0.75em 0;
+  font-weight: regular;
+  font-size: 1.125em;
+  height:auto;
+}
+
+.content-control {
+  border: 0;
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  background: transparent;
+  color: #555555;
+  padding: 0.75em 0;
+  font-weight: regular;
+  font-size: 1.125em;
+  height:20em;
+  outline:none;
+  resize:none;
+}
+
+.login-form-1 .form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+.login-form-1 .form-control:-moz-placeholder,
+.login-form-1 .form-control::-moz-placeholder,
+.login-form-1 .form-control:-ms-input-placeholder {
+  color: #999999;
+}
+.login-form-1 .form-group {
+  margin-bottom: 0;
+  border-bottom: 0.125em solid #efefef;
+  padding-right: 1.250em;
+  position: relative;
+}
+.login-form-1 .form-group:last-child {
+  border-bottom: 0;
+}
+.login-group {
+  background: #ffffff;
+  color: #999999;
+  border-radius: 0.5em;
+  padding: 0.61250em 1.250em;
+}
+.login-group-checkbox {
+  font-size: 0.85em;
+  padding-top: 1.5em;
+}
+
+.settings-form-group {
+
+}
+
+.settings-group {
+  background: #ffffff;
+  color: #999999;
+  padding: 1.250em 1.250em;
+}
+
+/*=== 5. Login Button ===*/
+.login-form-1 .login-button {
+  position: absolute;
+  right: -1.4em;
+  top: 50%;
+  background: #ffffff;
+  color: #999999;
+  padding: 0.65em 0;
+  width: 3.125em;
+  height: 3.125em;
+  margin-top: -1.4em;
+  border: 0.3125em solid #efefef;
+  border-radius: 50%;
+  transition: all ease-in-out 500ms;
+}
+.login-form-1 .login-button:hover {
+  color: #555555;
+}
+.login-form-1 .login-button.clicked {
+  color: #555555;
+}
+.login-form-1 .login-button.clicked:hover {
+  transform: none;
+}
+.login-form-1 .login-button.clicked.success {
+  color: #2ecc71;
+}
+.login-form-1 .login-button.clicked.error {
+  color: #e74c3c;
+}
+/*=== 6. Form Invalid ===*/
+label.form-invalid {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  display: block;
+  margin-top: -1.50em;
+  padding: 0.43750em 0.5625em;
+  background: #777777;
+  color: #ffffff;
+  border-radius: 0.31250em;
+  font-weight: bold;
+  font-size: 0.6250em;
+}
+label.form-invalid:after {
+  top: 100%;
+  right: 0.61250em;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: transparent;
+  border-top-color: #777777;
+  border-width: 0.3250em;
+}
+/*=== 7. Form - Main Message ===*/
+.login-form-main-message {
+  background: #ffffff;
+  color: #999999;
+  border-left: 0.1250em solid transparent;
+  border-radius: 0.1250em;
+  margin-bottom: 8px;
+  font-weight: bold;
+  height: 0;
+  padding: 0 1.250em 0 17px;
+  opacity: 0;
+  transition: all ease-in-out 200ms;
+}
+.login-form-main-message.show {
+  height: auto;
+  opacity: 1;
+  padding: 0.61250em 1.250em 0.61250em 17px;
+}
+.login-form-main-message.success {
+  border-left-color: #2ecc71;
+}
+.login-form-main-message.error {
+  border-left-color: #e74c3c;
+}
+/*=== 8. Custom Checkbox & Radio ===*/
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked,
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label,
+[type="radio"]:not(:checked) + label,
+[type="radio"]:checked + label {
+  position: relative;
+  padding-left: 1.50em;
+  padding-top: 0.06250em;
+  cursor: pointer;
+}
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.1250em;
+  width: 17px;
+  height: 17px;
+  border: 0px solid #aaa;
+  background: #f0f0f0;
+  border-radius: 0.1250em;
+  box-shadow: inset 0 0.06250em 0.1250em rgba(0, 0, 0, 0.3);
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after,
+[type="radio"]:checked + label:after {
+  position: absolute;
+  color: #555555;
+  transition: all .2s;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after,
+[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after,
+[type="radio"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+/* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before,
+[type="radio"]:disabled:not(:checked) + label:before,
+[type="radio"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #8c8c8c;
+  background-color: #878787;
+}
+[type="checkbox"]:disabled:checked + label:after,
+[type="radio"]:disabled:checked + label:after {
+  color: #555555;
+}
+[type="checkbox"]:disabled + label,
+[type="radio"]:disabled + label {
+  color: #8c8c8c;
+}
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before,
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+  border: 0.06250em dotted #f6f6f6;
+}
+/* hover style just for information */
+label:hover:before {
+  border: 0.06250em solid #f6f6f6 !important;
+}
+/*=== Customization ===*/
+/* radio aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  border-radius: 0.1250em;
+}
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before {
+  border-radius: 2.0em;
+}
+/* selected mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '✔';
+  top: 0;
+  left: 0.1250em;
+  font-size: 0.8750em;
+}
+[type="radio"]:not(:checked) + label:after,
+[type="radio"]:checked + label:after {
+  content: '\2022';
+  top: 0;
+  left: 0.1250em;
+  font-size: 1.875em;
+  line-height: 1.50em;
+}
+
+/* *************************************************************** */
