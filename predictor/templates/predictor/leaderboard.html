@@ -47,6 +47,14 @@
               {% endfor %}
           </tbody>
         </table>
+        <div class="gameweek-nav-div" align="center">
+            {% if previous_page >= 0 %}
+              <a class="gameweek-nav-prev" href="/predictor/leaderboard/{{ previous_page }}/"><&nbsp;&nbsp;Previous</a>
+            {% endif %}
+            {% if next_page > 0 %}
+                <a class="gameweek-nav-next" href="/predictor/leaderboard/{{ next_page }}/">Next&nbsp;&nbsp;></a>
+            {% endif %}
+        </div>
       {% else %}
         <div class="nothing-message">No gameweeks have been completed yet, so there is no leaderboard. But stay tuned!</div>
       {% endif %}

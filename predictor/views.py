@@ -100,6 +100,7 @@ def home(request):
             print(current_gameweek.end_time)
             deadline2 = current_gameweek.end_time.strftime('%m/%d/%Y %I:%M:00 %p %Z')
         except:
+            current_gameweek = None
             deadline2 = 'No upcoming deadline'
             deadline1 = ''
 
@@ -356,21 +357,45 @@ def gameweeks(request, username=None):
 
 
 @login_required(login_url="/predictor/login/")
-def leaderboard(request):
+def leaderboard(request, page=0):
+    
+    leaders_per_page = 25
 
     if request.user.is_authenticated():
+        
+        count = Leaderboard.objects.all().count()
+        page = int(page)
+        previous_page = page-1
+        next_page = page+1
+        if previous_page < 0:
+            previous_page = None
+        if next_page > ((count-1)//leaders_per_page):
+            next_page = None
 
-        leaderboard = list(Leaderboard.objects.all()[:10])
+        if (page * leaders_per_page) >= count:
+            return redirect('/predictor/404/')
+        
+        start_index = page*leaders_per_page
+        end_index = start_index+leaders_per_page
+        if end_index >= count:
+            end_index = count-1
+        
+        leaderboard = list(Leaderboard.objects.all()[start_index:end_index])
         if not leaderboard:
             return render(request, 'predictor/leaderboard.html')
         else:
             try:
                 if not any(x.user.id == request.user.id for x in leaderboard):
                     a = Leaderboard.objects.get(user=request.user)
-                    leaderboard.append(a)
+                    print(a.rank)
+                    print(leaderboard[end_index-1].rank)
+                    if a.rank > leaderboard[end_index-1].rank:
+                        leaderboard.append(a)
             except:
                 a = 1
-            context = {'leaderboard': leaderboard}
+            context = {'leaderboard': leaderboard,
+                       'previous_page': previous_page,
+                       'next_page': next_page}
             return render(request, 'predictor/leaderboard.html', context)
     else:
         return redirect('/predictor/login/')

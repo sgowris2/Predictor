@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^gameweeks/$', views.gameweeks, name='gameweeks'),
     url(r'^gameweeks/(?P<username>[-\w.]+)/$', views.gameweeks, name='gameweeks'),
     url(r'^leaderboard/$', views.leaderboard, name='leaderboard'),
+    url(r'^leaderboard/(?P<page>\w{0,50})/$', views.leaderboard, name='leaderboard'),
     url(r'^settings/$', views.settings, name='settings'),
     url(r'^about/$', views.about, name='about'),
     url(r'^contact/$', views.contact, name='contact'),
