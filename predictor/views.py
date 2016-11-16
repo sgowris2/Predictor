@@ -20,6 +20,8 @@ from predictor.utilities import contact_timeout_check, \
 
 #  Variables
 PredictionFormSet = formset_factory(PredictionForm, extra=0)
+LEADERS_PER_PAGE = 25
+
 
 # Methods
 @register.filter
@@ -27,8 +29,6 @@ def get_item(dictionary, key):
     return dictionary.get(key)
 
 # View Definitions
-
-
 def index(request):
     if request.user.is_authenticated():
         return redirect('/predictor/home/')
@@ -261,12 +261,10 @@ def gameweek(request, gameweek, username=None):
         now = timezone.now()
         current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)
         current_gameweek_number = int(current_gameweek[0].__str__().split(' ')[1])
-        now = timezone.now()
 
         if gameweek_instance:
 
             if gameweek_instance.end_time <= now:
-
                 matches_list = Match.objects.filter(gameweek=gameweek_instance)
                 predictions_list = Prediction.objects.filter(user=gameweek_user).filter(match__in=matches_list)
                 prediction_results_list = PredictionResult.objects.filter(prediction__in=predictions_list)
@@ -357,26 +355,70 @@ def gameweeks(request, username=None):
 
 
 @login_required(login_url="/predictor/login/")
+def gameweek_leaderboard(request, gameweek, page=0):
+
+    if request.user.is_authenticated():
+
+        gameweek_instance = Gameweek.objects.filter(name='Gameweek ' + gameweek)[0]
+        if gameweek_instance:
+            count = GameweekResult.objects.filter(gameweek=gameweek_instance).count()
+            page = int(page)
+            previous_page = page-1
+            next_page = page+1
+            if previous_page < 0:
+                previous_page = None
+            if next_page > ((count - 1) // LEADERS_PER_PAGE):
+                next_page = None
+
+            if (page * LEADERS_PER_PAGE) >= count:
+                return redirect('/predictor/404/')
+
+            start_index = page * LEADERS_PER_PAGE
+            end_index = start_index + LEADERS_PER_PAGE
+            if end_index >= count:
+                end_index = count - 1
+
+            leaderboard = list(GameweekResult.objects.filter(gameweek=gameweek_instance)[start_index:end_index])
+            if not leaderboard:
+                return render(request, 'predictor/leaderboard.html')
+            else:
+                try:
+                    if not any(x.user.id == request.user.id for x in leaderboard):
+                        a = Leaderboard.objects.get(user=request.user)
+                        print(a.rank)
+                        print(leaderboard[end_index - 1].rank)
+                        if a.rank > leaderboard[end_index - 1].rank:
+                            leaderboard.append(a)
+                except:
+                    a = 1
+                context = {'leaderboard': leaderboard,
+                           'previous_page': previous_page,
+                           'next_page': next_page}
+                return render(request, 'predictor/leaderboard.html', context)
+
+        else:
+            return redirect('/predictor/404/')
+
+
+@login_required(login_url="/predictor/login/")
 def leaderboard(request, page=0):
-    
-    leaders_per_page = 25
 
     if request.user.is_authenticated():
         
-        count = Leaderboard.objects.all().count()
+        count = Leaderboard.objects.count()
         page = int(page)
         previous_page = page-1
         next_page = page+1
         if previous_page < 0:
             previous_page = None
-        if next_page > ((count-1)//leaders_per_page):
+        if next_page > ((count-1)//LEADERS_PER_PAGE):
             next_page = None
 
-        if (page * leaders_per_page) >= count:
+        if (page * LEADERS_PER_PAGE) >= count:
             return redirect('/predictor/404/')
         
-        start_index = page*leaders_per_page
-        end_index = start_index+leaders_per_page
+        start_index = page * LEADERS_PER_PAGE
+        end_index = start_index + LEADERS_PER_PAGE
         if end_index >= count:
             end_index = count-1
         

@@ -33,7 +33,8 @@
           Total Score: {{ gameweek_provisional_points }}
         {% endif %}
       </div>
-      {% if prediction_list.count == 0 %}
+      {% if predictions_list.count == 0 %}
+        <br/><br/>
         <h4>There are no predictions available for this gameweek.</h4>
       {% else %}
         <table class="table-fill">
