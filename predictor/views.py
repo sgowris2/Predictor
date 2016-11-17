@@ -420,7 +420,7 @@ def leaderboard(request, page=0):
         start_index = page * LEADERS_PER_PAGE
         end_index = start_index + LEADERS_PER_PAGE
         if end_index >= count:
-            end_index = count-1
+            end_index = count
         
         leaderboard = list(Leaderboard.objects.all()[start_index:end_index])
         if not leaderboard:
