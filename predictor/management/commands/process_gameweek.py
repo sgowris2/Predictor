@@ -87,15 +87,16 @@ def calculate_scores(gameweek):
             prediction_result = PredictionResult.objects.get(prediction=prediction)
             prediction_result.points = calculate_prediction_score(prediction)
             if prediction.is_default:
-                prediction_result.penalty_points = math.floor(prediction_result.points/2)
-                prediction_result.points -= prediction_result.penalty_points
+                apply_penalty(prediction_result)
             update_prediction_result_stats(prediction_result)
             prediction_result.save()
         except:
             if prediction.match.has_ended:
-                PredictionResult.objects.create(prediction=prediction, points=calculate_prediction_score(prediction))
-                update_prediction_result_stats(PredictionResult.objects.get(prediction=prediction))
-                PredictionResult.objects.get(prediction=prediction).save()
+                prediction_result = PredictionResult.objects.create(prediction=prediction, points=calculate_prediction_score(prediction))
+                if prediction.is_default:
+                    apply_penalty(prediction_result)
+                update_prediction_result_stats(prediction_result)
+                prediction_result.save()
             else:
                 all_matches_ended = False
 
@@ -113,6 +114,11 @@ def calculate_scores(gameweek):
 
         calculate_leaderboard()
         calculate_gameweekaggregateresult(current_gameweek)
+
+
+def apply_penalty(prediction_result):
+    prediction_result.penalty_points = math.floor(prediction_result.points / 2)
+    prediction_result.points -= prediction_result.penalty_points
 
 
 def calculate_gameweekaggregateresult(current_gameweek):
