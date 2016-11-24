@@ -17,6 +17,8 @@ class Command(BaseCommand):
         current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)[0]
         if now + datetime.timedelta(hours=20) >= current_gameweek.end_time:
             send_reminders()
+        else:
+            print(now, now + datetime.timedelta(hours=20), current_gameweek.end_time)
 
 
 def send_test_reminder(user):
