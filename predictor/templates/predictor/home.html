@@ -11,7 +11,7 @@
       <div class="page-title" align="center">Welcome to Predictr</div>
       <hr/>
         <div>
-          <div class="home-block home-next-deadline-block">
+          <div class="home-block home-next-deadline-block" onclick="window.location='/predictor/predict';">
             <div>
               <div id="deadline" class="home-next-deadline"></div>
               <script>
@@ -62,85 +62,90 @@
 
         {% if last_gameweek_result %}
           <div class="page-subtitle">Overall</div>
+          <div class="gameweek-leaderboard-link-home">
+            <a href="/predictor/leaderboard/">Leaderboard</a>
+          </div>
           <hr class="hr-subtitle"/>
-            <div class="home-block home-stats-block">
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Players</div>
-                <div class="home-stat-cell-body">{{ overall_total_players }}</div>              
-              </div>
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Rank</div>
-                {% if overall_rank == 0 %}
-                  <div class="home-stat-cell-body">Unranked</div>
-                {% else %}
-                  <div class="home-stat-cell-body">{{ overall_rank }}</div>
-                {% endif %}
-              </div>
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Your Score</div>
-                <div class="home-stat-cell-body">{{ overall_score }}</div>
-              </div>
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Highest Score</div>
-                <div class="home-stat-cell-body">{{ overall_highest }}</div>
-              </div>
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Average Score</div>
-                <div class="home-stat-cell-body">{{ overall_average}}</div>
-              </div>
+          <div class="home-block home-stats-block">
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Players</div>
+              <div class="home-stat-cell-body">{{ overall_total_players }}</div>
             </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Rank</div>
+              {% if overall_rank == 0 %}
+                <div class="home-stat-cell-body">Unranked</div>
+              {% else %}
+                <div class="home-stat-cell-body">{{ overall_rank }}</div>
+              {% endif %}
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Your Score</div>
+              <div class="home-stat-cell-body">{{ overall_score }}</div>
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Highest Score</div>
+              <div class="home-stat-cell-body">{{ overall_highest }}</div>
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Average Score</div>
+              <div class="home-stat-cell-body">{{ overall_average}}</div>
+            </div>
+          </div>
           
-            <div class="page-subtitle">{{ last_gameweek_result.gameweek }}</div>
-            <hr class="hr-subtitle"/>
+          <div class="page-subtitle">{{ last_gameweek_result.gameweek }}</div>
+          <div class="gameweek-leaderboard-link-home">
+            <a href="/predictor/gameweek_leaderboard/{{ last_gameweek_result.gameweek.number }}/">Gameweek Leaderboard</a>
+          </div>
+          <hr class="hr-subtitle"/>
+          <div class="home-block home-stats-block">
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Players</div>
+              <div class="home-stat-cell-body">{{ gameweek_players }}</div>
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Rank</div>
+              {% if gameweek_rank == 0 %}
+                <div class="home-stat-cell-body">Unranked</div>
+              {% else %}
+                <div class="home-stat-cell-body">{{ gameweek_rank }}</div>
+              {% endif %}
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Your Score</div>
+              <div class="home-stat-cell-body">{{ gameweek_points }}</div>
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Highest Score</div>
+              <div class="home-stat-cell-body">{{ last_gameweek_result.highest_score }}</div>
+            </div>
+            <div class="home-stat-cell">
+              <div class="home-stat-cell-heading">Average Score</div>
+              <div class="home-stat-cell-body">{{ last_gameweek_result.average_score }}</div>
+            </div>
+          </div>
+          <div class="home-block home-stats-block">
+            <div class="home-stat-cell-long">
+              <div class="home-stat-cell-heading">Most Guessed Result</div>
+              <div class="home-stat-cell-body-long">{{ last_gameweek_result.most_guessed_result }}</div>
+            </div>
+            <div class="home-stat-cell-long">
+              <div class="home-stat-cell-heading">Least Guessed Result</div>
+              <div class="home-stat-cell-body-long">{{ last_gameweek_result.least_guessed_result }}</div>
+            </div>
+          </div>
 
-            <div class="home-block home-stats-block">
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Players</div>
-                <div class="home-stat-cell-body">{{ gameweek_players }}</div>              
-              </div>
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Rank</div>
-                {% if gameweek_rank == 0 %}
-                  <div class="home-stat-cell-body">Unranked</div>
-                {% else %}
-                  <div class="home-stat-cell-body">{{ gameweek_rank }}</div>
-                {% endif %}
-              </div>
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Your Score</div>
-                <div class="home-stat-cell-body">{{ gameweek_points }}</div>
-              </div>
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Highest Score</div>
-                <div class="home-stat-cell-body">{{ last_gameweek_result.highest_score }}</div>
-              </div>
-              <div class="home-stat-cell">
-                <div class="home-stat-cell-heading">Average Score</div>
-                <div class="home-stat-cell-body">{{ last_gameweek_result.average_score }}</div>
+          <hr class="hr-subtitle"/>
+          {% if summary_title != None %}
+            <div class="home-block home-summary-block">
+              <div class="home-summary-title"><b>{{ last_gameweek_result.gameweek }} - {{ summary_title }}</b></div>
+              <div class="home-summary-body">
+                {% for line in summary_body %}
+                  <p class="home-summary-body-line">{{ line }}</p>
+                {% endfor %}
               </div>
             </div>
-            <div class="home-block home-stats-block">
-              <div class="home-stat-cell-long">
-                <div class="home-stat-cell-heading">Most Guessed Result</div>
-                <div class="home-stat-cell-body-long">{{ last_gameweek_result.most_guessed_result }}</div>
-              </div>
-              <div class="home-stat-cell-long">
-                <div class="home-stat-cell-heading">Least Guessed Result</div>
-                <div class="home-stat-cell-body-long">{{ last_gameweek_result.least_guessed_result }}</div>
-              </div>
-            </div>
-
-            <hr class="hr-subtitle"/>
-            {% if summary_title != None %}
-              <div class="home-block home-summary-block">
-                <div class="home-summary-title"><b>{{ last_gameweek_result.gameweek }} - {{ summary_title }}</b></div>
-                <div class="home-summary-body">
-                  {% for line in summary_body %}
-                    <p class="home-summary-body-line">{{ line }}</p>
-                  {% endfor %}
-                </div>
-              </div>
-            {% endif %}
+          {% endif %}
 
         {% else %}
 

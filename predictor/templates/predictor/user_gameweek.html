@@ -13,7 +13,7 @@
       </div>
       <div class="gameweek-nav-div" align="center">
         {% if previous_gameweek > 0 %}
-          <a class="gameweek-nav-prev" href="/predictor/gameweek/{{ previous_gameweek }}/{{ gameweek_user.username }}"><&nbsp;&nbsp;Last Gameweek</a>
+          <a class="gameweek-nav-prev" href="/predictor/gameweek/{{ previous_gameweek }}/{{ gameweek_user.username }}"><&nbsp;&nbsp;Previous Gameweek</a>
         {% endif %}
         {% if next_gameweek > 0 %}
           {% if current_gameweek == next_gameweek and gameweek_user.username != user.username %}
@@ -32,6 +32,9 @@
         {% else %}
           Total Score: {{ gameweek_provisional_points }}
         {% endif %}
+      </div>
+      <div class="gameweek-leaderboard-link">
+        <a href="/predictor/gameweek_leaderboard/{{ gameweek }}/">Gameweek Leaderboard</a>
       </div>
       {% if predictions_list.count == 0 %}
         <br/><br/>

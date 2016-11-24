@@ -112,6 +112,7 @@ def calculate_scores(gameweek):
                                               total_points=get_gameweek_points(predictions.filter(user=user)))
                 GameweekResult.objects.get(user=user, gameweek=current_gameweek).save()
 
+        calculate_gameweek_ranks(current_gameweek)
         calculate_leaderboard()
         calculate_gameweekaggregateresult(current_gameweek)
 
@@ -119,6 +120,20 @@ def calculate_scores(gameweek):
 def apply_penalty(prediction_result):
     prediction_result.penalty_points = math.floor(prediction_result.points / 2)
     prediction_result.points -= prediction_result.penalty_points
+
+
+def calculate_gameweek_ranks(gameweek):
+    try:
+        gameweek_results = sorted(GameweekResult.objects.filter(gameweek=gameweek),
+                                  key=lambda x: x.total_points,
+                                  reverse=True)
+        for i in range(len(gameweek_results)):
+            points = gameweek_results[i].total_points
+            gameweek_results[i].rank = len(
+                GameweekResult.objects.filter(gameweek=gameweek, total_points__gt=points)) + 1
+            gameweek_results[i].save()
+    except:
+        print('Gameweek ranks not updated.')
 
 
 def calculate_gameweekaggregateresult(current_gameweek):

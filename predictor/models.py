@@ -78,6 +78,7 @@ class PredictionResult(models.Model):
 
 
 class GameweekResult(models.Model):
+    rank = models.IntegerField(default=0)
     user = models.ForeignKey(User)
     gameweek = models.ForeignKey(Gameweek)
     total_points = models.IntegerField(default=0)

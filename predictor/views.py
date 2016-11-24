@@ -355,12 +355,21 @@ def gameweeks(request, username=None):
 
 
 @login_required(login_url="/predictor/login/")
-def gameweek_leaderboard(request, gameweek, page=0):
+def gameweek_leaderboard(request, gameweek=None, page=0):
 
     if request.user.is_authenticated():
 
+        gameweeks = GameweekAggregateResult.objects.all().values_list('gameweek', flat=True)
+        last_available_gameweek = Gameweek.objects.get(id=max(gameweeks)).number()
+
+        if gameweek is None:
+            gameweek = last_available_gameweek.__str__()
+
         gameweek_instance = Gameweek.objects.filter(name='Gameweek ' + gameweek)[0]
         if gameweek_instance:
+            previous_gameweek = get_previous_gameweek(gameweek)
+            next_gameweek = get_next_gameweek(gameweek)
+            print(last_available_gameweek, next_gameweek)
             count = GameweekResult.objects.filter(gameweek=gameweek_instance).count()
             page = int(page)
             previous_page = page-1
@@ -378,22 +387,26 @@ def gameweek_leaderboard(request, gameweek, page=0):
             if end_index >= count:
                 end_index = count - 1
 
-            leaderboard = list(GameweekResult.objects.filter(gameweek=gameweek_instance)[start_index:end_index])
+            leaderboard = sorted(GameweekResult.objects.filter(gameweek=gameweek_instance)[start_index:end_index],
+                                 key=lambda x: x.total_points, reverse=True)
             if not leaderboard:
                 return render(request, 'predictor/leaderboard.html')
             else:
                 try:
                     if not any(x.user.id == request.user.id for x in leaderboard):
                         a = Leaderboard.objects.get(user=request.user)
-                        print(a.rank)
-                        print(leaderboard[end_index - 1].rank)
                         if a.rank > leaderboard[end_index - 1].rank:
                             leaderboard.append(a)
                 except:
                     a = 1
                 context = {'leaderboard': leaderboard,
                            'previous_page': previous_page,
-                           'next_page': next_page}
+                           'last_available_gameweek': last_available_gameweek,
+                           'next_page': next_page,
+                           'previous_gameweek': previous_gameweek,
+                           'next_gameweek': next_gameweek,
+                           'gameweek_leaderboard': True,
+                           'gameweek': gameweek}
                 return render(request, 'predictor/leaderboard.html', context)
 
         else:

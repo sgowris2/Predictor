@@ -3,13 +3,36 @@
   {% extends "predictor/base.html" %}
   <head>
     <title>
-      {% block title %}   | Leaderboard{% endblock %}
+      {% block title %}
+        {% if gameweek_leaderboard %}
+          | Gameweek Leaders
+        {% else %}
+          | Leaderboard
+        {% endif %}
+      {% endblock %}
     </title>
   </head>
   <body>
     {% block content %}
-      <div class="page-title">Leaders</div>
-      <hr/>
+    <div class="page-title">Leaderboard</div>
+      {% if gameweek_leaderboard %}
+        <div class="page-subtitle" style="margin-top: 0.5em;">Gameweek {{ gameweek }}</div>
+        <div class="gameweek-nav-div" align="center">
+        {% if previous_gameweek > 0 %}
+          <a class="gameweek-nav-prev" href="/predictor/gameweek_leaderboard/{{ previous_gameweek }}"><&nbsp;&nbsp;Previous Gameweek</a>
+        {% endif %}
+        {% if next_gameweek > 0 %}
+          {% if last_available_gameweek < next_gameweek %}
+          {% else %}
+            <a class="gameweek-nav-next" href="/predictor/gameweek_leaderboard/{{ next_gameweek }}">Next Gameweek&nbsp;&nbsp;></a>
+          {% endif %}
+        {% endif %}
+      </div>
+      <hr class="hr-with-nav"/>
+      {% else %}
+        <div class="page-subtitle" style="margin-top: 0.5em;">Overall</div>
+        <hr/>
+      {% endif %}
       {% if leaderboard %}
         <table class="table-fill">
           <thead>
@@ -24,23 +47,47 @@
                 <tr class="table-selectable-row">
                   {% if leader.user == user %}
                     <td class="text-left leaderboard-user-row">
+                      {% if gameweek_leaderboard %}
+                      <a href="/predictor/gameweek/{{ gameweek }}/">{{ leader.rank }}</a>
+                      {% else %}
                       <a href="/predictor/gameweeks/">{{ leader.rank }}</a>
+                      {% endif %}
                     </td>
                     <td class="text-left leaderboard-user-row">
+                      {% if gameweek_leaderboard %}
+                      <a href="/predictor/gameweek/{{ gameweek }}/">{{ leader.user.first_name }} {{ leader.user.last_name }}</a>
+                      {% else %}
                       <a href="/predictor/gameweeks/">{{ leader.user.first_name }} {{ leader.user.last_name }}</a>
+                      {% endif %}
                     </td>
                     <td class="text-left leaderboard-user-row">
+                      {% if gameweek_leaderboard %}
+                      <a href="/predictor/gameweek/{{ gameweek }}/">{{ leader.total_points }}</a>
+                      {% else %}
                       <a href="/predictor/gameweeks/">{{ leader.total_points }}</a>
+                      {% endif %}
                     </td>
                   {% else %}
                     <td class="text-left">
+                      {% if gameweek_leaderboard %}
+                      <a href="/predictor/gameweek//{{ gameweek }}/{{ leader.user.username }}">{{ leader.rank }}</a>
+                      {% else %}
                       <a href="/predictor/gameweeks/{{ leader.user.username }}">{{ leader.rank }}</a>
+                      {% endif %}
                     </td>
                     <td class="text-left">
+                      {% if gameweek_leaderboard %}
+                      <a href="/predictor/gameweek/{{ gameweek }}/{{ leader.user.username }}">{{ leader.user.first_name }} {{ leader.user.last_name }}</a>
+                      {% else %}
                       <a href="/predictor/gameweeks/{{ leader.user.username }}">{{ leader.user.first_name }} {{ leader.user.last_name }}</a>
+                      {% endif %}
                     </td>
                     <td class="text-left">
+                      {% if gameweek_leaderboard %}
+                      <a href="/predictor/gameweek/{{ gameweek }}/{{ leader.user.username }}">{{ leader.total_points }}</a>
+                      {% else %}
                       <a href="/predictor/gameweeks/{{ leader.user.username }}">{{ leader.total_points }}</a>
+                      {% endif %}
                     </td>
                   {% endif %}
                 </tr>

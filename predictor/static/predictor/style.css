@@ -187,6 +187,16 @@ hr {
     float:right;
 }
 
+.gameweek-leaderboard-link {
+    text-align: center;
+}
+
+.gameweek-leaderboard-link-home {
+    text-align: center;
+    font-size: 0.925em;
+    margin-top: -1.25em;
+}
+
 a {
   transition: all ease-in-out 200ms;
 }
@@ -542,6 +552,11 @@ td a:hover {
 
     text-align: center;
     margin:0 2.5em;
+}
+
+.home-next-deadline-block:hover {
+    color: #4CD3AB;
+
 }
 
 .home-next-deadline {
