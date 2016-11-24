@@ -1,11 +1,8 @@
-from django.core.management.base import BaseCommand, CommandError
-from django.contrib.auth.models import User
+from django.core.management.base import BaseCommand
 from predictor.models import Match, Gameweek, UserProfile, Prediction
 from django.utils import timezone
-from django.core.mail import send_mail, send_mass_mail
-import smtplib
+import datetime
 import sendgrid
-import os
 from sendgrid.helpers.mail import *
 
 
@@ -15,7 +12,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # send_test_reminder(User.objects.get(email='sgowris2@gmail.com'))
-        send_reminders()
+
+        now = timezone.now()
+        current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)[0]
+        if now + datetime.timedelta(hours=12) >= current_gameweek.end_time:
+            send_reminders()
 
 
 def send_test_reminder(user):
