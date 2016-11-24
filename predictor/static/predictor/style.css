@@ -554,10 +554,6 @@ td a:hover {
     margin:0 2.5em;
 }
 
-.home-next-deadline-block:hover {
-    color: #4CD3AB;
-
-}
 
 .home-next-deadline {
 
@@ -565,6 +561,11 @@ td a:hover {
     margin-bottom: 4em;
     padding: 1em;
     border: 1px solid #4cd3ab;
+}
+
+.home-next-deadline:hover {
+    cursor: pointer;
+    border: 2px solid #4cd3ab;
 }
 
 .home-stats-block {
