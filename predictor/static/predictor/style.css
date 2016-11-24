@@ -293,6 +293,16 @@ input[type=checkbox]:checked + label:after {
     border: 1px solid #333333;
 }
 
+.dropdown-menu {
+    left:auto;
+}
+
+.navbar-dropdown-menu {
+    left: 0 !important;
+    right: auto !important;
+    background: #f1f1f1;
+}
+
 .navlink {
     font-size: 0.8750em;
 }
