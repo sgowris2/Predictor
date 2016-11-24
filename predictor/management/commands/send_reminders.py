@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from predictor.models import Match, Gameweek, UserProfile, Prediction
+from predictor.models import Match, Gameweek, User, UserProfile, Prediction
 from django.utils import timezone
 import datetime
 import sendgrid
@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
         now = timezone.now()
         current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)[0]
-        if now + datetime.timedelta(hours=12) >= current_gameweek.end_time:
+        if now + datetime.timedelta(hours=20) >= current_gameweek.end_time:
             send_reminders()
 
 
@@ -27,10 +27,11 @@ def send_test_reminder(user):
     to_email = Email(user.email)
     content = Content("text/html",
                         "Hi " + user.first_name + "!<br/><br/>"
-                        "This is to remind you that your predictions are due very soon! "
-                        "<br/>If you would like to opt out of receiving these reminders in the future, "
-                        "please change your "
-                        "<a href=\"predictr.pythonanywhere.com/predictor/settings\">e-mail preferences</a>.")
+                            "This is to remind you that your predictions are due very soon at "
+                            "<a href=\"predictr.pythonanywhere.com\">Predictr</a>!"
+                            "<br/>If you would like to opt out of receiving these reminders in the future, "
+                            "please change your "
+                            "<a href=\"predictr.pythonanywhere.com/predictor/settings\">e-mail preferences</a>.")
     email = Mail(from_email, subject, to_email, content)
     response = sg.client.mail.send.post(request_body=email.get())
     print(response.status_code)
@@ -47,7 +48,8 @@ def send_reminder(user):
         to_email = Email(user.email)
         content = Content("text/html",
                             "Hi " + user.first_name + "!<br/><br/>"
-                            "This is to remind you that your predictions are due very soon! "
+                            "This is to remind you that your predictions are due very soon at "
+                            "<a href=\"predictr.pythonanywhere.com\">Predictr</a>!"
                             "<br/>If you would like to opt out of receiving these reminders in the future, "
                             "please change your "
                             "<a href=\"predictr.pythonanywhere.com/predictor/settings\">e-mail preferences</a>.")
