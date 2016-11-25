@@ -16,7 +16,8 @@ from predictor.forms import PredictionForm, RegistrationForm, ContactForm, Setti
 from predictor.utilities import contact_timeout_check, \
                                 get_unresulted_gameweeks, \
                                 get_previous_gameweek, \
-                                get_next_gameweek
+                                get_next_gameweek,  \
+                                send_email
 
 #  Variables
 PredictionFormSet = formset_factory(PredictionForm, extra=0)
@@ -97,7 +98,6 @@ def home(request):
         try:
             current_gameweek = Gameweek.objects.filter(start_time__lte=now, end_time__gte=now)[0]
             deadline1 = 'Upcoming deadline'
-            print(current_gameweek.end_time)
             deadline2 = current_gameweek.end_time.strftime('%m/%d/%Y %I:%M:00 %p %Z')
         except:
             current_gameweek = None
@@ -369,7 +369,6 @@ def gameweek_leaderboard(request, gameweek=None, page=0):
         if gameweek_instance:
             previous_gameweek = get_previous_gameweek(gameweek)
             next_gameweek = get_next_gameweek(gameweek)
-            print(last_available_gameweek, next_gameweek)
             count = GameweekResult.objects.filter(gameweek=gameweek_instance).count()
             page = int(page)
             previous_page = page-1
@@ -442,8 +441,6 @@ def leaderboard(request, page=0):
             try:
                 if not any(x.user.id == request.user.id for x in leaderboard):
                     a = Leaderboard.objects.get(user=request.user)
-                    print(a.rank)
-                    print(leaderboard[end_index-1].rank)
                     if a.rank > leaderboard[end_index-1].rank:
                         leaderboard.append(a)
             except:
@@ -467,7 +464,6 @@ def settings(request):
             show_status_message = True
             try:
                 data = form.data
-                print(data)
                 try:
                     profile = UserProfile.objects.get(user=request.user)
                     try:
@@ -541,6 +537,8 @@ def contact(request):
                         FeedbackMessage.objects.create(user=request.user, message=data['content'], timestamp=timestamp)
                         feedback_message = FeedbackMessage.objects.filter(user=request.user, message=data['content'])[0]
                         feedback_message.save()
+                        for user in User.objects.filter(is_active=True, is_staff=True):
+                            send_email(user.email, request.user, data['content'])
                         return redirect('/predictor/contact_success/')
                     else:
                         return redirect('/predictor/contact_timeout/')

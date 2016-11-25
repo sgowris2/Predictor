@@ -72,5 +72,5 @@ def send_reminders():
     reminder_user_profiles = UserProfile.objects.filter(user__in=reminder_users, reminders=True)
 
     for user_profile in reminder_user_profiles:
-        # send_reminder(user_profile.user)
-        print(user_profile)
+        send_reminder(user_profile.user)
+        # print(user_profile)
