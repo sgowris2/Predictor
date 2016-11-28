@@ -382,10 +382,10 @@ def gameweek_leaderboard(request, gameweek=None, page=0):
             start_index = page * LEADERS_PER_PAGE
             end_index = start_index + LEADERS_PER_PAGE
             if end_index >= count:
-                end_index = count - 1
+                end_index = count
 
-            leaderboard = sorted(GameweekResult.objects.filter(gameweek=gameweek_instance)[start_index:end_index],
-                                 key=lambda x: x.total_points, reverse=True)
+            leaderboard = sorted(GameweekResult.objects.filter(gameweek=gameweek_instance),
+                                 key=lambda x: x.total_points, reverse=True)[start_index:end_index]
             if not leaderboard:
                 return render(request, 'predictor/leaderboard.html')
             else:

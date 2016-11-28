@@ -96,10 +96,18 @@
         </table>
         <div class="gameweek-nav-div" align="center">
             {% if previous_page >= 0 %}
-              <a class="gameweek-nav-prev" href="/predictor/leaderboard/{{ previous_page }}/"><&nbsp;&nbsp;Previous</a>
+              {% if gameweek_leaderboard %}
+                <a class="gameweek-nav-prev" href="/predictor/gameweek_leaderboard/{{ gameweek }}/{{ previous_page }}/"><&nbsp;&nbsp;Previous</a>
+              {% else %}
+                <a class="gameweek-nav-prev" href="/predictor/leaderboard/{{ previous_page }}/"><&nbsp;&nbsp;Previous</a>
+              {% endif %}
             {% endif %}
             {% if next_page > 0 %}
+              {% if gameweek_leaderboard %}
+                <a class="gameweek-nav-next" href="/predictor/gameweek_leaderboard/{{ gameweek }}/{{ next_page }}/">Next&nbsp;&nbsp;></a>
+              {% else %}
                 <a class="gameweek-nav-next" href="/predictor/leaderboard/{{ next_page }}/">Next&nbsp;&nbsp;></a>
+              {% endif %}
             {% endif %}
         </div>
       {% else %}
