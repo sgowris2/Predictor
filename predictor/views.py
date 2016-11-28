@@ -391,8 +391,8 @@ def gameweek_leaderboard(request, gameweek=None, page=0):
             else:
                 try:
                     if not any(x.user.id == request.user.id for x in leaderboard):
-                        a = Leaderboard.objects.get(user=request.user)
-                        if a.rank > leaderboard[end_index - 1].rank:
+                        a = GameweekResult.objects.get(gameweek=gameweek_instance, user=request.user)
+                        if a.rank > leaderboard[-1].rank:
                             leaderboard.append(a)
                 except:
                     a = 1
@@ -439,7 +439,7 @@ def leaderboard(request, page=0):
             try:
                 if not any(x.user.id == request.user.id for x in leaderboard):
                     a = Leaderboard.objects.get(user=request.user)
-                    if a.rank > leaderboard[end_index-1].rank:
+                    if a.rank > leaderboard[-1].rank:
                         leaderboard.append(a)
             except:
                 a = 1
