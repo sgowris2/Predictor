@@ -1,7 +1,6 @@
 import re
 import pytz
 import datetime
-from operator import attrgetter
 from django.shortcuts import render, redirect
 from django.db.models import Max, Avg
 from django.template.defaulttags import register
@@ -16,8 +15,7 @@ from predictor.forms import PredictionForm, RegistrationForm, ContactForm, Setti
 from predictor.utilities import contact_timeout_check, \
                                 get_unresulted_gameweeks, \
                                 get_previous_gameweek, \
-                                get_next_gameweek,  \
-                                send_email
+                                get_next_gameweek
 
 #  Variables
 PredictionFormSet = formset_factory(PredictionForm, extra=0)
@@ -537,8 +535,8 @@ def contact(request):
                         FeedbackMessage.objects.create(user=request.user, message=data['content'], timestamp=timestamp)
                         feedback_message = FeedbackMessage.objects.filter(user=request.user, message=data['content'])[0]
                         feedback_message.save()
-                        for user in User.objects.filter(is_active=True, is_staff=True):
-                            send_email(user.email, request.user, data['content'])
+                        # for user in User.objects.filter(is_active=True, is_staff=True):
+                        #     send_email(user.email, request.user, data['content'])
                         return redirect('/predictor/contact_success/')
                     else:
                         return redirect('/predictor/contact_timeout/')

@@ -1,8 +1,8 @@
 import datetime
 import pytz
 from predictor.models import Gameweek, GameweekResult, Leaderboard, FeedbackMessage
-import sendgrid
-from sendgrid.helpers.mail import *
+# from sendgrid import SendGridAPIClient
+# from sendgrid.helpers.mail import *
 
 
 def get_rank(user):
@@ -68,15 +68,15 @@ def get_next_gameweek(gameweek_number):
         return 0
 
 
-def send_email(to, submitted_by, message):
-    try:
-        sg = sendgrid.SendGridAPIClient(apikey='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')
-        from_email = Email("sgowris2@gmail.com")
-        subject = "Feedback Message Submitted"
-        to_email = Email(to)
-        content = Content("text/html", submitted_by.first_name + ' ' + submitted_by.last_name + ' wrote: <br/><br/>' + message)
-        email = Mail(from_email, subject, to_email, content)
-        response = sg.client.mail.send.post(request_body=email.get())
-        print('Email sent to ' + to)
-    except:
-        return
+# def send_email(to, submitted_by, message):
+#     try:
+#         sg = SendGridAPIClient(apikey='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')
+#         from_email = Email("sgowris2@gmail.com")
+#         subject = "Feedback Message Submitted"
+#         to_email = Email(to)
+#         content = Content("text/html", submitted_by.first_name + ' ' + submitted_by.last_name + ' wrote: <br/><br/>' + message)
+#         email = Mail(from_email, subject, to_email, content)
+#         response = sg.client.mail.send.post(request_body=email.get())
+#         print('Email sent to ' + to)
+#     except:
+#         return
