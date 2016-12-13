@@ -52,13 +52,14 @@ class RegistrationForm(UserCreationForm):
             user.save()
             now = timezone.now()
             try:
-                gameweek = Gameweek.objects.get(start_time__lte=now, end_time__gte=now)
-                for match in Match.objects.filter(gameweek=gameweek):
-                    existing_predictions = Prediction.objects.filter(match=match, user=user)
-                    if not existing_predictions:
-                        Prediction.objects.create(user=user, match=match)
-                        prediction = Prediction.objects.filter(user=user, match=match)[0]
-                        prediction.save()
+                gameweeks = Gameweek.objects.get(end_time__gte=now)
+                for gameweek in gameweeks:
+                    for match in Match.objects.filter(gameweek=gameweek):
+                        existing_predictions = Prediction.objects.filter(match=match, user=user)
+                        if not existing_predictions:
+                            Prediction.objects.create(user=user, match=match)
+                            prediction = Prediction.objects.filter(user=user, match=match)[0]
+                            prediction.save()
             except:
                 # do nothing
                 a = 1
