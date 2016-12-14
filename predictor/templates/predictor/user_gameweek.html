@@ -33,9 +33,11 @@
           Total Score: {{ gameweek_provisional_points }}
         {% endif %}
       </div>
-      <div class="gameweek-leaderboard-link">
-        <a href="/predictor/gameweek_leaderboard/{{ gameweek }}/">Gameweek Leaderboard</a>
-      </div>
+      {% if gameweek_result %}
+        <div class="gameweek-leaderboard-link">
+          <a href="/predictor/gameweek_leaderboard/{{ gameweek }}/">Gameweek Leaderboard</a>
+        </div>
+      {% endif %}
       {% if predictions_list.count == 0 %}
         <br/><br/>
         <h4>There are no predictions available for this gameweek.</h4>
