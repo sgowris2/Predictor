@@ -22,6 +22,7 @@ class Gameweek(models.Model):
     name = models.CharField(max_length=15)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
+    is_complete = models.BooleanField(default=False)
 
     def number(self):
         return int(self.name.split(' ')[1])

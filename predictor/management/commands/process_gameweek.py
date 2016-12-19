@@ -101,16 +101,19 @@ def calculate_scores(gameweek):
                 all_matches_ended = False
 
     if all_matches_ended:
-        for user in User.objects.all():
-            try:
-                gameweek_result = GameweekResult.objects.get(user=user, gameweek=current_gameweek)
-                gameweek_result.total_points = get_gameweek_points(predictions.filter(user=user))
-                gameweek_result.save()
-            except:
-                GameweekResult.objects.create(user=user,
-                                              gameweek=current_gameweek,
-                                              total_points=get_gameweek_points(predictions.filter(user=user)))
-                GameweekResult.objects.get(user=user, gameweek=current_gameweek).save()
+        current_gameweek.is_complete = True
+        current_gameweek.save()
+
+    for user in User.objects.all():
+        try:
+            gameweek_result = GameweekResult.objects.get(user=user, gameweek=current_gameweek)
+            gameweek_result.total_points = get_gameweek_points(predictions.filter(user=user))
+        except:
+            gameweek_result = GameweekResult.objects.create(user=user,
+                                          gameweek=current_gameweek,
+                                          total_points=get_gameweek_points(predictions.filter(user=user)))
+
+        gameweek_result.save()
 
         calculate_gameweek_ranks(current_gameweek)
         calculate_leaderboard()
